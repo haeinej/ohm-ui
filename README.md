@@ -39,3 +39,9 @@ To take newer shadcn or assistant-ui components, run `npm run vendor`. When some
 ## Licence notices
 
 ohm-ui includes source from shadcn/ui and assistant-ui (MIT), Lucide icons (ISC) and the Coconat typeface (OFL). See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Search and link previews
+
+Every gallery page is prerendered with its own title, description and canonical URL by `src/seo.ts` and the route head functions. `scripts/seo.mjs` checks the generated HTML and writes the sitemap from its canonical URLs. `public/robots.txt` advertises it. The shared 1200 × 630 PNG is `/og-design-v1.png`; version the filename when replacing the artwork. The `/overview` alias redirects to `/`; unknown pages return 404 and noindex. `scripts/worker.mjs` redirects public HTTP requests to HTTPS before serving ASSETS.
+
+`npm run deploy:check` validates the build and Cloudflare configuration; `npm run deploy` publishes it. Check the actual HTML and image after deployment: link-preview services cache independently, and a successful deploy does not guarantee immediate search indexing.
