@@ -49,6 +49,7 @@ import {Toggle} from '@/registry/ohm/ui/toggle';
 import {ToggleGroup, ToggleGroupItem} from '@/registry/ohm/ui/toggle-group';
 import {Tooltip, TooltipContent, TooltipTrigger} from '@/registry/ohm/ui/tooltip';
 import {Thread} from '@/registry/ohm/assistant/thread';
+import {Wave} from '@/registry/ohm/ui/wave';
 import {useDemoRuntime} from './demo-runtime';
 
 const described = Object.fromEntries(registry.items.map(item => [item.name, item.description]));
@@ -65,13 +66,11 @@ function Example({title, children, className, backdrop}: {title?: string; childr
   </section>;
 }
 
-/** Something for glass to blur: the brand atmosphere with a few shapes and words over it. */
+/** Something for glass to blur: the ohm wave, with the name over it. */
 function Backdrop() {
   return <div aria-hidden="true" className="absolute inset-0 -z-0">
-    <div className="ohm-atmosphere"/>
-    <div className="absolute top-6 left-6 size-14 rounded-full sm:left-10 sm:size-28 bg-(--ohm-green-light)"/>
-    <div className="absolute right-6 bottom-6 size-16 rounded-full sm:right-12 sm:size-36 bg-(--ohm-red)"/>
-    <p className="absolute bottom-8 left-8 hidden font-serif sm:block text-[64px] leading-none text-(--ohm-on-accent)">ohm</p>
+    <Wave/>
+    <p className="absolute bottom-8 left-8 hidden font-serif text-[64px] leading-none text-(--ohm-on-accent) sm:block">ohm</p>
   </div>;
 }
 

@@ -32,6 +32,7 @@ const DESCRIPTIONS = {
   textarea: 'A multi-line text input.',
   icon: 'One Lucide icon at an ohm size (xs, sm, md, lg, xl) and stroke; decorative unless given a label.',
   icons: 'The ohm icon set: Lucide icons chosen once per meaning (icons.help, icons.delete), in groups.',
+  wave: 'The ohm wave: the flowing field of greens from ohmmmm.com, in WebGL, filling its box. Pauses off screen, still with reduced motion, a still field without WebGL.',
   'file-tree': 'A folder tree for finding and opening things, with the side panel, view tabs and action toolbar around it. Keyboard: arrows, Home, End, Enter.',
   panel: 'A surface for a group of things, by material (solid, raised, muted, frost-thin, frost, frost-thick, tint), elevation (0–5) and size; with header, title, description, action, content, footer, group, label, item rows and separator.',
   accordion: 'Sections that open and close in place.',

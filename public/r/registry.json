@@ -813,6 +813,21 @@
       ]
     },
     {
+      "name": "wave",
+      "type": "registry:ui",
+      "title": "Wave",
+      "description": "The ohm wave: the flowing field of greens from ohmmmm.com, in WebGL, filling its box. Pauses off screen, still with reduced motion, a still field without WebGL.",
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/wave.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "elements-agent-plan",
       "type": "registry:component",
       "title": "Agent Plan",
