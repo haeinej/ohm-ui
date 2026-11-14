@@ -1,6 +1,6 @@
-# ohm-ui
+# ohm design system
 
-The ohm design system: how ohm looks, as components any ohm app can install.
+How ohm looks, as components any ohm app can install.
 
 It is built the way [shadcn/ui](https://ui.shadcn.com) is. Components are not a package you import; the shadcn CLI copies them into your app, so nothing is hidden and every app's copy comes from the same place.
 

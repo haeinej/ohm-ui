@@ -114,8 +114,11 @@ export function NoticeLayer({children}: {children: ReactNode}) {
 }
 
 /** Mount once at the root: renders every notice raised through notify(). */
+const NONE: Notice[] = [];
+
 export function Notices() {
-  const list = useSyncExternalStore(subscribe, () => notices);
+  // The server renders no notices; they only ever appear in the browser.
+  const list = useSyncExternalStore(subscribe, () => notices, () => NONE);
   if (!list.length) return null;
   return <NoticeLayer>
     {list.map(n => <NoticePill key={n.id} role={n.tone === 'info' ? 'status' : 'alert'}

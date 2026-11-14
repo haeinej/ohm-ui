@@ -27,7 +27,8 @@ The preset's font (Inter) and colours are not used: ohm keeps its own type and c
 | `registry/ohm/lib/`, `registry/ohm/hooks/` | `cn`, the icon set, hooks | `cn.ts` and `icons.ts` only |
 | `registry/ohm/vendor.json` | Where every vendored file came from, its upstream name and description, the patches applied, upstream's dependencies | No. `scripts/vendor.mjs` writes it |
 | `registry.json`, `public/r/` | The registry manifest and the built registry | No. `npm run registry:build` writes both. Commit them |
-| `src/` | The gallery: a TanStack Start app (shadcn's `start` template), one route per page | Yes |
+| `src/` | The gallery, "ohm design system": a TanStack Start app (shadcn's `start` template), one route per page, prerendered | Yes |
+| `wrangler.jsonc`, `public/_headers` | Hosting at design.ohmmmm.com | Yes |
 | `scripts/` | `vendor.mjs`, `registry.mjs`, `check.mjs`, `foundations.mjs` | Yes |
 
 ## Contracts
@@ -57,8 +58,12 @@ npm run typecheck
 npm run check             # the contracts above
 npm run vendor            # re-take shadcn and assistant-ui, then npm install anything new
 npm run registry:build    # registry.json and public/r
-npm run build
+npm run build            # also prerenders every gallery page into dist/client
+npm run deploy:check     # build, then a wrangler dry run
+npm run deploy           # build and publish to design.ohmmmm.com
 ```
+
+**Deploying.** The gallery is static: every page is prerendered and `wrangler.jsonc` serves `dist/client` from a Worker on the custom domain `design.ohmmmm.com` (headers in `public/_headers`), the same way `docs.ohmmmm.com` is served. The registry is there too, at `/r/{name}.json`. Deploying needs wrangler signed in to the Cloudflare account that owns `ohmmmm.com` (`account_id` in `wrangler.jsonc`).
 
 npm is used here because pnpm is not installed on this machine; `pnpm dlx` and `npx` run the same CLI.
 

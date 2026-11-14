@@ -55,9 +55,9 @@ Corners grow with the surface. Tailwind's `rounded-*` scale is mapped onto these
 
 ## Depth
 
-**Shade.** Five steps from one light source above. Each is a tight contact shadow and a soft ambient one, plus a 1px inset edge (`--ohm-edge`) so a surface reads on any background.
+**Shade.** Five steps from one light source above. Each is a tight contact shadow and a soft ambient one No edges: a surface is lifted by its shadow in light and by its tone in dark.
 
-**Dark has no shade.** Shadows on black read as murk, so in dark every shade step is empty. An elevated surface is set apart only by its raised tone (`--ohm-card`, #121212, above the #000 page) and its hairline edge.
+**Dark has no shade and no edges.** Shadows and hairlines on black read as murk and seams, so in dark every shade step and edge is empty. An elevated surface is set apart only by its raised tone (`--ohm-card`, #121212, above the #000 page); the sidebar only by its own tone.
 
 | Step | Utility | Tailwind | Use |
 | --- | --- | --- | --- |
@@ -102,6 +102,6 @@ Lucide, shadcn's set, at one stroke (2) with round caps and joins. Five sizes: `
 
 1. **One source.** Colour, size, radius, shadow, duration and font live in `tokens.css`. Components use tokens or the Tailwind keys mapped onto them.
 2. **Theme, don't fork.** Upstream components stay as upstream wrote them; the look comes from the foundations. The few necessary changes are listed and applied by `scripts/vendor.mjs`.
-3. **Separate with space, then tone, then shade.** Lines only where they group: menu separators, button groups, hairline edges on floating surfaces.
+3. **Separate with space, then tone, then shade. No edges.** No hairlines around panels, cards or the sidebar; lines only inside a menu or list to group its items.
 4. **States.** A page's loading state is blank or a `LoadingDot`; skeletons only inside lists. Errors and confirmations are notices. Empty places say what goes there and offer the action that fills them.
 5. **Accessible.** WCAG AA contrast in both schemes, 44px touch targets on coarse pointers, a visible focus ring, reduced motion and transparency honoured.

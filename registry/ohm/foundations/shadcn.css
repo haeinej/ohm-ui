@@ -33,7 +33,7 @@
   --sidebar-primary-foreground: var(--ohm-on-accent);
   --sidebar-accent: var(--ohm-wash);
   --sidebar-accent-foreground: var(--ohm-ink);
-  --sidebar-border: var(--ohm-line);
+  --sidebar-border: var(--ohm-sidebar-line);
   --sidebar-ring: var(--ohm-focus);
   /* shadcn's base radius is the field radius: no second radius system. */
   --radius: var(--ohm-radius-field);
@@ -434,3 +434,12 @@ h3 { font: var(--ohm-type-h3-weight) var(--ohm-type-h3-size) / var(--ohm-type-h3
   transition-duration: var(--ohm-duration-press);
   transition-timing-function: var(--ohm-ease-out);
 }
+
+/* ---- Borders ----
+   shadcn's base: a border with no colour of its own takes --border, not the text colour.
+   In the base layer, so any border-* utility still wins. */
+@layer base {
+  *, ::before, ::after { border-color: var(--border); }
+}
+/* The sidebar has no edge: its tone sets it apart. */
+:where([data-slot=sidebar-container]) { border-color: transparent; }

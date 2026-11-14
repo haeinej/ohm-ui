@@ -514,7 +514,7 @@ function OverviewPage() {
       <div className="relative flex flex-col items-center gap-6"><QuickActions/></div>
     </Example>
     <div className="grid gap-4 sm:grid-cols-3">
-      {[['Foundations', 'Colour, type, shade, frost and icons, as tokens.', 'color'], ['Components', 'shadcn base-nova on Base UI, in ohm’s shape.', 'panel'], ['Assistant', 'A conversation with an agent, on assistant-ui.', 'thread']].map(([title, text, href]) =>
+      {[['Foundations', 'Colour, type, shade, frost and icons, as tokens.', 'color'], ['Components', 'shadcn’s Maia style on Base UI, in ohm’s type and colour.', 'panel'], ['Assistant', 'Chat and agent interface, on assistant-ui.', 'thread']].map(([title, text, href]) =>
         <Link key={title} to="/$page" params={{page: href as PageId}} className="rounded-3xl bg-card p-5 shade-2 transition-shadow hover:shade-3">
           <h3>{title}</h3><p className="pt-1 text-body text-muted-foreground">{text}</p>
         </Link>)}
@@ -529,7 +529,7 @@ const page = (title: string, section: string, Page: ComponentType, install?: str
   ({title, section, Page, install, description: description ?? (install ? described[install] : undefined)});
 
 export const PAGES = {
-  overview: page('ohm ui', 'Start', OverviewPage, undefined, 'Foundations, components and assistant parts for ohm. Light by default. Every item installs with the shadcn CLI.'),
+  overview: page('ohm design system', 'Start', OverviewPage, undefined, 'Foundations, components and agent interface for ohm. Light by default. Every item installs with the shadcn CLI.'),
   color: page('Colour', 'Foundations', ColorPage, undefined, 'One neutral set, the forest green, a light green and a red, and a few surfaces with one job each.'),
   type: page('Type', 'Foundations', TypePage, undefined, 'Coconat for display titles only. Everything else is Helvetica Neue in five roles.'),
   depth: page('Shade', 'Foundations', DepthPage, undefined, 'Five steps of elevation from one light source.'),
