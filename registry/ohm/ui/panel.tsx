@@ -133,7 +133,7 @@ function PanelItem({
         "aria-current": active ? "page" : undefined,
         className: cn(
           "flex min-h-10 w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-body text-foreground outline-none transition-colors",
-          "hover:bg-muted focus-visible:bg-muted aria-[current=page]:bg-muted aria-[current=page]:font-medium",
+          "hover:bg-muted focus-visible:bg-muted aria-[current=page]:bg-foreground/8 aria-[current=page]:font-medium",
           "disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-icon",
           className
         ),

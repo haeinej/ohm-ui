@@ -83,6 +83,8 @@
 
   /* ---- color: surfaces and states, one job each (DESIGN.md) ---- */
   --ohm-panel: light-dark(#fff, #0b0b0b);
+  /* Cards and panels: in dark, a raised tone, so an elevated surface is lighter than the page. */
+  --ohm-card: light-dark(#fff, #121212);
   --ohm-raised: light-dark(#fff, #191919);
   --ohm-paper-light: #fff;
   /* Floating surfaces (menus, popovers, selects): frosted in light, solid and still in dark. */
@@ -130,15 +132,18 @@
 
   /* ---- depth: shade. One light source above; each step sits closer to the eye.
      Every step is two shadows: a tight contact shadow and a soft ambient one. ---- */
-  --ohm-shade-1: 0 1px 2px light-dark(rgb(0 0 0 / .06), rgb(0 0 0 / .5));
-  --ohm-shade-2: 0 1px 2px light-dark(rgb(0 0 0 / .04), rgb(0 0 0 / .4)), 0 3px 10px -2px light-dark(rgb(0 0 0 / .07), rgb(0 0 0 / .5));
-  --ohm-shade-3: 0 2px 4px -1px light-dark(rgb(0 0 0 / .05), rgb(0 0 0 / .45)), 0 10px 28px -8px light-dark(rgb(0 0 0 / .14), rgb(0 0 0 / .65));
-  --ohm-shade-4: 0 4px 8px -2px light-dark(rgb(0 0 0 / .05), rgb(0 0 0 / .5)), 0 20px 44px -12px light-dark(rgb(0 0 0 / .18), rgb(0 0 0 / .7));
-  --ohm-shade-5: 0 8px 16px -4px light-dark(rgb(0 0 0 / .07), rgb(0 0 0 / .55)), 0 32px 80px -20px light-dark(rgb(0 0 0 / .28), rgb(0 0 0 / .8));
+  --ohm-shade-1: 0 1px 2px light-dark(rgb(0 0 0 / .06), rgb(0 0 0 / .6));
+  --ohm-shade-2: 0 1px 2px light-dark(rgb(0 0 0 / .04), rgb(0 0 0 / .5)), 0 4px 12px -2px light-dark(rgb(0 0 0 / .08), rgb(0 0 0 / .6));
+  --ohm-shade-3: 0 2px 6px -1px light-dark(rgb(0 0 0 / .06), rgb(0 0 0 / .55)), 0 12px 32px -8px light-dark(rgb(0 0 0 / .14), rgb(0 0 0 / .75));
+  --ohm-shade-4: 0 4px 10px -2px light-dark(rgb(0 0 0 / .06), rgb(0 0 0 / .6)), 0 24px 56px -12px light-dark(rgb(0 0 0 / .18), rgb(0 0 0 / .85));
+  --ohm-shade-5: 0 8px 20px -4px light-dark(rgb(0 0 0 / .08), rgb(0 0 0 / .65)), 0 40px 96px -16px light-dark(rgb(0 0 0 / .26), rgb(0 0 0 / .9));
   /* The hairline a floating surface carries so it reads against any background, and the
      catch-light along a glass surface's top edge. Both are inset shadows, not borders. */
-  --ohm-edge: inset 0 0 0 1px light-dark(rgb(0 0 0 / .06), rgb(255 255 255 / .08));
+  --ohm-edge: inset 0 0 0 1px light-dark(rgb(0 0 0 / .06), rgb(255 255 255 / .09));
   --ohm-highlight: inset 0 1px 0 light-dark(rgb(255 255 255 / .8), rgb(255 255 255 / .07));
+  /* In dark, shadows can't lift a surface off black: light does. Every shade step adds this
+     top catch-light, invisible in light. */
+  --ohm-lift: inset 0 1px 0 light-dark(rgb(255 255 255 / 0), rgb(255 255 255 / .07));
 
   /* ---- depth: frost. Translucent fills over a blurred, saturated backdrop. ---- */
   --ohm-frost-thin: light-dark(rgb(255 255 255 / .5), rgb(36 36 36 / .42));

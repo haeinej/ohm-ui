@@ -58,7 +58,7 @@ const described = Object.fromEntries(registry.items.map(item => [item.name, item
 function Example({title, children, className, backdrop}: {title?: string; children: ReactNode; className?: string; backdrop?: boolean}) {
   return <section className="flex flex-col gap-3">
     {title && <h3>{title}</h3>}
-    <div className={`relative flex min-h-40 flex-wrap items-center justify-center gap-4 overflow-hidden rounded-3xl p-8 ${backdrop ? '' : 'bg-muted'} ${className ?? ''}`}>
+    <div className={`relative flex min-h-40 flex-wrap items-center justify-center gap-4 overflow-hidden rounded-3xl p-8 ${backdrop ? '' : 'bg-muted dark:bg-(--ohm-panel)'} ${className ?? ''}`}>
       {backdrop && <Backdrop/>}
       {children}
     </div>

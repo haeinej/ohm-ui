@@ -5,7 +5,7 @@
 :root {
   --background: var(--ohm-paper);
   --foreground: var(--ohm-ink);
-  --card: var(--ohm-paper);
+  --card: var(--ohm-card);
   --card-foreground: var(--ohm-ink);
   --popover: var(--ohm-popover);
   --popover-foreground: var(--ohm-ink);
@@ -91,12 +91,12 @@
   --radius-4xl: var(--ohm-radius-sheet);
   --shadow-2xs: var(--ohm-shade-1);
   --shadow-xs: var(--ohm-shade-1);
-  --shadow-sm: var(--ohm-shade-2);
-  --shadow-md: var(--ohm-shade-3);
-  --shadow-lg: var(--ohm-shade-3);
-  --shadow-xl: var(--ohm-shade-4);
+  --shadow-sm: var(--ohm-lift), var(--ohm-shade-2);
+  --shadow-md: var(--ohm-lift), var(--ohm-shade-3);
+  --shadow-lg: var(--ohm-lift), var(--ohm-shade-3);
+  --shadow-xl: var(--ohm-lift), var(--ohm-shade-4);
   /* shadcn's Maia popups use shadow-2xl: a popup's shade, not a window's. */
-  --shadow-2xl: var(--ohm-shade-4);
+  --shadow-2xl: var(--ohm-lift), var(--ohm-shade-4);
 
   /* Tailwind's colour palette, folded onto ohm. Vendored components say red for errors, emerald
      for success, blue for information and amber for warnings; here those mean ohm's red, its light
@@ -381,11 +381,11 @@ h3 { font: var(--ohm-type-h3-weight) var(--ohm-type-h3-size) / var(--ohm-type-h3
 /* ---- Depth utilities (DESIGN.md: Depth) ----
    shade-1 … shade-5: elevation. frost-thin, frost, frost-thick, frost-tint: glass materials.
    A frost surface carries its own edge and catch-light; add a shade for lift. */
-@utility shade-1 { box-shadow: var(--ohm-edge), var(--ohm-shade-1); }
-@utility shade-2 { box-shadow: var(--ohm-edge), var(--ohm-shade-2); }
-@utility shade-3 { box-shadow: var(--ohm-edge), var(--ohm-shade-3); }
-@utility shade-4 { box-shadow: var(--ohm-edge), var(--ohm-shade-4); }
-@utility shade-5 { box-shadow: var(--ohm-edge), var(--ohm-shade-5); }
+@utility shade-1 { box-shadow: var(--ohm-lift), var(--ohm-edge), var(--ohm-shade-1); }
+@utility shade-2 { box-shadow: var(--ohm-lift), var(--ohm-edge), var(--ohm-shade-2); }
+@utility shade-3 { box-shadow: var(--ohm-lift), var(--ohm-edge), var(--ohm-shade-3); }
+@utility shade-4 { box-shadow: var(--ohm-lift), var(--ohm-edge), var(--ohm-shade-4); }
+@utility shade-5 { box-shadow: var(--ohm-lift), var(--ohm-edge), var(--ohm-shade-5); }
 @utility frost-thin {
   background-color: var(--ohm-frost-thin);
   backdrop-filter: var(--ohm-frost-blur-thin);

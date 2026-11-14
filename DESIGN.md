@@ -57,6 +57,8 @@ Corners grow with the surface. Tailwind's `rounded-*` scale is mapped onto these
 
 **Shade.** Five steps from one light source above. Each is a tight contact shadow and a soft ambient one, plus a 1px inset edge (`--ohm-edge`) so a surface reads on any background.
 
+**In dark, light lifts a surface, not shadow.** Black shadows can't separate black surfaces, so in dark an elevated surface is a raised tone (`--ohm-card`, #121212, above the #000 page), every shade step adds a faint catch-light along its top edge (`--ohm-lift`), and the edge brightens. In light, `--ohm-lift` is invisible.
+
 | Step | Utility | Tailwind | Use |
 | --- | --- | --- | --- |
 | 1 | `shade-1` | `shadow-xs` | Rows, chips |
