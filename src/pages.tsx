@@ -71,7 +71,6 @@ function Backdrop() {
     <div className="ohm-atmosphere"/>
     <div className="absolute top-6 left-10 size-28 rounded-full bg-(--ohm-green-light)"/>
     <div className="absolute right-12 bottom-6 size-36 rounded-full bg-(--ohm-red)"/>
-    <div className="absolute top-10 right-1/3 size-20 rounded-2xl bg-(--ohm-on-accent)"/>
     <p className="absolute bottom-8 left-8 font-serif text-[64px] leading-none text-(--ohm-on-accent)">ohm</p>
   </div>;
 }
@@ -228,9 +227,9 @@ function FilesPage() {
 
 function QuickActions() {
   return <ButtonGroup>
-    <Button variant="outline">Button Group</Button>
+    <Button variant="secondary">Button Group</Button>
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline" size="icon" aria-label="More actions"><Icon icon={icons.collapse}/></Button>}/>
+      <DropdownMenuTrigger render={<Button variant="secondary" size="icon" aria-label="More actions"><Icon icon={icons.collapse}/></Button>}/>
       <DropdownMenuContent side="top" align="end" className="w-60">
         <DropdownMenuGroup>
           <DropdownMenuLabel>Quick Actions</DropdownMenuLabel>
