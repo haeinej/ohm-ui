@@ -50,17 +50,17 @@ export function Gallery({page}: {page: PageId}) {
         </SidebarContent>
       </Sidebar>
       <SidebarInset className="h-svh overflow-y-auto">
-        <header className="sticky top-0 z-20 flex h-11 items-center gap-1.5 bg-background px-3">
+        <header className="sticky top-0 z-20 flex h-12 shrink-0 items-center gap-1.5 bg-background px-3">
           <SidebarTrigger className="size-7"/>
           <span className="text-small text-muted-foreground">{current.section}</span>
           <span className="text-small text-muted-foreground">/</span>
           <span className="text-small font-medium">{current.title}</span>
           <div className="ml-auto flex items-center gap-2">
             <span className="hidden items-center gap-1 text-small text-muted-foreground sm:flex">Sidebar <Kbd>⌘</Kbd><Kbd>B</Kbd></span>
-            <ToggleGroup value={[theme]} onValueChange={value => value[0] && choose(value[0] as Theme)} aria-label="Appearance" size="sm">
-              <ToggleGroupItem value="light" aria-label="Light"><Icon icon={icons.light} size="sm"/></ToggleGroupItem>
-              <ToggleGroupItem value="dark" aria-label="Dark"><Icon icon={icons.dark} size="sm"/></ToggleGroupItem>
-              <ToggleGroupItem value="system" aria-label="Follow the device"><Icon icon={icons.theme} size="sm"/></ToggleGroupItem>
+            <ToggleGroup value={[theme]} onValueChange={value => value[0] && choose(value[0] as Theme)} aria-label="Appearance" size="sm" spacing={1}>
+              <ToggleGroupItem className="size-8 rounded-full px-0" value="light" aria-label="Light"><Icon icon={icons.light} size="sm"/></ToggleGroupItem>
+              <ToggleGroupItem className="size-8 rounded-full px-0" value="dark" aria-label="Dark"><Icon icon={icons.dark} size="sm"/></ToggleGroupItem>
+              <ToggleGroupItem className="size-8 rounded-full px-0" value="system" aria-label="Follow the device"><Icon icon={icons.theme} size="sm"/></ToggleGroupItem>
             </ToggleGroup>
           </div>
         </header>
