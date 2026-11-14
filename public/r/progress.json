@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "title": "Progress",
+  "description": "A progress bar; value={null} is indeterminate.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@ohm/cn"
+  ],
+  "files": [
+    {
+      "path": "registry/ohm/ui/progress.tsx",
+      "content": "import {Progress as ProgressPrimitive} from '@base-ui/react/progress';\nimport {cn} from '@/registry/ohm/lib/cn';\n\n/** shadcn/ui Progress (base-nova). `value={null}` is indeterminate: the bar slides like the loading line. */\nexport function Progress({className, children, value, ...props}: ProgressPrimitive.Root.Props) {\n  return <ProgressPrimitive.Root value={value} data-slot=\"progress\" className={cn('flex flex-wrap gap-3', className)} {...props}>\n    {children}\n    <ProgressPrimitive.Track data-slot=\"progress-track\" className=\"relative flex h-1 w-full items-center overflow-x-hidden rounded-full bg-muted\">\n      <ProgressPrimitive.Indicator\n        data-slot=\"progress-indicator\"\n        className=\"h-full rounded-full bg-primary transition-all data-indeterminate:w-2/5 data-indeterminate:animate-[ohm-loading-slide_1.1s_var(--ohm-ease-morph)_infinite_alternate] motion-reduce:data-indeterminate:w-full motion-reduce:data-indeterminate:animate-none motion-reduce:data-indeterminate:opacity-50\"\n      />\n    </ProgressPrimitive.Track>\n  </ProgressPrimitive.Root>;\n}\n\nexport function ProgressLabel({className, ...props}: ProgressPrimitive.Label.Props) {\n  return <ProgressPrimitive.Label data-slot=\"progress-label\" className={cn('text-xs text-muted-foreground', className)} {...props}/>;\n}\n\nexport function ProgressValue({className, ...props}: ProgressPrimitive.Value.Props) {\n  return <ProgressPrimitive.Value data-slot=\"progress-value\" className={cn('ml-auto text-xs text-muted-foreground tabular-nums', className)} {...props}/>;\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

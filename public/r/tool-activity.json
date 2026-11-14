@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tool-activity",
+  "title": "Tool Activity",
+  "description": "An agent's tool calls folded into one line that opens to each step. Wording comes from ToolDescriptions.",
+  "dependencies": [
+    "@assistant-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ohm/cn",
+    "@ohm/button"
+  ],
+  "files": [
+    {
+      "path": "registry/ohm/assistant/tool-activity.tsx",
+      "content": "// An agent's work, folded: consecutive tool calls become one line that opens to a line per step.\n// Labels come from `describe`, so an app names its own tools; the default humanizes the tool name.\nimport {useAuiState} from '@assistant-ui/react';\nimport {ChevronDownIcon} from 'lucide-react';\nimport {createContext, useContext, useState, type ReactNode} from 'react';\nimport {Button} from '@/registry/ohm/ui/button';\nimport {cn} from '@/registry/ohm/lib/cn';\n\nexport type ToolPart = {type: 'tool-call'; toolName: string; args?: Record<string, unknown>; result?: unknown; status?: {type: string}};\n\n/** What a step says while it runs and once it is done. */\nexport type ToolDescriber = (part: ToolPart) => {doing: string; done: string; icon?: ReactNode};\n\nconst humanize = (name: string) => name.replace(/[_-]+/g, ' ').replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();\nexport const defaultDescribe: ToolDescriber = part => ({doing: `Running ${humanize(part.toolName)}`, done: `Ran ${humanize(part.toolName)}`});\n\nconst DescribeContext = createContext<ToolDescriber>(defaultDescribe);\n/** Gives every ToolGroup and ToolStep below it the app's own wording for its tools. */\nexport const ToolDescriptions = DescribeContext.Provider;\n\nconst running = (p: ToolPart) => p.result === undefined && p.status?.type !== 'incomplete';\nconst errorOf = (result: unknown) => {\n  if (result && typeof result === 'object' && 'error' in result && typeof result.error === 'string') return result.error;\n  return undefined;\n};\n\n/** One step: what it did, and why it stopped if it failed. */\nexport function ToolStep({part}: {part: ToolPart}) {\n  const describe = useContext(DescribeContext);\n  const {doing, done, icon} = describe(part);\n  const live = running(part), error = errorOf(part.result);\n  return <li data-slot=\"tool-step\" data-running={live || undefined} data-error={error ? true : undefined} className=\"flex flex-col gap-0.5 py-1\">\n    <div className=\"flex items-center gap-2 text-body text-muted-foreground\">\n      {icon}<span className={cn(live && 'animate-pulse motion-reduce:animate-none')}>{live ? doing : done}</span>\n    </div>\n    {error && <p className=\"pl-6 text-small text-destructive\">{error}</p>}\n  </li>;\n}\n\n/** Consecutive tool calls: a one-line summary that opens to each step. Open while working. */\nexport function ToolGroup({indices, children}: {indices: readonly number[]; children: ReactNode}) {\n  const describe = useContext(DescribeContext);\n  const parts = useAuiState(s => s.message.parts) as readonly {type: string}[];\n  const tools = indices.map(i => parts[i]).filter((p): p is ToolPart => p?.type === 'tool-call');\n  const live = tools.some(running);\n  const [open, setOpen] = useState<boolean | null>(null);\n  const expanded = open ?? live;\n  const current = [...tools].reverse().find(running);\n  const failed = tools.filter(t => errorOf(t.result)).length;\n  const labels = [...new Set(tools.map(t => describe(t).done))];\n  const head = current ? describe(current).doing\n    : labels.slice(0, 3).join(', ') + (labels.length > 3 ? ', and more' : '');\n  return <div data-slot=\"tool-activity\" className=\"my-1\">\n    <Button type=\"button\" variant=\"ghost\" aria-expanded={expanded} onClick={() => setOpen(!expanded)}\n      className=\"-ml-1.5 h-auto min-h-control-sm max-w-full justify-start gap-2 px-1.5 py-0.5 text-left font-normal text-muted-foreground\">\n      <span className=\"truncate\">{head}{failed ? ` · ${failed} didn’t finish` : ''}</span>\n      <ChevronDownIcon className={cn('size-4 flex-none transition-transform', expanded && 'rotate-180')}/>\n    </Button>\n    {expanded && <ol className=\"ml-1.5 pl-3\">{children}</ol>}\n  </div>;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

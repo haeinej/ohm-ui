@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "title": "Button",
+  "description": "The one button. Variants: default, secondary, outline, ghost, destructive, link. Sizes: xs, sm, default, lg, icon, icon-xs, icon-sm, icon-lg.",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@ohm/cn"
+  ],
+  "files": [
+    {
+      "path": "registry/ohm/ui/button.tsx",
+      "content": "import { Button as ButtonPrimitive } from \"@base-ui/react/button\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"@/registry/ohm/lib/cn\"\n\nconst buttonVariants = cva(\n  \"group/button inline-flex shrink-0 items-center justify-center rounded-full border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-colors outline-none select-none focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary text-primary-foreground hover:bg-primary/80\",\n        outline:\n          \"bg-muted hover:bg-[color-mix(in_oklch,var(--muted),var(--foreground)_6%)] hover:text-foreground aria-expanded:bg-[color-mix(in_oklch,var(--muted),var(--foreground)_6%)] aria-expanded:text-foreground\",\n        secondary:\n          \"bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground\",\n        ghost:\n          \"hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50\",\n        destructive:\n          \"bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40\",\n        link: \"text-leaf underline-offset-4 hover:underline\",\n      },\n      size: {\n        default:\n          \"h-control-md gap-1.5 px-4 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3\",\n        xs: \"h-control-xs gap-1 px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3\",\n        sm: \"h-control-sm gap-1 px-3 in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5\",\n        lg: \"h-control-lg gap-2 px-5 has-data-[icon=inline-end]:pr-4 has-data-[icon=inline-start]:pl-4\",\n        icon: \"size-control-md\",\n        \"icon-xs\":\n          \"size-control-xs in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3\",\n        \"icon-sm\":\n          \"size-control-sm in-data-[slot=button-group]:rounded-lg\",\n        \"icon-lg\": \"size-control-lg\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n)\n\nfunction Button({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  ...props\n}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {\n  return (\n    <ButtonPrimitive\n      data-slot=\"button\"\n      className={cn(buttonVariants({ variant, size, className }))}\n      {...props}\n    />\n  )\n}\n\nexport { Button, buttonVariants }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

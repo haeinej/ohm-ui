@@ -1,0 +1,41 @@
+/* The brand atmosphere: a forest/ebony radial light field with grain (from pr-agent's Grainient). Website hero, onboarding and sign-in only. */
+.ohm-atmosphere {
+  --ohm-atmosphere-green: var(--ohm-forest);
+  --ohm-atmosphere-ebony: var(--ohm-ebony);
+  --ohm-atmosphere-duration: var(--ohm-atmosphere-drift);
+  --ohm-atmosphere-grain: var(--ohm-atmosphere-grain-opacity);
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+  background:var(--ohm-atmosphere-green);
+}
+.ohm-atmosphere::before {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  background:radial-gradient(ellipse 46% 55% at 78% 38%,#0a3d2a 0%,#043524 28%,transparent 68%),radial-gradient(ellipse 48% 38% at 80% 88%,#2a1416 0%,rgb(37 14 14 / .6) 30%,transparent 72%),radial-gradient(ellipse 60% 50% at 30% 20%,#063a27 0%,transparent 72%),linear-gradient(130deg,#012418 12%,#013220 52%,#0b261c 82%,#250e0e);
+  filter: blur(28px);
+  transform: translate3d(-3%, -2%, 0) rotate(-12deg) scale(1.05);
+  animation: ohm-atmosphere-flow var(--ohm-atmosphere-duration) cubic-bezier(.45, 0, .55, 1) infinite alternate;
+}
+.ohm-atmosphere::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22160%22%3E%3Cfilter%20id%3D%22g%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.92%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23g%29%22%20opacity%3D%22.8%22%2F%3E%3C%2Fsvg%3E");
+  background-size: 160px 160px;
+  opacity: var(--ohm-atmosphere-grain);
+  mix-blend-mode: soft-light;
+}
+@keyframes ohm-atmosphere-flow {
+  50% { transform: translate3d(4%, 3%, 0) rotate(8deg) scale(1.12); }
+  100% { transform: translate3d(-2%, 5%, 0) rotate(-4deg) scale(1.08); }
+}
+.ohm-atmosphere[data-ohm-atmosphere-motion="paused"]::before { animation-play-state:paused; }
+@media (prefers-reduced-motion: reduce) {
+  .ohm-atmosphere::before { animation-play-state:paused; }
+}
+
+.ohm-atmosphere[data-motion="paused"]::before { animation-play-state:paused; }

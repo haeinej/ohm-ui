@@ -1,0 +1,132 @@
+/* shadcn/ui (Base UI, base-nova) mapped onto ohm tokens, once.
+   Import after tokens.css, inside a Tailwind v4 build:
+     @import "@ohm/ui/tokens.css"; @import "@ohm/ui/shadcn.css";
+   Components choose a variant or size; they never restyle colors, type or radii. */
+
+:root {
+  --background: var(--ohm-paper);
+  --foreground: var(--ohm-ink);
+  --card: var(--ohm-paper);
+  --card-foreground: var(--ohm-ink);
+  --popover: var(--ohm-menu);
+  --popover-foreground: var(--ohm-ink);
+  --primary: var(--ohm-accent-fill);
+  --primary-foreground: var(--ohm-on-accent);
+  --secondary: var(--ohm-wash);
+  --secondary-foreground: var(--ohm-ink);
+  --muted: var(--ohm-wash);
+  --muted-foreground: var(--ohm-muted);
+  --accent: var(--ohm-wash);
+  --accent-foreground: var(--ohm-ink);
+  --destructive: var(--ohm-danger);
+  --border: var(--ohm-line);
+  --input: var(--ohm-line);
+  --ring: var(--ohm-focus);
+  /* shadcn's base radius is the field radius: no second radius system. */
+  --radius: var(--ohm-radius-field);
+}
+
+@theme inline {
+  --font-sans: var(--ohm-font-sans);
+  --font-serif: var(--ohm-font-serif);
+  --font-mono: var(--ohm-font-mono);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-leaf: var(--ohm-leaf);
+  --color-agent: var(--ohm-agent);
+
+  /* Named radii only (DESIGN.md §3). */
+  --radius-pill: var(--ohm-radius-pill);
+  --radius-row: var(--ohm-radius-row);
+  --radius-field: var(--ohm-radius-field);
+  --radius-card: var(--ohm-radius-card);
+  --radius-panel: var(--ohm-radius-panel);
+  --radius-sheet: var(--ohm-radius-sheet);
+
+  /* Control heights: h-control-xs … h-control-lg. */
+  --spacing-control-xs: var(--ohm-height-xs);
+  --spacing-control-sm: var(--ohm-height-sm);
+  --spacing-control-md: var(--ohm-height-md);
+  --spacing-control-lg: var(--ohm-height-lg);
+
+  /* Five text roles: text-h1, text-h2, text-h3, text-body (= text-sm), text-small (= text-xs); text-base is input size. */
+  --text-h1: var(--ohm-type-h1-size);
+  --text-h1--line-height: var(--ohm-type-h1-leading);
+  --text-h1--letter-spacing: var(--ohm-type-h1-tracking);
+  --text-h1--font-weight: 400;
+  --text-h2: var(--ohm-type-h2-size);
+  --text-h2--line-height: var(--ohm-type-h2-leading);
+  --text-h2--letter-spacing: var(--ohm-type-h2-tracking);
+  --text-h2--font-weight: 400;
+  --text-h3: var(--ohm-type-h3-size);
+  --text-h3--line-height: var(--ohm-type-h3-leading);
+  --text-h3--letter-spacing: var(--ohm-type-h3-tracking);
+  --text-h3--font-weight: var(--ohm-type-h3-weight);
+  --text-body: var(--ohm-type-body-size);
+  --text-body--line-height: var(--ohm-type-body-leading);
+  --text-body--letter-spacing: var(--ohm-type-body-tracking);
+  --text-sm: var(--ohm-type-body-size);
+  --text-sm--line-height: var(--ohm-type-body-leading);
+  --text-small: var(--ohm-type-small-size);
+  --text-small--line-height: var(--ohm-type-small-leading);
+  --text-xs: var(--ohm-type-small-size);
+  --text-xs--line-height: var(--ohm-type-small-leading);
+  --text-base: var(--ohm-input-size);
+  --text-base--line-height: var(--ohm-input-leading);
+
+  --ease-out: var(--ohm-ease-out);
+  --ease-in-out: var(--ohm-ease-morph);
+  --default-transition-duration: var(--ohm-duration-state);
+}
+
+/* Base element roles. h1/h2 are Coconat 400; everything else Helvetica Neue. */
+body {
+  background: var(--ohm-paper);
+  color: var(--ohm-ink);
+  font: 400 var(--ohm-type-body-size) / var(--ohm-type-body-leading) var(--ohm-font-sans);
+  letter-spacing: var(--ohm-type-body-tracking);
+  -webkit-font-smoothing: antialiased;
+}
+h1 { font: 400 var(--ohm-type-h1-size) / var(--ohm-type-h1-leading) var(--ohm-font-serif); letter-spacing: var(--ohm-type-h1-tracking); }
+h2 { font: 400 var(--ohm-type-h2-size) / var(--ohm-type-h2-leading) var(--ohm-font-serif); letter-spacing: var(--ohm-type-h2-tracking); }
+h3 { font: var(--ohm-type-h3-weight) var(--ohm-type-h3-size) / var(--ohm-type-h3-leading) var(--ohm-font-sans); letter-spacing: var(--ohm-type-h3-tracking); }
+::selection { background: var(--ohm-selection); }
+:is(button, a, input, textarea, select):focus-visible { outline: 2px solid var(--ohm-focus); outline-offset: 2px; }
+
+/* Lucide at one bold stroke with round caps and joins. */
+.lucide { stroke-width: var(--ohm-icon-stroke); stroke-linecap: round; stroke-linejoin: round; }
+
+/* Scoped preflight: shadcn components start from a clean native control. */
+:where([data-slot]), :where([data-slot])::before, :where([data-slot])::after { box-sizing: border-box; margin: 0; border: 0 solid; }
+:where(button[data-slot], input[data-slot], textarea[data-slot], select[data-slot]) {
+  padding: 0;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  appearance: none;
+}
+
+/* The loading line. */
+.ohm-loading-bar { position: relative; width: 120px; height: 6px; overflow: hidden; border-radius: var(--ohm-radius-pill); background: color-mix(in srgb, var(--ohm-signal) 15%, transparent); opacity: 0; animation: ohm-loading-in var(--ohm-duration-open) var(--ohm-ease-out) .25s forwards; }
+.ohm-loading-bar > span { position: absolute; inset-block: 0; left: 0; width: 40%; border-radius: inherit; background: var(--ohm-signal); animation: ohm-loading-slide 1.1s var(--ohm-ease-morph) infinite alternate; }
+@keyframes ohm-loading-in { to { opacity: 1; } }
+@keyframes ohm-loading-slide { from { transform: translateX(-10%); } to { transform: translateX(160%); } }
+@media (prefers-reduced-motion: reduce) { .ohm-loading-bar > span { width: 100%; transform: none; opacity: .5; animation: none; } }

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "markdown-text",
+  "title": "Markdown Text",
+  "description": "An assistant message as safe Markdown: GitHub tables and lists, images become links.",
+  "dependencies": [
+    "@assistant-ui/react-markdown",
+    "remark-gfm"
+  ],
+  "registryDependencies": [
+    "@ohm/cn"
+  ],
+  "files": [
+    {
+      "path": "registry/ohm/assistant/markdown-text.tsx",
+      "content": "import {MarkdownTextPrimitive} from '@assistant-ui/react-markdown';\nimport remarkGfm from 'remark-gfm';\nimport {cn} from '@/registry/ohm/lib/cn';\n\nconst PLUGINS = [remarkGfm];\n\n/**\n * Replies never load images on their own: text an agent read from an email or a page could\n * otherwise make it write an image whose URL carries private data to someone else's server.\n * An image becomes a link the person can choose to open.\n */\nconst COMPONENTS = {\n  img: ({src, alt}: {src?: string | Blob; alt?: string}) => typeof src === 'string' && src\n    ? <a href={src} target=\"_blank\" rel=\"noopener noreferrer\">{alt || 'Image'}</a>\n    : null,\n};\n\n/** An assistant message's text as Markdown, with GitHub tables, strikethrough and task lists. */\nexport function MarkdownText({className}: {className?: string}) {\n  return <MarkdownTextPrimitive\n    remarkPlugins={PLUGINS}\n    components={COMPONENTS}\n    className={cn(\n      'ohm-markdown text-body text-foreground',\n      '[&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2',\n      '[&_p]:my-2 [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:pl-5',\n      '[&_code]:font-mono [&_code]:text-small [&_pre]:my-2 [&_pre]:overflow-x-auto [&_pre]:rounded-field [&_pre]:bg-muted [&_pre]:p-3',\n      '[&_table]:my-2 [&_table]:w-full [&_td]:py-1 [&_td]:pr-4 [&_th]:py-1 [&_th]:pr-4 [&_th]:text-left [&_th]:font-semibold [&_tbody_tr:nth-child(odd)]:bg-muted',\n      className,\n    )}\n  />;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

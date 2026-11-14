@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cn",
+  "title": "Cn",
+  "description": "Joins class names; later Tailwind utilities win. Knows the ohm text, radius and control-height keys.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/ohm/lib/cn.ts",
+      "content": "import {clsx, type ClassValue} from 'clsx';\nimport {extendTailwindMerge} from 'tailwind-merge';\n\n// The type roles and radii are custom theme keys; without this, twMerge reads\n// `text-h2` as a colour and drops it beside `text-foreground`.\nconst twMerge = extendTailwindMerge({\n  extend: {\n    theme: {\n      text: ['h1', 'h2', 'h3', 'body', 'small'],\n      radius: ['field', 'row', 'card', 'sheet'],\n      spacing: ['control-xs', 'control-sm', 'control-md', 'control-lg'],\n    },\n  },\n});\n\n/** Joins class names and lets later Tailwind utilities override earlier ones. */\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}

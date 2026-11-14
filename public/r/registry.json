@@ -1,0 +1,352 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ohm",
+  "homepage": "https://github.com/haeinej/ohm-ui",
+  "items": [
+    {
+      "name": "cn",
+      "type": "registry:lib",
+      "title": "Cn",
+      "description": "Joins class names; later Tailwind utilities win. Knows the ohm text, radius and control-height keys.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/lib/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "The one button. Variants: default, secondary, outline, ghost, destructive, link. Sizes: xs, sm, default, lg, icon, icon-xs, icon-sm, icon-lg.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A checkbox on Base UI.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A modal dialog with header, footer, title and description.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/button"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "A menu opened from a trigger: items, checkbox and radio items, groups, separators, shortcuts.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Form layout: a field with label, description and error, and sets and groups of fields.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/label",
+        "@ohm/separator"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "A preview card opened on hover or focus.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/hover-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "A single-line text input.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "A label for a control.",
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "title": "Native Select",
+      "description": "The platform select, styled.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/native-select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "notice",
+      "type": "registry:ui",
+      "title": "Notice",
+      "description": "Transient notices at the top of the screen: notify(), Notices, and busy and error helpers.",
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/button"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/notice.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "A progress bar; value={null} is indeterminate.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "screen",
+      "type": "registry:ui",
+      "title": "Screen",
+      "description": "Whole-screen states: loading, status, popup screens, the brand atmosphere.",
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/notice"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/screen.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "A horizontal or vertical rule.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "An on/off switch.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "A multi-line text input.",
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "markdown-text",
+      "type": "registry:component",
+      "title": "Markdown Text",
+      "description": "An assistant message as safe Markdown: GitHub tables and lists, images become links.",
+      "dependencies": [
+        "@assistant-ui/react-markdown",
+        "remark-gfm"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/markdown-text.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "thread",
+      "type": "registry:component",
+      "title": "Thread",
+      "description": "A whole conversation: messages, tool activity, composer with send and stop. Bring your own assistant-ui runtime.",
+      "dependencies": [
+        "@assistant-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/button",
+        "@ohm/markdown-text",
+        "@ohm/tool-activity"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/thread.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tool-activity",
+      "type": "registry:component",
+      "title": "Tool Activity",
+      "description": "An agent's tool calls folded into one line that opens to each step. Wording comes from ToolDescriptions.",
+      "dependencies": [
+        "@assistant-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/button"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/tool-activity.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

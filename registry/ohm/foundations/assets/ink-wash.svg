@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1400" viewBox="0 0 1800 1400" fill="none">
+  <defs>
+    <linearGradient id="sage" x1="1600" y1="140" x2="700" y2="1180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#a1a382" stop-opacity=".66"/>
+      <stop offset=".48" stop-color="#71856a" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#466a50" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="moss" x1="1300" y1="600" x2="700" y2="1400" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#70836a" stop-opacity=".08"/>
+      <stop offset=".55" stop-color="#879077" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#9b9980" stop-opacity=".12"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="200" y1="600" x2="1400" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#082c23" stop-opacity=".04"/>
+      <stop offset=".45" stop-color="#092c23" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#092c23" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="bleed" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".006 .012" numOctaves="3" seed="8" result="fibers"/>
+      <feDisplacementMap in="SourceGraphic" in2="fibers" scale="130" xChannelSelector="R" yChannelSelector="G"/>
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+  </defs>
+  <g filter="url(#bleed)">
+    <path d="M480-180C1020-20 720 350 1120 550S1560 890 1420 1320L2000 1630V-180Z" fill="url(#sage)"/>
+    <path d="M1930 80C1260 240 1480 580 900 860S450 1100 520 1500H1930Z" fill="url(#moss)"/>
+    <path d="M-240 600C250 350 390 570 690 660S1100 500 1270 800 1670 1020 1920 1190L1940 1580H-240Z" fill="url(#ink)"/>
+    <path d="M-180-80C200 20 350 160 250 440S480 700 650 960L-180 1180Z" fill="#3e6249" opacity=".23"/>
+  </g>
+</svg>

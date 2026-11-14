@@ -1,0 +1,18 @@
+/* The ohm foundation in one import, inside a Tailwind v4 build:
+     @import "./ohm/ohm.css";
+     @source "../";            (where your components live)
+   Tailwind's preflight is intentionally omitted: shadcn.css carries a scoped
+   preflight for [data-slot] controls, and the base element roles. */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tw-animate-css";
+@import "./tokens.css";
+@import "./shadcn.css";
+@import "./atmosphere.css";
+@import "./motion.css";
+@import "tailwindcss/utilities.css";
+
+/* Dark follows the device unless data-theme on an ancestor forces light or dark. */
+@custom-variant dark {
+  @media (prefers-color-scheme: dark) { &:where(:not([data-theme='light'], [data-theme='light'] *)) { @slot; } }
+  &:where([data-theme='dark'], [data-theme='dark'] *) { @slot; }
+}
