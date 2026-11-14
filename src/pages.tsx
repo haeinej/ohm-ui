@@ -58,7 +58,7 @@ const described = Object.fromEntries(registry.items.map(item => [item.name, item
 function Example({title, children, className, backdrop}: {title?: string; children: ReactNode; className?: string; backdrop?: boolean}) {
   return <section className="flex flex-col gap-3">
     {title && <h3>{title}</h3>}
-    <div className={`relative flex min-h-40 flex-wrap items-center justify-center gap-4 overflow-hidden rounded-3xl p-8 ${backdrop ? '' : 'bg-muted dark:bg-(--ohm-panel)'} ${className ?? ''}`}>
+    <div className={`relative flex min-h-40 flex-wrap items-center justify-center gap-4 overflow-hidden rounded-3xl p-5 sm:p-8 ${backdrop ? '' : 'bg-muted dark:bg-(--ohm-panel)'} ${className ?? ''}`}>
       {backdrop && <Backdrop/>}
       {children}
     </div>
@@ -69,9 +69,9 @@ function Example({title, children, className, backdrop}: {title?: string; childr
 function Backdrop() {
   return <div aria-hidden="true" className="absolute inset-0 -z-0">
     <div className="ohm-atmosphere"/>
-    <div className="absolute top-6 left-10 size-28 rounded-full bg-(--ohm-green-light)"/>
-    <div className="absolute right-12 bottom-6 size-36 rounded-full bg-(--ohm-red)"/>
-    <p className="absolute bottom-8 left-8 font-serif text-[64px] leading-none text-(--ohm-on-accent)">ohm</p>
+    <div className="absolute top-6 left-6 size-14 rounded-full sm:left-10 sm:size-28 bg-(--ohm-green-light)"/>
+    <div className="absolute right-6 bottom-6 size-16 rounded-full sm:right-12 sm:size-36 bg-(--ohm-red)"/>
+    <p className="absolute bottom-8 left-8 hidden font-serif sm:block text-[64px] leading-none text-(--ohm-on-accent)">ohm</p>
   </div>;
 }
 
@@ -153,7 +153,7 @@ function IconsPage() {
     [group, Object.keys(set).filter(name => name.toLowerCase().includes(query.toLowerCase()))] as const)
     .filter(([, names]) => names.length), [query]);
   return <div className="flex flex-col gap-8">
-    <InputGroup className="max-w-sm">
+    <InputGroup className="max-w-xs">
       <InputGroupAddon><Icon icon={icons.search}/></InputGroupAddon>
       <InputGroupInput placeholder="Search icons" value={query} onChange={event => setQuery(event.target.value)}/>
     </InputGroup>
@@ -261,7 +261,7 @@ function PanelPage() {
   return <div className="flex flex-col gap-10">
     <Example title="Navigation"><SupportPanel/></Example>
     <Example title="Settings">
-      <Panel size="lg" elevation="3" className="w-full max-w-md">
+      <Panel size="lg" elevation="3" className="w-full max-w-sm">
         <PanelHeader>
           <PanelTitle>Notifications</PanelTitle>
           <PanelDescription>Choose what reaches you.</PanelDescription>
@@ -302,7 +302,7 @@ function ButtonPage() {
 
 function ButtonGroupPage() {
   return <div className="flex flex-col gap-10">
-    <Example title="With a menu" className="min-h-72 items-end"><QuickActions/></Example>
+    <Example title="With a menu" className="min-h-56 items-end sm:min-h-72"><QuickActions/></Example>
     <Example title="Segments">
       <ButtonGroup><Button variant="outline">Day</Button><Button variant="outline">Week</Button><Button variant="outline">Month</Button></ButtonGroup>
       <ButtonGroup>
@@ -392,22 +392,22 @@ function OverlaysPage() {
 function FormsPage() {
   return <div className="flex flex-col gap-10">
     <Example title="Fields" className="justify-start">
-      <div className="grid w-full max-w-md gap-5">
+      <div className="grid w-full max-w-xs gap-5">
         <Field><FieldLabel htmlFor="g-name">Name</FieldLabel><Input id="g-name" placeholder="Your name"/><FieldDescription>Shown on your profile.</FieldDescription></Field>
         <Field><FieldLabel htmlFor="g-note">Note</FieldLabel><Textarea id="g-note" placeholder="Write something"/></Field>
         <Field>
           <FieldLabel>Visibility</FieldLabel>
-          <Select defaultValue="private" items={{public: 'Public', friends: 'Friends', private: 'Private'}}>
-            <SelectTrigger className="w-full"><SelectValue/></SelectTrigger>
+          <div><Select defaultValue="private" items={{public: 'Public', friends: 'Friends', private: 'Private'}}>
+            <SelectTrigger className="w-40"><SelectValue/></SelectTrigger>
             <SelectContent>
               <SelectGroup><SelectLabel>Who can read it</SelectLabel>
                 <SelectItem value="public">Public</SelectItem><SelectItem value="friends">Friends</SelectItem><SelectItem value="private">Private</SelectItem>
               </SelectGroup>
             </SelectContent>
-          </Select>
+          </Select></div>
         </Field>
         <Field><FieldLabel htmlFor="g-native">Native select</FieldLabel>
-          <NativeSelect id="g-native" defaultValue="writing"><NativeSelectOption value="writing">Writing</NativeSelectOption><NativeSelectOption value="photos">Photos</NativeSelectOption></NativeSelect>
+          <div><NativeSelect id="g-native" defaultValue="writing" className="w-40"><NativeSelectOption value="writing">Writing</NativeSelectOption><NativeSelectOption value="photos">Photos</NativeSelectOption></NativeSelect></div>
         </Field>
         <InputGroup>
           <InputGroupAddon><Icon icon={icons.search}/></InputGroupAddon>
@@ -431,7 +431,7 @@ function FormsPage() {
 function DisplayPage() {
   return <div className="flex flex-col gap-10">
     <Example title="Card" className="justify-start">
-      <Card className="w-full max-w-sm">
+      <Card className="w-full max-w-xs">
         <CardHeader><CardTitle>Collisions</CardTitle><CardDescription>Four essays, 2024</CardDescription>
           <CardAction><Badge variant="secondary">Series</Badge></CardAction></CardHeader>
         <CardContent className="text-body text-muted-foreground">Essays about what happens when two ways of living meet.</CardContent>
@@ -439,7 +439,7 @@ function DisplayPage() {
       </Card>
     </Example>
     <Example title="Item" className="justify-start">
-      <ItemGroup className="w-full max-w-md">
+      <ItemGroup className="w-full max-w-sm">
         {[['docs', 'Writings', '12 posts'], ['image', 'Photographs', '48 posts'], ['code', 'Things I make', '6 posts']].map(([icon, title, detail]) =>
           <Item key={title} variant="outline">
             <ItemMedia variant="icon"><Icon icon={icons[icon as IconName]}/></ItemMedia>
@@ -454,7 +454,7 @@ function DisplayPage() {
       <KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>
     </Example>
     <Example title="Tabs">
-      <Tabs defaultValue="all" className="w-full max-w-md">
+      <Tabs defaultValue="all" className="w-full max-w-sm">
         <TabsList><TabsTrigger value="all">All</TabsTrigger><TabsTrigger value="public">Public</TabsTrigger><TabsTrigger value="private">Private</TabsTrigger></TabsList>
         <TabsContent value="all" className="pt-3 text-body text-muted-foreground">Everything in the vault.</TabsContent>
         <TabsContent value="public" className="pt-3 text-body text-muted-foreground">What everyone can read.</TabsContent>
@@ -462,11 +462,11 @@ function DisplayPage() {
       </Tabs>
     </Example>
     <Example title="Accordion and collapsible" className="justify-start">
-      <Accordion defaultValue={['a']} className="w-full max-w-md">
+      <Accordion defaultValue={['a']} className="w-full max-w-sm">
         <AccordionItem value="a"><AccordionTrigger>What is a label?</AccordionTrigger><AccordionContent>The section of your site a post sits in, in your own words.</AccordionContent></AccordionItem>
         <AccordionItem value="b"><AccordionTrigger>Who can see a private post?</AccordionTrigger><AccordionContent>Only you.</AccordionContent></AccordionItem>
       </Accordion>
-      <Collapsible className="w-full max-w-md">
+      <Collapsible className="w-full max-w-sm">
         <CollapsibleTrigger render={<Button variant="ghost"><Icon icon={icons.expand}/>Show details</Button>}/>
         <CollapsibleContent className="px-3 pt-2 text-body text-muted-foreground">Saved two minutes ago. Not published.</CollapsibleContent>
       </Collapsible>
@@ -484,7 +484,7 @@ function FeedbackPage() {
     <Example title="Notice"><Button variant="outline" onClick={() => notify({tone: 'info', message: 'Saved. It is private.'})}>Show a notice</Button>
       <Button variant="outline" onClick={() => notify({message: 'Could not save. Try again.'})}>Show an error</Button></Example>
     <Example title="Progress and loading" className="flex-col">
-      <Progress value={64} className="w-full max-w-md"/><Progress value={null} className="w-full max-w-md"/><LoadingBar/><LoadingDot/>
+      <Progress value={64} className="w-full max-w-sm"/><Progress value={null} className="w-full max-w-sm"/><LoadingBar/><LoadingDot/>
     </Example>
     <Example title="Empty">
       <Empty>
