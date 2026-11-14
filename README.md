@@ -35,3 +35,7 @@ Follow [skills/use-ohm-ui/SKILL.md](skills/use-ohm-ui/SKILL.md). It is also the 
 4. In each app, `npx shadcn add @ohm/<name> --overwrite`.
 
 To take newer shadcn or assistant-ui components, run `npm run vendor`. When something is missing, look in [shadcn's directory](https://ui.shadcn.com/docs/directory) before writing it. [AGENTS.md](AGENTS.md) has the exact rules.
+
+## Licence notices
+
+ohm-ui includes source from shadcn/ui and assistant-ui (MIT), Lucide icons (ISC) and the Coconat typeface (OFL). See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

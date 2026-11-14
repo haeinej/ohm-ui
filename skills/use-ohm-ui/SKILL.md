@@ -5,7 +5,7 @@ description: How to build interface in an ohm app with the ohm-ui design system 
 
 # Building UI with ohm-ui
 
-ohm-ui is the ohm design system (github.com/haeinej/ohm-ui, private). Components are copied into the app with the shadcn CLI and the app owns the copy. They are shadcn's Base UI components in the Maia style, assistant-ui's chat and agent parts, and ohm's own panel, icons, notices and screens, all wearing ohm's foundations. How ohm looks, and why, is in its `DESIGN.md`.
+ohm-ui is the ohm design system (github.com/haeinej/ohm-ui). Components are copied into the app with the shadcn CLI and the app owns the copy. They are shadcn's Base UI components in the Maia style, assistant-ui's chat and agent parts, and ohm's own panel, icons, notices and screens, all wearing ohm's foundations. How ohm looks, and why, is in its `DESIGN.md`.
 
 ## The rules
 
@@ -73,15 +73,12 @@ The app needs React 19, Tailwind 4 (`@tailwindcss/vite`), `tw-animate-css`, `tw-
      "menuColor": "default",
      "menuAccent": "subtle",
      "registries": {
-       "@ohm": {
-         "url": "https://raw.githubusercontent.com/haeinej/ohm-ui/main/public/r/{name}.json",
-         "headers": {"Authorization": "Bearer ${GITHUB_TOKEN}"}
-       }
+       "@ohm": "https://raw.githubusercontent.com/haeinej/ohm-ui/main/public/r/{name}.json"
      }
    }
    ```
 
-   The repository is private: run the CLI with `GITHUB_TOKEN=$(gh auth token)`. Never write the token into a file. While working on ohm-ui itself, point `@ohm` at `http://localhost:5180/r/{name}.json` with its `npm run dev` running.
+   While working on ohm-ui itself, point `@ohm` at `http://localhost:5180/r/{name}.json` with its `npm run dev` running.
 
 3. **Components:**
 
