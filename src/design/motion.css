@@ -1,0 +1,8 @@
+/* Content is visible in SSR. Starting styles apply only to newly inserted UI. */
+.ohm-step-enter { transition:opacity var(--ohm-duration-open) var(--ohm-ease-out),transform var(--ohm-duration-open) var(--ohm-ease-out); }
+@starting-style { .ohm-step-enter { opacity:0; transform:translateY(6px); } }
+.ohm-step-enter[data-ohm-instant='true'] { transition:none; }
+@media(prefers-reduced-motion:reduce) {
+  .ohm-step-enter { transition:none; }
+  @starting-style { .ohm-step-enter { opacity:1; transform:none; } }
+}
