@@ -1,4 +1,4 @@
-/* ohm design tokens: the single source for color, type, space, shape and motion.
+/* ohm design tokens: the single source for color, type, space, shape, depth and motion.
    DESIGN.md explains every token; change DESIGN.md first, then this file.
    Only this file (and the brand asset files beside it) may contain raw color or size values. */
 
@@ -11,7 +11,8 @@
 }
 
 :root {
-  color-scheme: light dark;
+  /* Light by default. data-theme="dark" or "system" on any element changes it below. */
+  color-scheme: light;
 
   /* ---- type: families ---- */
   --ohm-font-serif: "Coconat", Georgia, "Times New Roman", serif;
@@ -50,7 +51,7 @@
   --ohm-type-wordmark-size: 43.2px;
   --ohm-type-wordmark-tracking: -0.065em;
 
-  /* ---- color: one green, forest (DESIGN.md §2). It fills in both schemes; on black,
+  /* ---- color: one green, forest (DESIGN.md). It fills in both schemes; on black,
      green text, marks and the focus ring turn ink, because forest can't be seen there. ---- */
   --ohm-forest: #013220;
   --ohm-ebony: #250e0e;
@@ -72,19 +73,22 @@
   --ohm-line: light-dark(#e5e5e5, #262626);
   --ohm-muted: light-dark(#6b6b6b, #a1a1a1);
   --ohm-ink: light-dark(#242424, #ededed);
-  --ohm-danger: light-dark(#a13535, #e3aaa0);
+  /* Two signal colours, the same in both schemes so they read the same everywhere:
+     a light green for what is live, done or positive, and a red for what destroys or failed. */
+  --ohm-green-light: #7bd389;
+  --ohm-red: #e5484d;
+  --ohm-danger: var(--ohm-red);
   --ohm-focus: light-dark(#013220, #ededed);
   --ohm-overlay: light-dark(rgb(0 0 0 / .2), rgb(0 0 0 / .45));
 
-  /* ---- color: surfaces and states, one job each (DESIGN.md §2) ---- */
+  /* ---- color: surfaces and states, one job each (DESIGN.md) ---- */
   --ohm-panel: light-dark(#fff, #0b0b0b);
   --ohm-raised: light-dark(#fff, #191919);
   --ohm-paper-light: #fff;
-  --ohm-danger-wash: light-dark(#fdecea, #3b1915);
-  --ohm-mark: light-dark(#4076b6, #8bb6ee);
-  --ohm-mark-wash: light-dark(#e8f0fb, #192d45);
-  --ohm-glass: light-dark(rgb(255 255 255 / .42), rgb(48 48 48 / .38));
-  --ohm-glass-strong: light-dark(rgb(255 255 255 / .78), rgb(25 25 25 / .68));
+  /* Floating surfaces (menus, popovers, selects): frosted in light, solid and still in dark. */
+  --ohm-popover: light-dark(rgb(255 255 255 / .86), #161616);
+  --ohm-glass: var(--ohm-frost-thin);
+  --ohm-glass-strong: var(--ohm-frost);
   --ohm-scrim: rgb(0 0 0 / .45);
 
   /* ---- color: editorial (website only) ---- */
@@ -108,24 +112,51 @@
   --ohm-height-lg: 48px;
   --ohm-touch-min: 44px;
   --ohm-icon-size: 18px;
-  --ohm-icon-stroke: 2.25;
+  --ohm-icon-size-xs: 14px;
+  --ohm-icon-size-sm: 16px;
+  --ohm-icon-size-lg: 20px;
+  --ohm-icon-size-xl: 24px;
+  --ohm-icon-stroke: 2;
 
-  /* ---- shape ---- */
+  /* ---- shape: corners grow with the surface ---- */
   --ohm-radius-pill: 999px;
+  --ohm-radius-chip: 8px;
+  --ohm-radius-item: 12px;
   --ohm-radius-row: 14px;
   --ohm-radius-field: 16px;
   --ohm-radius-card: 24px;
   --ohm-radius-panel: 24px;
   --ohm-radius-sheet: 28px;
 
-  /* ---- elevation ---- */
-  --ohm-popup-shadow: 0 2px 5px -1px light-dark(rgb(0 0 0 / .15), rgb(0 0 0 / .6)), 0 12px 32px -10px light-dark(rgb(0 0 0 / .24), rgb(0 0 0 / .85));
-  --ohm-float: light-dark(rgb(255 255 255 / .94), rgb(26 26 26 / .86));
-  --ohm-float-blur: blur(24px) saturate(1.2);
-  --ohm-float-shadow: 0 8px 28px -10px light-dark(rgb(0 0 0 / .16), rgb(0 0 0 / .5));
-  --ohm-float-shadow-focus: 0 10px 30px -16px light-dark(rgb(0 0 0 / .25), rgb(0 0 0 / .69));
-  --ohm-panel-shadow: 0 12px 32px light-dark(rgb(0 0 0 / .08), rgb(0 0 0 / .4));
-  --ohm-window-shadow: 0 24px 80px -20px light-dark(rgb(0 0 0 / .3), rgb(0 0 0 / .75)), 0 4px 16px -6px light-dark(rgb(0 0 0 / .14), rgb(0 0 0 / .5));
+  /* ---- depth: shade. One light source above; each step sits closer to the eye.
+     Every step is two shadows: a tight contact shadow and a soft ambient one. ---- */
+  --ohm-shade-1: 0 1px 2px light-dark(rgb(0 0 0 / .06), rgb(0 0 0 / .5));
+  --ohm-shade-2: 0 1px 2px light-dark(rgb(0 0 0 / .04), rgb(0 0 0 / .4)), 0 3px 10px -2px light-dark(rgb(0 0 0 / .07), rgb(0 0 0 / .5));
+  --ohm-shade-3: 0 2px 4px -1px light-dark(rgb(0 0 0 / .05), rgb(0 0 0 / .45)), 0 10px 28px -8px light-dark(rgb(0 0 0 / .14), rgb(0 0 0 / .65));
+  --ohm-shade-4: 0 4px 8px -2px light-dark(rgb(0 0 0 / .05), rgb(0 0 0 / .5)), 0 20px 44px -12px light-dark(rgb(0 0 0 / .18), rgb(0 0 0 / .7));
+  --ohm-shade-5: 0 8px 16px -4px light-dark(rgb(0 0 0 / .07), rgb(0 0 0 / .55)), 0 32px 80px -20px light-dark(rgb(0 0 0 / .28), rgb(0 0 0 / .8));
+  /* The hairline a floating surface carries so it reads against any background, and the
+     catch-light along a glass surface's top edge. Both are inset shadows, not borders. */
+  --ohm-edge: inset 0 0 0 1px light-dark(rgb(0 0 0 / .06), rgb(255 255 255 / .08));
+  --ohm-highlight: inset 0 1px 0 light-dark(rgb(255 255 255 / .8), rgb(255 255 255 / .07));
+
+  /* ---- depth: frost. Translucent fills over a blurred, saturated backdrop. ---- */
+  --ohm-frost-thin: light-dark(rgb(255 255 255 / .5), rgb(36 36 36 / .42));
+  --ohm-frost: light-dark(rgb(255 255 255 / .72), rgb(24 24 24 / .8));
+  --ohm-frost-thick: light-dark(rgb(255 255 255 / .88), rgb(22 22 22 / .92));
+  --ohm-frost-tint: light-dark(rgb(1 50 32 / .08), rgb(1 50 32 / .34));
+  --ohm-frost-blur-thin: blur(12px) saturate(1.4);
+  --ohm-frost-blur: blur(24px) saturate(1.6);
+  --ohm-frost-blur-thick: blur(40px) saturate(1.8);
+
+  /* ---- depth: names by job, kept for components that use them ---- */
+  --ohm-popup-shadow: var(--ohm-shade-3);
+  --ohm-float: var(--ohm-frost-thick);
+  --ohm-float-blur: var(--ohm-frost-blur);
+  --ohm-float-shadow: var(--ohm-shade-3);
+  --ohm-float-shadow-focus: var(--ohm-shade-4);
+  --ohm-panel-shadow: var(--ohm-shade-4);
+  --ohm-window-shadow: var(--ohm-shade-5);
 
   /* ---- motion ---- */
   --ohm-duration-press: 130ms;
@@ -140,17 +171,18 @@
   --ohm-atmosphere-grain-opacity: .08;
 }
 
-/* Appearance: system by default; html[data-theme] forces one scheme. */
-html[data-theme="light"] { color-scheme: light; }
-html[data-theme="dark"] { color-scheme: dark; }
+/* Appearance: light by default. Set data-theme on <html> or on any element to scope it. */
+[data-theme="light"] { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; }
+[data-theme="system"] { color-scheme: light dark; }
 
 @media (max-width: 760px) {
   :root { --ohm-type-wordmark-size: 38px; }
 }
 
-/* Reading context: mail bodies and publicist chat. Same five roles, larger. */
+/* Reading context: long text and conversation. Same five roles, larger. */
 [data-reading="chat"],
-[data-reading="mail"] {
+[data-reading="article"] {
   --ohm-type-h1-size: 24px;
   --ohm-type-h1-leading: 32px;
   --ohm-type-h1-tracking: -0.02em;
@@ -166,7 +198,7 @@ html[data-theme="dark"] { color-scheme: dark; }
   --ohm-type-small-leading: 18px;
 }
 
-/* Touch: every control is a 44 px target (DESIGN.md §3, rule 12). */
+/* Touch: every control is a 44 px target (DESIGN.md). */
 @media (pointer: coarse) {
   :root {
     --ohm-height-xs: var(--ohm-touch-min);

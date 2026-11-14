@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "elements-href",
+  "title": "Href",
+  "description": "Link safety for the elements family: reducing a model's or a tool's URL to a target a browser can follow without running script.",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/ohm/assistant/href.ts",
+      "content": "const RELATIVE = /^(?:[/?#]|\\.{1,2}\\/)/;\n\nconst ALLOWED_PROTOCOLS = new Set([\"http:\", \"https:\", \"mailto:\"]);\n\nconst parse = (url: string) => {\n  try {\n    return new URL(url);\n  } catch {\n    return undefined;\n  }\n};\n\n/**\n * `url` when a browser following it runs no script: an `http:`, `https:`, or\n * `mailto:` URL, or one relative to the page. Anything else, including a\n * string that is not a URL at all, is `undefined`.\n */\nexport function safeHref(url: string | undefined): string | undefined {\n  if (typeof url !== \"string\") return undefined;\n  const trimmed = url.trim();\n  if (trimmed === \"\") return undefined;\n  const parsed = parse(trimmed);\n  if (parsed) {\n    return ALLOWED_PROTOCOLS.has(parsed.protocol) ? trimmed : undefined;\n  }\n  return RELATIVE.test(trimmed) ? trimmed : undefined;\n}\n\n/** The host `url` points at, without a leading `www.`, or `undefined`. */\nexport function hostOf(url: string | undefined): string | undefined {\n  const href = safeHref(url);\n  const hostname = href === undefined ? \"\" : (parse(href)?.hostname ?? \"\");\n  return hostname.replace(/^www\\./, \"\") || undefined;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

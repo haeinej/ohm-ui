@@ -1,18 +1,37 @@
 /* The ohm foundation in one import, inside a Tailwind v4 build:
      @import "./ohm/ohm.css";
      @source "../";            (where your components live)
-   Tailwind's preflight is intentionally omitted: shadcn.css carries a scoped
-   preflight for [data-slot] controls, and the base element roles. */
+   Tailwind's preflight sits in the base layer. The element roles in shadcn.css and every
+   utility are unlayered, so they win over it. */
+@layer theme, base;
 @import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
 @import "tw-animate-css";
+@import "tw-shimmer";
 @import "./tokens.css";
 @import "./shadcn.css";
 @import "./atmosphere.css";
 @import "./motion.css";
 @import "tailwindcss/utilities.css";
 
-/* Dark follows the device unless data-theme on an ancestor forces light or dark. */
+/* dark: applies under data-theme="dark", and under data-theme="system" when the device is dark.
+   Light is the default; nothing needs setting for it. */
 @custom-variant dark {
-  @media (prefers-color-scheme: dark) { &:where(:not([data-theme='light'], [data-theme='light'] *)) { @slot; } }
   &:where([data-theme='dark'], [data-theme='dark'] *) { @slot; }
+  @media (prefers-color-scheme: dark) { &:where([data-theme='system'], [data-theme='system'] *) { @slot; } }
+}
+
+/* assistant-ui: open and closed states from Radix (data-state) and Base UI (data-open), and the
+   height animation its collapsibles use. */
+@custom-variant data-open (&:where([data-state="open"], [data-open]:not([data-open="false"])));
+@custom-variant data-closed (&:where([data-state="closed"], [data-closed]:not([data-closed="false"])));
+@theme inline {
+  @keyframes collapsible-down {
+    from { height: 0; }
+    to { height: var(--radix-collapsible-content-height, var(--collapsible-panel-height, auto)); }
+  }
+  @keyframes collapsible-up {
+    from { height: var(--radix-collapsible-content-height, var(--collapsible-panel-height, auto)); }
+    to { height: 0; }
+  }
 }

@@ -1,0 +1,437 @@
+{
+  "note": "Written by scripts/vendor.mjs. Do not edit; re-run the script.",
+  "shadcn": {
+    "cli": "shadcn@4.23.0",
+    "style": "base-maia",
+    "items": [
+      "accordion",
+      "avatar",
+      "badge",
+      "button",
+      "button-group",
+      "card",
+      "checkbox",
+      "collapsible",
+      "command",
+      "dialog",
+      "dropdown-menu",
+      "empty",
+      "field",
+      "hover-card",
+      "input",
+      "input-group",
+      "item",
+      "kbd",
+      "label",
+      "native-select",
+      "popover",
+      "progress",
+      "resizable",
+      "scroll-area",
+      "select",
+      "separator",
+      "sheet",
+      "sidebar",
+      "skeleton",
+      "switch",
+      "tabs",
+      "textarea",
+      "toggle",
+      "toggle-group",
+      "tooltip"
+    ]
+  },
+  "assistantUi": {
+    "items": [
+      "thread",
+      "thread-list",
+      "threadlist-sidebar",
+      "assistant-modal",
+      "assistant-sidebar",
+      "markdown-text",
+      "reasoning",
+      "tool-group",
+      "tool-fallback",
+      "attachment",
+      "follow-up-suggestions",
+      "sources",
+      "model-selector",
+      "context-display",
+      "elements-agent-plan",
+      "elements-approval-card",
+      "elements-tool-call",
+      "elements-thinking-indicator",
+      "elements-option-list",
+      "elements-agent-status",
+      "elements-todo-list",
+      "elements-message-actions",
+      "elements-suggestions",
+      "elements-error-state"
+    ]
+  },
+  "dependencies": {
+    "@assistant-ui/ai-sdk": "^0.0.18",
+    "@assistant-ui/react": "^0.15.36",
+    "@assistant-ui/react-markdown": "^0.14.26",
+    "class-variance-authority": "^0.7.1",
+    "cmdk": "^1.1.1",
+    "lucide-react": "^1.73.0",
+    "radix-ui": "^1.8.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-resizable-panels": "^4.22.1",
+    "remark-gfm": "^4.0.1",
+    "tw-shimmer": "^0.4.14",
+    "zustand": "^5.1.0"
+  },
+  "patches": {
+    "registry/ohm/assistant/tooltip-icon-button.tsx": [
+      "Base UI tooltip"
+    ],
+    "registry/ohm/ui/button.tsx": [
+      "smooth press"
+    ],
+    "registry/ohm/ui/dialog.tsx": [
+      "still backdrop"
+    ],
+    "registry/ohm/ui/sheet.tsx": [
+      "still backdrop"
+    ]
+  },
+  "files": {
+    "registry/ohm/assistant/agent-plan.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-agent-plan",
+      "description": "A checklist the agent works through, with progress you can glance."
+    },
+    "registry/ohm/assistant/agent-status.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-agent-status",
+      "description": "One pill that always answers: what is it doing, and for how long."
+    },
+    "registry/ohm/assistant/approval-card.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-approval-card",
+      "description": "Human in the loop: the agent asks before it runs anything with side effects."
+    },
+    "registry/ohm/assistant/assistant-modal.tsx": {
+      "origin": "assistant-ui",
+      "name": "assistant-modal",
+      "description": "Floating chat bubble for support widgets and help desks, with a thread list and a resizable window."
+    },
+    "registry/ohm/assistant/assistant-sidebar.tsx": {
+      "origin": "assistant-ui",
+      "name": "assistant-sidebar",
+      "description": "Side panel chat for copilot experiences and inline assistance."
+    },
+    "registry/ohm/assistant/attachment-state.ts": {
+      "origin": "assistant-ui",
+      "name": "elements-attachment-state",
+      "description": "Shared attachment status and preview state."
+    },
+    "registry/ohm/assistant/attachment.tsx": {
+      "origin": "assistant-ui",
+      "name": "attachment",
+      "description": "Attach files from the composer and view them inside messages."
+    },
+    "registry/ohm/assistant/collapsible-root.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-collapsible-root",
+      "description": "Ref-bearing disclosure root for assistant-ui components."
+    },
+    "registry/ohm/assistant/context-display-state.ts": {
+      "origin": "assistant-ui",
+      "name": "elements-context-display-state",
+      "description": "Shared context display state and reset behavior."
+    },
+    "registry/ohm/assistant/context-display.tsx": {
+      "origin": "assistant-ui",
+      "name": "context-display",
+      "description": "Token usage against a model's context window as a ring, bar, or text, with a hover popover."
+    },
+    "registry/ohm/assistant/context-usage.ts": {
+      "origin": "assistant-ui",
+      "name": "elements-context-usage",
+      "description": "Shared usage colors and segment labels for context displays."
+    },
+    "registry/ohm/assistant/elements-context-display.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-context-display",
+      "description": "The props-driven context usage display: ring, bar, and text presets with the usage popover, no runtime required."
+    },
+    "registry/ohm/assistant/elements-model-selector.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-model-selector",
+      "description": "The props-driven model picker: search, groups, and reasoning effort levels, no runtime required."
+    },
+    "registry/ohm/assistant/elements-reasoning.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-reasoning",
+      "description": "The props-driven reasoning disclosure: streaming preview, fades, and variants, no runtime required."
+    },
+    "registry/ohm/assistant/error-state.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-error-state",
+      "description": "A quiet failure banner with a retry path, not a modal in your face."
+    },
+    "registry/ohm/assistant/file.tsx": {
+      "origin": "assistant-ui",
+      "name": "file",
+      "description": "Display file parts with icon, name, size, and a download button, playing audio and video inline."
+    },
+    "registry/ohm/assistant/follow-up-suggestions.tsx": {
+      "origin": "assistant-ui",
+      "name": "follow-up-suggestions",
+      "description": "Prompt chips rendered from runtime generated follow up suggestions."
+    },
+    "registry/ohm/assistant/github.tsx": {
+      "origin": "assistant-ui",
+      "name": "threadlist-sidebar",
+      "description": "Sidebar shell that hosts the thread list beside a thread."
+    },
+    "registry/ohm/assistant/href.ts": {
+      "origin": "assistant-ui",
+      "name": "elements-href",
+      "description": "Link safety for the elements family: reducing a model's or a tool's URL to a target a browser can follow without running script."
+    },
+    "registry/ohm/assistant/image.tsx": {
+      "origin": "assistant-ui",
+      "name": "image",
+      "description": "Display image parts with preview, loading states, and a fullscreen dialog."
+    },
+    "registry/ohm/assistant/markdown-text.tsx": {
+      "origin": "assistant-ui",
+      "name": "markdown-text",
+      "description": "Render assistant markdown with headings, lists, links, and code blocks."
+    },
+    "registry/ohm/assistant/media-player.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-media-player",
+      "description": "Audio and video a tool returned, played inline without leaving the thread."
+    },
+    "registry/ohm/assistant/message-actions.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-message-actions",
+      "description": "Copy, rate, and regenerate. Each action confirms itself with a small state change."
+    },
+    "registry/ohm/assistant/modal-size.ts": {
+      "origin": "assistant-ui",
+      "name": "elements-modal-size",
+      "description": "Shared resizing and stored size for the assistant modal."
+    },
+    "registry/ohm/assistant/model-selection.ts": {
+      "origin": "assistant-ui",
+      "name": "elements-model-selection",
+      "description": "Shared model selection state and effort resolution for model selectors."
+    },
+    "registry/ohm/assistant/model-selector.tsx": {
+      "origin": "assistant-ui",
+      "name": "model-selector",
+      "description": "Model picker with reasoning effort levels, search, and runtime integration."
+    },
+    "registry/ohm/assistant/option-list.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-option-list",
+      "description": "The agent asks a question with a few answers; the pick returns to it and stays as a receipt."
+    },
+    "registry/ohm/assistant/range.ts": {
+      "origin": "assistant-ui",
+      "name": "elements-range",
+      "description": "Range normalization for the elements family: clamping a caller's counts, indexes, and shares to what the element can render."
+    },
+    "registry/ohm/assistant/reasoning.tsx": {
+      "origin": "assistant-ui",
+      "name": "reasoning",
+      "description": "Collapsible panel for assistant reasoning and thinking content."
+    },
+    "registry/ohm/assistant/receipt-focus.ts": {
+      "origin": "assistant-ui",
+      "name": "elements-receipt-focus",
+      "description": "Keeps focus on a receipt when the focused answer is replaced."
+    },
+    "registry/ohm/assistant/sources.tsx": {
+      "origin": "assistant-ui",
+      "name": "sources",
+      "description": "Display URL sources with favicon, title, and an external link."
+    },
+    "registry/ohm/assistant/suggestions.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-suggestions",
+      "description": "Prompt pills that stagger in after a reply and invite the next turn."
+    },
+    "registry/ohm/assistant/surfaces.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-surfaces",
+      "description": "Shared design language for the elements family: surface, ink, and motion class recipes plus the shimmer utility."
+    },
+    "registry/ohm/assistant/thinking-indicator.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-thinking-indicator",
+      "description": "A live status line that names what the agent is doing right now, with elapsed time."
+    },
+    "registry/ohm/assistant/thread-list.tsx": {
+      "origin": "assistant-ui",
+      "name": "thread-list",
+      "description": "Sidebar or dropdown for switching conversations, with search and active selection."
+    },
+    "registry/ohm/assistant/thread.tsx": {
+      "origin": "assistant-ui",
+      "name": "thread",
+      "description": "Chat container with message list, composer, auto scroll, and accessibility built in."
+    },
+    "registry/ohm/assistant/threadlist-sidebar.tsx": {
+      "origin": "assistant-ui",
+      "name": "threadlist-sidebar",
+      "description": "Sidebar shell that hosts the thread list beside a thread."
+    },
+    "registry/ohm/assistant/todo-list.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-todo-list",
+      "description": "The agent's own working list, rewritten mid-run as it discovers what else is needed."
+    },
+    "registry/ohm/assistant/tokens.ts": {
+      "origin": "assistant-ui",
+      "name": "elements-tokens",
+      "description": "Token count formatting for the elements family: a count in the unit that keeps it short, such as 48.2k or 912.5M."
+    },
+    "registry/ohm/assistant/tool-call.tsx": {
+      "origin": "assistant-ui",
+      "name": "elements-tool-call",
+      "description": "One tool invocation with its request and result tucked behind a disclosure."
+    },
+    "registry/ohm/assistant/tool-fallback.tsx": {
+      "origin": "assistant-ui",
+      "name": "tool-fallback",
+      "description": "Default renderer for tool calls that have no dedicated UI."
+    },
+    "registry/ohm/assistant/tool-group.tsx": {
+      "origin": "assistant-ui",
+      "name": "tool-group",
+      "description": "Collapsible wrapper around consecutive tool calls."
+    },
+    "registry/ohm/assistant/tooltip-icon-button.tsx": {
+      "origin": "assistant-ui",
+      "name": "tooltip-icon-button",
+      "description": "Icon button with an accessible tooltip label, shared across the assistant UI components."
+    },
+    "registry/ohm/assistant/useIsomorphicLayoutEffect.ts": {
+      "origin": "assistant-ui",
+      "name": "elements-surfaces",
+      "description": "Shared design language for the elements family: surface, ink, and motion class recipes plus the shimmer utility."
+    },
+    "registry/ohm/hooks/use-attachment-src.ts": {
+      "origin": "assistant-ui"
+    },
+    "registry/ohm/hooks/use-copy-to-clipboard.ts": {
+      "origin": "assistant-ui"
+    },
+    "registry/ohm/hooks/use-mobile.ts": {
+      "origin": "assistant-ui"
+    },
+    "registry/ohm/ui/accordion.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/avatar.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/badge.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/button-group.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/button.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/card.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/checkbox.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/collapsible.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/command.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/dialog.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/dropdown-menu.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/empty.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/field.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/hover-card.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/input-group.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/input.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/item.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/kbd.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/label.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/native-select.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/popover.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/progress.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/resizable.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/scroll-area.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/select.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/separator.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/sheet.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/sidebar.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/skeleton.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/switch.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/tabs.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/textarea.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/toggle-group.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/toggle.tsx": {
+      "origin": "shadcn/base-maia"
+    },
+    "registry/ohm/ui/tooltip.tsx": {
+      "origin": "shadcn/base-maia"
+    }
+  }
+}

@@ -1,6 +1,5 @@
 /* shadcn/ui (Base UI, base-nova) mapped onto ohm tokens, once.
-   Import after tokens.css, inside a Tailwind v4 build:
-     @import "@ohm/ui/tokens.css"; @import "@ohm/ui/shadcn.css";
+   Import after tokens.css, inside a Tailwind v4 build (ohm.css does both).
    Components choose a variant or size; they never restyle colors, type or radii. */
 
 :root {
@@ -8,7 +7,7 @@
   --foreground: var(--ohm-ink);
   --card: var(--ohm-paper);
   --card-foreground: var(--ohm-ink);
-  --popover: var(--ohm-menu);
+  --popover: var(--ohm-popover);
   --popover-foreground: var(--ohm-ink);
   --primary: var(--ohm-accent-fill);
   --primary-foreground: var(--ohm-on-accent);
@@ -18,10 +17,24 @@
   --muted-foreground: var(--ohm-muted);
   --accent: var(--ohm-wash);
   --accent-foreground: var(--ohm-ink);
-  --destructive: var(--ohm-danger);
+  --destructive: var(--ohm-red);
+  --success: var(--ohm-green-light);
+  --chart-1: var(--ohm-forest);
+  --chart-2: var(--ohm-green-light);
+  --chart-3: var(--ohm-ink);
+  --chart-4: var(--ohm-muted);
+  --chart-5: var(--ohm-red);
   --border: var(--ohm-line);
   --input: var(--ohm-line);
   --ring: var(--ohm-focus);
+  --sidebar: var(--ohm-menu);
+  --sidebar-foreground: var(--ohm-ink);
+  --sidebar-primary: var(--ohm-accent-fill);
+  --sidebar-primary-foreground: var(--ohm-on-accent);
+  --sidebar-accent: var(--ohm-wash);
+  --sidebar-accent-foreground: var(--ohm-ink);
+  --sidebar-border: var(--ohm-line);
+  --sidebar-ring: var(--ohm-focus);
   /* shadcn's base radius is the field radius: no second radius system. */
   --radius: var(--ohm-radius-field);
 }
@@ -46,13 +59,239 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
   --color-leaf: var(--ohm-leaf);
   --color-agent: var(--ohm-agent);
 
-  /* Named radii only (DESIGN.md §3). */
+  /* Tailwind's own radius and shadow scales are mapped onto ohm, so shadcn's
+     rounded-md, rounded-xl, shadow-sm and shadow-lg take ohm's shape and depth. */
+  --radius-xs: var(--ohm-radius-chip);
+  --radius-sm: var(--ohm-radius-chip);
+  --radius-md: var(--ohm-radius-item);
+  --radius-lg: var(--ohm-radius-row);
+  --radius-xl: var(--ohm-radius-field);
+  --radius-2xl: var(--ohm-radius-card);
+  --radius-3xl: var(--ohm-radius-sheet);
+  --radius-4xl: var(--ohm-radius-sheet);
+  --shadow-2xs: var(--ohm-shade-1);
+  --shadow-xs: var(--ohm-shade-1);
+  --shadow-sm: var(--ohm-shade-2);
+  --shadow-md: var(--ohm-shade-3);
+  --shadow-lg: var(--ohm-shade-3);
+  --shadow-xl: var(--ohm-shade-4);
+  /* shadcn's Maia popups use shadow-2xl: a popup's shade, not a window's. */
+  --shadow-2xl: var(--ohm-shade-4);
+
+  /* Tailwind's colour palette, folded onto ohm. Vendored components say red for errors, emerald
+     for success, blue for information and amber for warnings; here those mean ohm's red, its light
+     green, and ink. ohm's own components use tokens, never these names (npm run check). */
+  --color-red-50: color-mix(in oklab, var(--ohm-red) 8%, white);
+  --color-red-100: color-mix(in oklab, var(--ohm-red) 14%, white);
+  --color-red-200: color-mix(in oklab, var(--ohm-red) 26%, white);
+  --color-red-300: color-mix(in oklab, var(--ohm-red) 50%, white);
+  --color-red-400: color-mix(in oklab, var(--ohm-red) 78%, white);
+  --color-red-500: var(--ohm-red);
+  --color-red-600: var(--ohm-red);
+  --color-red-700: color-mix(in oklab, var(--ohm-red) 85%, black);
+  --color-red-800: color-mix(in oklab, var(--ohm-red) 70%, black);
+  --color-red-900: color-mix(in oklab, var(--ohm-red) 45%, black);
+  --color-red-950: color-mix(in oklab, var(--ohm-red) 30%, black);
+  --color-rose-50: color-mix(in oklab, var(--ohm-red) 8%, white);
+  --color-rose-100: color-mix(in oklab, var(--ohm-red) 14%, white);
+  --color-rose-200: color-mix(in oklab, var(--ohm-red) 26%, white);
+  --color-rose-300: color-mix(in oklab, var(--ohm-red) 50%, white);
+  --color-rose-400: color-mix(in oklab, var(--ohm-red) 78%, white);
+  --color-rose-500: var(--ohm-red);
+  --color-rose-600: var(--ohm-red);
+  --color-rose-700: color-mix(in oklab, var(--ohm-red) 85%, black);
+  --color-rose-800: color-mix(in oklab, var(--ohm-red) 70%, black);
+  --color-rose-900: color-mix(in oklab, var(--ohm-red) 45%, black);
+  --color-rose-950: color-mix(in oklab, var(--ohm-red) 30%, black);
+  --color-orange-50: color-mix(in oklab, var(--ohm-red) 8%, white);
+  --color-orange-100: color-mix(in oklab, var(--ohm-red) 14%, white);
+  --color-orange-200: color-mix(in oklab, var(--ohm-red) 26%, white);
+  --color-orange-300: color-mix(in oklab, var(--ohm-red) 50%, white);
+  --color-orange-400: color-mix(in oklab, var(--ohm-red) 78%, white);
+  --color-orange-500: var(--ohm-red);
+  --color-orange-600: var(--ohm-red);
+  --color-orange-700: color-mix(in oklab, var(--ohm-red) 85%, black);
+  --color-orange-800: color-mix(in oklab, var(--ohm-red) 70%, black);
+  --color-orange-900: color-mix(in oklab, var(--ohm-red) 45%, black);
+  --color-orange-950: color-mix(in oklab, var(--ohm-red) 30%, black);
+  --color-emerald-50: color-mix(in oklab, var(--ohm-green-light) 8%, white);
+  --color-emerald-100: color-mix(in oklab, var(--ohm-green-light) 14%, white);
+  --color-emerald-200: color-mix(in oklab, var(--ohm-green-light) 26%, white);
+  --color-emerald-300: color-mix(in oklab, var(--ohm-green-light) 50%, white);
+  --color-emerald-400: color-mix(in oklab, var(--ohm-green-light) 78%, white);
+  --color-emerald-500: var(--ohm-green-light);
+  --color-emerald-600: var(--ohm-green-light);
+  --color-emerald-700: color-mix(in oklab, var(--ohm-green-light) 85%, black);
+  --color-emerald-800: color-mix(in oklab, var(--ohm-green-light) 70%, black);
+  --color-emerald-900: color-mix(in oklab, var(--ohm-green-light) 45%, black);
+  --color-emerald-950: color-mix(in oklab, var(--ohm-green-light) 30%, black);
+  --color-green-50: color-mix(in oklab, var(--ohm-green-light) 8%, white);
+  --color-green-100: color-mix(in oklab, var(--ohm-green-light) 14%, white);
+  --color-green-200: color-mix(in oklab, var(--ohm-green-light) 26%, white);
+  --color-green-300: color-mix(in oklab, var(--ohm-green-light) 50%, white);
+  --color-green-400: color-mix(in oklab, var(--ohm-green-light) 78%, white);
+  --color-green-500: var(--ohm-green-light);
+  --color-green-600: var(--ohm-green-light);
+  --color-green-700: color-mix(in oklab, var(--ohm-green-light) 85%, black);
+  --color-green-800: color-mix(in oklab, var(--ohm-green-light) 70%, black);
+  --color-green-900: color-mix(in oklab, var(--ohm-green-light) 45%, black);
+  --color-green-950: color-mix(in oklab, var(--ohm-green-light) 30%, black);
+  --color-lime-50: color-mix(in oklab, var(--ohm-green-light) 8%, white);
+  --color-lime-100: color-mix(in oklab, var(--ohm-green-light) 14%, white);
+  --color-lime-200: color-mix(in oklab, var(--ohm-green-light) 26%, white);
+  --color-lime-300: color-mix(in oklab, var(--ohm-green-light) 50%, white);
+  --color-lime-400: color-mix(in oklab, var(--ohm-green-light) 78%, white);
+  --color-lime-500: var(--ohm-green-light);
+  --color-lime-600: var(--ohm-green-light);
+  --color-lime-700: color-mix(in oklab, var(--ohm-green-light) 85%, black);
+  --color-lime-800: color-mix(in oklab, var(--ohm-green-light) 70%, black);
+  --color-lime-900: color-mix(in oklab, var(--ohm-green-light) 45%, black);
+  --color-lime-950: color-mix(in oklab, var(--ohm-green-light) 30%, black);
+  --color-teal-50: color-mix(in oklab, var(--ohm-green-light) 8%, white);
+  --color-teal-100: color-mix(in oklab, var(--ohm-green-light) 14%, white);
+  --color-teal-200: color-mix(in oklab, var(--ohm-green-light) 26%, white);
+  --color-teal-300: color-mix(in oklab, var(--ohm-green-light) 50%, white);
+  --color-teal-400: color-mix(in oklab, var(--ohm-green-light) 78%, white);
+  --color-teal-500: var(--ohm-green-light);
+  --color-teal-600: var(--ohm-green-light);
+  --color-teal-700: color-mix(in oklab, var(--ohm-green-light) 85%, black);
+  --color-teal-800: color-mix(in oklab, var(--ohm-green-light) 70%, black);
+  --color-teal-900: color-mix(in oklab, var(--ohm-green-light) 45%, black);
+  --color-teal-950: color-mix(in oklab, var(--ohm-green-light) 30%, black);
+  --color-blue-50: color-mix(in oklab, var(--ohm-ink) 8%, white);
+  --color-blue-100: color-mix(in oklab, var(--ohm-ink) 14%, white);
+  --color-blue-200: color-mix(in oklab, var(--ohm-ink) 26%, white);
+  --color-blue-300: color-mix(in oklab, var(--ohm-ink) 50%, white);
+  --color-blue-400: color-mix(in oklab, var(--ohm-ink) 78%, white);
+  --color-blue-500: var(--ohm-ink);
+  --color-blue-600: var(--ohm-ink);
+  --color-blue-700: color-mix(in oklab, var(--ohm-ink) 85%, black);
+  --color-blue-800: color-mix(in oklab, var(--ohm-ink) 70%, black);
+  --color-blue-900: color-mix(in oklab, var(--ohm-ink) 45%, black);
+  --color-blue-950: color-mix(in oklab, var(--ohm-ink) 30%, black);
+  --color-sky-50: color-mix(in oklab, var(--ohm-ink) 8%, white);
+  --color-sky-100: color-mix(in oklab, var(--ohm-ink) 14%, white);
+  --color-sky-200: color-mix(in oklab, var(--ohm-ink) 26%, white);
+  --color-sky-300: color-mix(in oklab, var(--ohm-ink) 50%, white);
+  --color-sky-400: color-mix(in oklab, var(--ohm-ink) 78%, white);
+  --color-sky-500: var(--ohm-ink);
+  --color-sky-600: var(--ohm-ink);
+  --color-sky-700: color-mix(in oklab, var(--ohm-ink) 85%, black);
+  --color-sky-800: color-mix(in oklab, var(--ohm-ink) 70%, black);
+  --color-sky-900: color-mix(in oklab, var(--ohm-ink) 45%, black);
+  --color-sky-950: color-mix(in oklab, var(--ohm-ink) 30%, black);
+  --color-indigo-50: color-mix(in oklab, var(--ohm-ink) 8%, white);
+  --color-indigo-100: color-mix(in oklab, var(--ohm-ink) 14%, white);
+  --color-indigo-200: color-mix(in oklab, var(--ohm-ink) 26%, white);
+  --color-indigo-300: color-mix(in oklab, var(--ohm-ink) 50%, white);
+  --color-indigo-400: color-mix(in oklab, var(--ohm-ink) 78%, white);
+  --color-indigo-500: var(--ohm-ink);
+  --color-indigo-600: var(--ohm-ink);
+  --color-indigo-700: color-mix(in oklab, var(--ohm-ink) 85%, black);
+  --color-indigo-800: color-mix(in oklab, var(--ohm-ink) 70%, black);
+  --color-indigo-900: color-mix(in oklab, var(--ohm-ink) 45%, black);
+  --color-indigo-950: color-mix(in oklab, var(--ohm-ink) 30%, black);
+  --color-cyan-50: color-mix(in oklab, var(--ohm-ink) 8%, white);
+  --color-cyan-100: color-mix(in oklab, var(--ohm-ink) 14%, white);
+  --color-cyan-200: color-mix(in oklab, var(--ohm-ink) 26%, white);
+  --color-cyan-300: color-mix(in oklab, var(--ohm-ink) 50%, white);
+  --color-cyan-400: color-mix(in oklab, var(--ohm-ink) 78%, white);
+  --color-cyan-500: var(--ohm-ink);
+  --color-cyan-600: var(--ohm-ink);
+  --color-cyan-700: color-mix(in oklab, var(--ohm-ink) 85%, black);
+  --color-cyan-800: color-mix(in oklab, var(--ohm-ink) 70%, black);
+  --color-cyan-900: color-mix(in oklab, var(--ohm-ink) 45%, black);
+  --color-cyan-950: color-mix(in oklab, var(--ohm-ink) 30%, black);
+  --color-violet-50: color-mix(in oklab, var(--ohm-ink) 8%, white);
+  --color-violet-100: color-mix(in oklab, var(--ohm-ink) 14%, white);
+  --color-violet-200: color-mix(in oklab, var(--ohm-ink) 26%, white);
+  --color-violet-300: color-mix(in oklab, var(--ohm-ink) 50%, white);
+  --color-violet-400: color-mix(in oklab, var(--ohm-ink) 78%, white);
+  --color-violet-500: var(--ohm-ink);
+  --color-violet-600: var(--ohm-ink);
+  --color-violet-700: color-mix(in oklab, var(--ohm-ink) 85%, black);
+  --color-violet-800: color-mix(in oklab, var(--ohm-ink) 70%, black);
+  --color-violet-900: color-mix(in oklab, var(--ohm-ink) 45%, black);
+  --color-violet-950: color-mix(in oklab, var(--ohm-ink) 30%, black);
+  --color-purple-50: color-mix(in oklab, var(--ohm-ink) 8%, white);
+  --color-purple-100: color-mix(in oklab, var(--ohm-ink) 14%, white);
+  --color-purple-200: color-mix(in oklab, var(--ohm-ink) 26%, white);
+  --color-purple-300: color-mix(in oklab, var(--ohm-ink) 50%, white);
+  --color-purple-400: color-mix(in oklab, var(--ohm-ink) 78%, white);
+  --color-purple-500: var(--ohm-ink);
+  --color-purple-600: var(--ohm-ink);
+  --color-purple-700: color-mix(in oklab, var(--ohm-ink) 85%, black);
+  --color-purple-800: color-mix(in oklab, var(--ohm-ink) 70%, black);
+  --color-purple-900: color-mix(in oklab, var(--ohm-ink) 45%, black);
+  --color-purple-950: color-mix(in oklab, var(--ohm-ink) 30%, black);
+  --color-fuchsia-50: color-mix(in oklab, var(--ohm-ink) 8%, white);
+  --color-fuchsia-100: color-mix(in oklab, var(--ohm-ink) 14%, white);
+  --color-fuchsia-200: color-mix(in oklab, var(--ohm-ink) 26%, white);
+  --color-fuchsia-300: color-mix(in oklab, var(--ohm-ink) 50%, white);
+  --color-fuchsia-400: color-mix(in oklab, var(--ohm-ink) 78%, white);
+  --color-fuchsia-500: var(--ohm-ink);
+  --color-fuchsia-600: var(--ohm-ink);
+  --color-fuchsia-700: color-mix(in oklab, var(--ohm-ink) 85%, black);
+  --color-fuchsia-800: color-mix(in oklab, var(--ohm-ink) 70%, black);
+  --color-fuchsia-900: color-mix(in oklab, var(--ohm-ink) 45%, black);
+  --color-fuchsia-950: color-mix(in oklab, var(--ohm-ink) 30%, black);
+  --color-pink-50: color-mix(in oklab, var(--ohm-ink) 8%, white);
+  --color-pink-100: color-mix(in oklab, var(--ohm-ink) 14%, white);
+  --color-pink-200: color-mix(in oklab, var(--ohm-ink) 26%, white);
+  --color-pink-300: color-mix(in oklab, var(--ohm-ink) 50%, white);
+  --color-pink-400: color-mix(in oklab, var(--ohm-ink) 78%, white);
+  --color-pink-500: var(--ohm-ink);
+  --color-pink-600: var(--ohm-ink);
+  --color-pink-700: color-mix(in oklab, var(--ohm-ink) 85%, black);
+  --color-pink-800: color-mix(in oklab, var(--ohm-ink) 70%, black);
+  --color-pink-900: color-mix(in oklab, var(--ohm-ink) 45%, black);
+  --color-pink-950: color-mix(in oklab, var(--ohm-ink) 30%, black);
+  --color-amber-50: color-mix(in oklab, var(--ohm-ink) 8%, white);
+  --color-amber-100: color-mix(in oklab, var(--ohm-ink) 14%, white);
+  --color-amber-200: color-mix(in oklab, var(--ohm-ink) 26%, white);
+  --color-amber-300: color-mix(in oklab, var(--ohm-ink) 50%, white);
+  --color-amber-400: color-mix(in oklab, var(--ohm-ink) 78%, white);
+  --color-amber-500: var(--ohm-ink);
+  --color-amber-600: var(--ohm-ink);
+  --color-amber-700: color-mix(in oklab, var(--ohm-ink) 85%, black);
+  --color-amber-800: color-mix(in oklab, var(--ohm-ink) 70%, black);
+  --color-amber-900: color-mix(in oklab, var(--ohm-ink) 45%, black);
+  --color-amber-950: color-mix(in oklab, var(--ohm-ink) 30%, black);
+  --color-yellow-50: color-mix(in oklab, var(--ohm-ink) 8%, white);
+  --color-yellow-100: color-mix(in oklab, var(--ohm-ink) 14%, white);
+  --color-yellow-200: color-mix(in oklab, var(--ohm-ink) 26%, white);
+  --color-yellow-300: color-mix(in oklab, var(--ohm-ink) 50%, white);
+  --color-yellow-400: color-mix(in oklab, var(--ohm-ink) 78%, white);
+  --color-yellow-500: var(--ohm-ink);
+  --color-yellow-600: var(--ohm-ink);
+  --color-yellow-700: color-mix(in oklab, var(--ohm-ink) 85%, black);
+  --color-yellow-800: color-mix(in oklab, var(--ohm-ink) 70%, black);
+  --color-yellow-900: color-mix(in oklab, var(--ohm-ink) 45%, black);
+  --color-yellow-950: color-mix(in oklab, var(--ohm-ink) 30%, black);
+
+  /* Named radii (DESIGN.md: Shape). */
+  --radius-chip: var(--ohm-radius-chip);
+  --radius-item: var(--ohm-radius-item);
   --radius-pill: var(--ohm-radius-pill);
   --radius-row: var(--ohm-radius-row);
   --radius-field: var(--ohm-radius-field);
@@ -65,6 +304,13 @@
   --spacing-control-sm: var(--ohm-height-sm);
   --spacing-control-md: var(--ohm-height-md);
   --spacing-control-lg: var(--ohm-height-lg);
+
+  /* Icon sizes: size-icon-xs … size-icon-xl. */
+  --spacing-icon-xs: var(--ohm-icon-size-xs);
+  --spacing-icon-sm: var(--ohm-icon-size-sm);
+  --spacing-icon: var(--ohm-icon-size);
+  --spacing-icon-lg: var(--ohm-icon-size-lg);
+  --spacing-icon-xl: var(--ohm-icon-size-xl);
 
   /* Five text roles: text-h1, text-h2, text-h3, text-body (= text-sm), text-small (= text-xs); text-base is input size. */
   --text-h1: var(--ohm-type-h1-size);
@@ -108,9 +354,10 @@ h1 { font: 400 var(--ohm-type-h1-size) / var(--ohm-type-h1-leading) var(--ohm-fo
 h2 { font: 400 var(--ohm-type-h2-size) / var(--ohm-type-h2-leading) var(--ohm-font-serif); letter-spacing: var(--ohm-type-h2-tracking); }
 h3 { font: var(--ohm-type-h3-weight) var(--ohm-type-h3-size) / var(--ohm-type-h3-leading) var(--ohm-font-sans); letter-spacing: var(--ohm-type-h3-tracking); }
 ::selection { background: var(--ohm-selection); }
-:is(button, a, input, textarea, select):focus-visible { outline: 2px solid var(--ohm-focus); outline-offset: 2px; }
+/* A focus ring for plain links and buttons. Zero specificity: components draw their own. */
+:where(a, button, [role=button]):focus-visible { outline: 2px solid var(--ohm-focus); outline-offset: 2px; }
 
-/* Lucide at one bold stroke with round caps and joins. */
+/* Icons: one stroke, round caps and joins. Size with size-icon-xs … size-icon-xl. */
 .lucide { stroke-width: var(--ohm-icon-stroke); stroke-linecap: round; stroke-linejoin: round; }
 
 /* Scoped preflight: shadcn components start from a clean native control. */
@@ -130,3 +377,60 @@ h3 { font: var(--ohm-type-h3-weight) var(--ohm-type-h3-size) / var(--ohm-type-h3
 @keyframes ohm-loading-in { to { opacity: 1; } }
 @keyframes ohm-loading-slide { from { transform: translateX(-10%); } to { transform: translateX(160%); } }
 @media (prefers-reduced-motion: reduce) { .ohm-loading-bar > span { width: 100%; transform: none; opacity: .5; animation: none; } }
+
+/* ---- Depth utilities (DESIGN.md: Depth) ----
+   shade-1 … shade-5: elevation. frost-thin, frost, frost-thick, frost-tint: glass materials.
+   A frost surface carries its own edge and catch-light; add a shade for lift. */
+@utility shade-1 { box-shadow: var(--ohm-edge), var(--ohm-shade-1); }
+@utility shade-2 { box-shadow: var(--ohm-edge), var(--ohm-shade-2); }
+@utility shade-3 { box-shadow: var(--ohm-edge), var(--ohm-shade-3); }
+@utility shade-4 { box-shadow: var(--ohm-edge), var(--ohm-shade-4); }
+@utility shade-5 { box-shadow: var(--ohm-edge), var(--ohm-shade-5); }
+@utility frost-thin {
+  background-color: var(--ohm-frost-thin);
+  backdrop-filter: var(--ohm-frost-blur-thin);
+  -webkit-backdrop-filter: var(--ohm-frost-blur-thin);
+}
+@utility frost {
+  background-color: var(--ohm-frost);
+  backdrop-filter: var(--ohm-frost-blur);
+  -webkit-backdrop-filter: var(--ohm-frost-blur);
+}
+@utility frost-thick {
+  background-color: var(--ohm-frost-thick);
+  backdrop-filter: var(--ohm-frost-blur-thick);
+  -webkit-backdrop-filter: var(--ohm-frost-blur-thick);
+}
+@utility frost-tint {
+  background-color: var(--ohm-frost-tint);
+  backdrop-filter: var(--ohm-frost-blur);
+  -webkit-backdrop-filter: var(--ohm-frost-blur);
+}
+/* Glass is decoration over a readable surface: without blur, or when someone asks for less
+   transparency, it becomes the solid surface underneath. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :where(.frost-thin, .frost, .frost-thick, .frost-tint) { background-color: var(--ohm-raised); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  :where(.frost-thin, .frost, .frost-thick, .frost-tint) { background-color: var(--ohm-raised); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+
+/* ---- Floating surfaces ----
+   Menus, popovers, selects, hover cards and sheets use --popover: frosted glass in light,
+   solid and still in dark. The blur sits here, by slot, so stock components need no edits. */
+:where([data-slot=popover-content], [data-slot=dropdown-menu-content], [data-slot=dropdown-menu-sub-content],
+  [data-slot=select-content], [data-slot=hover-card-content], [data-slot=sheet-content], [data-slot=command]) {
+  backdrop-filter: var(--ohm-frost-blur-thick);
+  -webkit-backdrop-filter: var(--ohm-frost-blur-thick);
+}
+@media (prefers-reduced-transparency: reduce) {
+  :root { --ohm-popover: var(--ohm-raised); }
+}
+
+/* ---- Press ----
+   Controls ease into a press instead of snapping (vendor.mjs swaps shadcn's 1px drop for a scale). */
+:where([data-slot=button], [data-slot=toggle], [data-slot=toggle-group-item]) {
+  transition-property: color, background-color, border-color, box-shadow, opacity, scale;
+  transition-duration: var(--ohm-duration-press);
+  transition-timing-function: var(--ohm-ease-out);
+}

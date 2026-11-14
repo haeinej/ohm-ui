@@ -1,27 +1,27 @@
 # ohm-ui
 
-The ohm design system, in one place.
+The ohm design system: how ohm looks, as components any ohm app can install.
 
-Until now ohm's look lived inside each app. ohm-1 had its tokens in `packages/ui` and its components in `app/src/ui`. agentic-twitter (`pr-agent`) had an older copy of both plus a Svelte design kit. ohm-content-layer's vault page carried a third copy of the tokens. Each copy could drift. ohm-ui holds the one version, and apps take it from here.
+It is built the way [shadcn/ui](https://ui.shadcn.com) is. Components are not a package you import; the shadcn CLI copies them into your app, so nothing is hidden and every app's copy comes from the same place.
 
-## How it works
+## What is in it
 
-It works like [shadcn/ui](https://ui.shadcn.com): components are not a package you import, but files the shadcn CLI copies into your app. The app owns the copy, so nothing is hidden, and the registry keeps every app's copy the same.
+| Layer | What it is |
+| --- | --- |
+| Foundations | Coconat and Helvetica Neue, ohm's colour with one forest green, a light green and a red, five steps of shade, frost glass, motion, icons. Light by default, with a still, solid dark mode |
+| Components | shadcn's Base UI components in the Maia style (preset `b1ZOMFeKW`), plus ohm's panel, icon set, notices and screens |
+| Agent interface | [assistant-ui](https://www.assistant-ui.com): a thread and composer, thread list, assistant modal and sidebar, reasoning, tool calls, attachments, sources, model selector, and agent elements such as plans, approvals and status |
 
-| Layer | What it is | How an app gets it |
-| --- | --- | --- |
-| Foundations | Colour, type, space, radius, motion, the Coconat font, the ohm dot | `npm run foundations -- <app>` copies them in |
-| Components | Button, field, dialog, menu, notice, screens… on shadcn `base-nova` and Base UI | `npx shadcn add @ohm/<name>` |
-| Assistant parts | A conversation with an agent on [assistant-ui](https://www.assistant-ui.com): thread, composer, tool activity, safe Markdown | `npx shadcn add @ohm/thread` |
-
-React only: shadcn and assistant-ui are React libraries, and both apps are React. Data stays out of the library: TanStack DB and API calls belong to the apps.
+Upstream components arrive unchanged; ohm's look reaches them through the foundations. So they can be updated from upstream without losing anything.
 
 ## Look at it
 
 ```sh
 npm install
-npm run dev        # http://localhost:5180: every item, light and dark, and a working thread
+npm run dev        # http://localhost:5180
 ```
+
+The gallery is a TanStack Start app, one page per part, in light and dark.
 
 ## Use it in an app
 
@@ -29,19 +29,9 @@ Follow [skills/use-ohm-ui/SKILL.md](skills/use-ohm-ui/SKILL.md). It is also the 
 
 ## Change it
 
-1. Decide the look in [DESIGN.md](DESIGN.md) first.
-2. Change `registry/ohm/`, and see it in the gallery.
+1. Decide the look in [DESIGN.md](DESIGN.md).
+2. Change the foundations or ohm's own components, and see it in the gallery.
 3. `npm run check` and `npm run registry:build`, then commit.
-4. Update each app with `npx shadcn add @ohm/<name> --overwrite`.
+4. In each app, `npx shadcn add @ohm/<name> --overwrite`.
 
-[AGENTS.md](AGENTS.md) has the exact rules and checks.
-
-## Where it came from
-
-| Part | Taken from |
-| --- | --- |
-| Tokens, shadcn mapping, atmosphere, motion, font, brand SVGs, DESIGN.md | ohm-1 `packages/ui` and `DESIGN.md`, which consolidated agentic-twitter's design kit |
-| Components | ohm-1 `app/src/ui`, plus `progress` from agentic-twitter |
-| Assistant parts | Written here, after ohm-1's publicist conversation, with the publicist and mail parts taken out |
-
-Not migrated: agentic-twitter's Svelte design kit (its tokens already live on in `tokens.css`), and the apps' feature screens.
+To take newer shadcn or assistant-ui components, run `npm run vendor`. When something is missing, look in [shadcn's directory](https://ui.shadcn.com/docs/directory) before writing it. [AGENTS.md](AGENTS.md) has the exact rules.

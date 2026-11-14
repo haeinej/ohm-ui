@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "elements-range",
+  "title": "Range",
+  "description": "Range normalization for the elements family: clamping a caller's counts, indexes, and shares to what the element can render.",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/ohm/assistant/range.ts",
+      "content": "export function clamp(value: number, min: number, max: number) {\n  if (Number.isNaN(value)) return min;\n  return Math.min(max, Math.max(min, value));\n}\n\n/** The first `count` items, for a `count` that may be out of range. */\nexport function take<T>(items: readonly T[], count: number) {\n  return items.slice(0, Math.floor(clamp(count, 0, items.length)));\n}\n\n/** The position `index` names in `items`, for an `index` out of range. */\nexport function indexIn<T>(items: readonly T[], index: number) {\n  return Math.floor(clamp(index, 0, Math.max(0, items.length - 1)));\n}\n\n/** The item at `index`, for an `index` that may be out of range. */\nexport function at<T>(items: readonly T[], index: number) {\n  if (items.length === 0) return undefined;\n  return items[indexIn(items, index)];\n}\n\n/** `value` as a share of `total`, as a percentage in `0…100`. */\nexport function pct(value: number, total: number) {\n  if (!(total > 0)) return 0;\n  return clamp((value / total) * 100, 0, 100);\n}\n\n/**\n * A `0…100` share as it should be announced. `pct` divides, so a share that\n * reads as a whole number on screen can still reach `aria-valuenow` carrying\n * float error, which a screen reader reads out in full.\n */\nexport function announced(share: number) {\n  return Math.round(share * 10) / 10;\n}\n\n/** A count of completed items out of `total`, in `0…total`. */\nexport function progressOf(index: number, total: number) {\n  if (!(total > 0)) return 0;\n  return Math.floor(clamp(index, 0, total));\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

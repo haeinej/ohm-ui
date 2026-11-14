@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip-icon-button",
+  "title": "Tooltip Icon Button",
+  "description": "Icon button with an accessible tooltip label, shared across the assistant UI components.",
+  "dependencies": [
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@ohm/button",
+    "@ohm/cn",
+    "@ohm/tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/ohm/assistant/tooltip-icon-button.tsx",
+      "content": "\"use client\";\n\nimport { type ComponentPropsWithRef, forwardRef } from \"react\";\nimport { Slot } from \"radix-ui\";\n\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/registry/ohm/ui/tooltip\";\nimport { Button } from \"@/registry/ohm/ui/button\";\nimport { cn } from \"@/registry/ohm/lib/cn\";\n\nexport type TooltipIconButtonProps = ComponentPropsWithRef<typeof Button> & {\n  tooltip: string;\n  side?: \"top\" | \"bottom\" | \"left\" | \"right\";\n};\n\nexport const TooltipIconButton = forwardRef<\n  HTMLButtonElement,\n  TooltipIconButtonProps\n>(({ children, tooltip, side = \"bottom\", className, ...rest }, ref) => {\n  return (\n    <TooltipProvider delay={0}>\n      <Tooltip>\n        <TooltipTrigger render={<Button variant=\"ghost\" size=\"icon\" {...rest} className={cn(\n                            \"aui-button-icon size-6 p-1 active:scale-90\",\n                            className,\n                          )} ref={ref} />}><Slot.Slottable>{children}</Slot.Slottable><span className=\"aui-sr-only sr-only\">{tooltip}</span></TooltipTrigger>\n        <TooltipContent side={side}>{tooltip}</TooltipContent>\n      </Tooltip>\n    </TooltipProvider>\n  );\n});\n\nTooltipIconButton.displayName = \"TooltipIconButton\";\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

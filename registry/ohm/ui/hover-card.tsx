@@ -1,30 +1,41 @@
 import { PreviewCard as PreviewCardPrimitive } from "@base-ui/react/preview-card"
 import { cn } from "@/registry/ohm/lib/cn"
 
-/** shadcn/ui hover card on Base UI's PreviewCard: content shown while the trigger is hovered or focused. */
-function HoverCard(props: PreviewCardPrimitive.Root.Props) {
+function HoverCard({ ...props }: PreviewCardPrimitive.Root.Props) {
   return <PreviewCardPrimitive.Root data-slot="hover-card" {...props} />
 }
 
-function HoverCardTrigger({ delay = 450, closeDelay = 150, ...props }: PreviewCardPrimitive.Trigger.Props) {
-  return <PreviewCardPrimitive.Trigger data-slot="hover-card-trigger" delay={delay} closeDelay={closeDelay} {...props} />
+function HoverCardTrigger({ ...props }: PreviewCardPrimitive.Trigger.Props) {
+  return (
+    <PreviewCardPrimitive.Trigger data-slot="hover-card-trigger" {...props} />
+  )
 }
 
 function HoverCardContent({
   className,
   side = "bottom",
-  sideOffset = 8,
-  align = "start",
-  collisionBoundary,
+  sideOffset = 4,
+  align = "center",
+  alignOffset = 4,
   ...props
-}: PreviewCardPrimitive.Popup.Props & Pick<PreviewCardPrimitive.Positioner.Props, "side" | "sideOffset" | "align" | "collisionBoundary">) {
+}: PreviewCardPrimitive.Popup.Props &
+  Pick<
+    PreviewCardPrimitive.Positioner.Props,
+    "align" | "alignOffset" | "side" | "sideOffset"
+  >) {
   return (
-    <PreviewCardPrimitive.Portal>
-      <PreviewCardPrimitive.Positioner side={side} sideOffset={sideOffset} align={align} collisionBoundary={collisionBoundary} className="z-50 outline-none">
+    <PreviewCardPrimitive.Portal data-slot="hover-card-portal">
+      <PreviewCardPrimitive.Positioner
+        align={align}
+        alignOffset={alignOffset}
+        side={side}
+        sideOffset={sideOffset}
+        className="isolate z-50"
+      >
         <PreviewCardPrimitive.Popup
           data-slot="hover-card-content"
           className={cn(
-            "origin-(--transform-origin) outline-none transition-[opacity,transform] duration-150 data-[ending-style]:scale-98 data-[ending-style]:opacity-0 data-[starting-style]:scale-98 data-[starting-style]:opacity-0 motion-reduce:transition-none",
+            "z-50 w-72 origin-(--transform-origin) rounded-2xl bg-popover p-4 text-sm text-popover-foreground shadow-2xl ring-1 ring-foreground/5 outline-hidden duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
             className
           )}
           {...props}

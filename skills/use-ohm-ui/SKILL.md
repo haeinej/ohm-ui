@@ -1,45 +1,50 @@
 ---
 name: use-ohm-ui
-description: How to build interface in an ohm app with the ohm-ui design system - installing foundations and components, which component to reach for, the token and layout rules, and how to change something the library does not do. Use whenever you add or change UI in an app that uses ohm-ui, or set ohm-ui up in a new app.
+description: How to build interface in an ohm app with the ohm-ui design system - installing foundations and components, which component to reach for (including assistant-ui chat and agent parts), the token and layout rules, and what to do when ohm-ui lacks something. Use whenever you add or change UI in an app that uses ohm-ui, or set ohm-ui up in a new app.
 ---
 
 # Building UI with ohm-ui
 
-ohm-ui is the ohm design system. It works like shadcn/ui: components are copied into the app with the shadcn CLI and the app owns the copy. The source of truth is the `ohm-ui` repository (github.com/haeinej/ohm-ui, private). How ohm looks, and the reasons, are in its `DESIGN.md`.
+ohm-ui is the ohm design system (github.com/haeinej/ohm-ui, private). Components are copied into the app with the shadcn CLI and the app owns the copy. They are shadcn's Base UI components in the Maia style, assistant-ui's chat and agent parts, and ohm's own panel, icons, notices and screens, all wearing ohm's foundations. How ohm looks, and why, is in its `DESIGN.md`.
 
 ## The rules
 
-1. **Reach for a component before writing one.** Use the installed component, or install it from the registry. Hand-roll a control only when ohm-ui does not have it, and then propose adding it to ohm-ui.
-2. **Choose a variant or a size; don't restyle.** `className` on a component is for layout: margin, width, grid placement, flex. Never for colour, type, radius, shadow or motion.
-3. **App CSS is layout only:** grid, flex, gap, size, position. Every other value is a token: a Tailwind key (`bg-muted`, `text-muted-foreground`, `text-h2`, `rounded-card`, `h-control-md`) or `var(--ohm-*)`. No hex, `rgb()` or pixel font sizes.
-4. **Edgeless.** No borders or divider lines. Separate with space, then tone (`bg-muted`), then shadow for floating layers.
-5. **Green means something.** The filled primary button is for the one main action in a view. Never use green as decoration.
-6. **Coconat is for `h1` and `h2` only.** Everything else is Helvetica Neue through the five text roles: `text-h1`, `text-h2`, `text-h3`, `text-body`, `text-small`.
-7. **States:** loading and empty are blank or a `LoadingDot`; every error or message is a notice (`notify()`), not inline text; a full-screen task is a `PopupScreen`.
-8. **Don't edit installed files in `components/ui`, `components/` (assistant parts), `lib/cn.ts` or `src/ohm/`.** They are copies. Make the change in ohm-ui, rebuild its registry, then update the app (below). An edit made only in the app is lost on the next update and splits the design system.
-9. **Data stays outside components.** Components take props. Fetching, TanStack DB collections and stores belong to the app's own components, which pass data down.
+1. **Reach for a component before writing one:** the installed one, then the ohm registry. If ohm-ui has nothing, say so and propose adding it there; don't hand-roll a control in the app.
+2. **Choose a variant, a size or a material; don't restyle.** `className` on a component is for layout: margin, width, grid placement, flex.
+3. **App CSS is layout only.** Every colour, radius, shadow and duration is a token: `bg-muted`, `text-muted-foreground`, `bg-primary`, `text-destructive`, `bg-success`, `rounded-2xl`, `shadow-md`, `shade-3`, `frost`, or `var(--ohm-*)`. No hex, no Tailwind palette names (`bg-blue-500`), no pixel font sizes.
+4. **Colour has meaning.** Forest is the one primary action per view. Light green (`success`) is live, done or positive. Red (`destructive`) destroys or failed. Nothing else is coloured.
+5. **Coconat is for `h1` and `h2` only.** Everything else is Helvetica Neue in five roles: `text-h1`, `text-h2`, `text-h3`, `text-body`, `text-small`.
+6. **Depth: space, then tone, then shade.** Lines only where they group. Frost only over content that can show through it.
+7. **States:** a page's loading state is blank or a `LoadingDot`; errors and confirmations are `notify()`; empty places use `Empty`.
+8. **Don't edit installed ohm files** (`components/ui`, the assistant parts, `lib/cn.ts`, `lib/icons.ts`, `src/ohm/`). They are copies. Change ohm-ui and update the app, or the change is lost and the system splits.
+9. **Data stays outside components.** Components take props; fetching, TanStack DB collections and stores belong to the app's own components. Agent parts read from the app's assistant-ui runtime.
 
 ## What to reach for
 
 | Need | Use |
 | --- | --- |
-| Any button, icon button, text link styled as a button | `Button` (`variant`, `size`) |
-| A form | `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, with `Input`, `Textarea`, `NativeSelect`, `Checkbox`, `Switch` |
-| Confirm or a short task over the page | `Dialog` |
-| A whole-screen task | `PopupScreen` and its parts (`screen`) |
-| Actions on an item | `DropdownMenu` |
-| A preview on hover | `HoverCard` |
-| Feedback, errors, "saved" | `notify()` and `<Notices/>` once at the root (`notice`) |
-| Progress | `Progress` (`value={null}` while unknown), `LoadingDot`, `LoadingBar` |
-| Talking to an agent | `Thread` inside the app's `AssistantRuntimeProvider` |
-| Showing an agent's tool calls in your words | `ToolDescriptions` around the thread |
-| Agent text as Markdown | `MarkdownText` |
+| A button, icon button, split button | `Button`, `ButtonGroup` with a `DropdownMenu` |
+| An icon | `Icon` with a meaning from `icons` (`icons.help`, `icons.delete`) |
+| A group of settings, a nav list, a floating tool | `Panel` (`material`, `elevation`, `size`) with `PanelGroup`, `PanelLabel`, `PanelItem` |
+| Finding and opening files, notes or sources | `FileTreePanel` with `FileTreeTabs`, `FileTreeToolbar` and `FileTree` |
+| A thing in a list | `Item`; a standalone summary: `Card` |
+| A form | `Field` with `Input`, `InputGroup`, `Textarea`, `Select`, `NativeSelect`, `Checkbox`, `Switch`, `ToggleGroup` |
+| Actions on a thing | `DropdownMenu`; a search of actions: `Command` |
+| A small task near its trigger | `Popover`; a label on hover: `Tooltip` (needs `TooltipProvider` at the root) |
+| Confirm, or a short task over the page | `Dialog`; from an edge: `Sheet`; a whole-screen task: `PopupScreen` |
+| App navigation | `Sidebar` |
+| Views of one place | `Tabs`; sections that open: `Accordion`, `Collapsible` |
+| Feedback | `notify()` with `<Notices/>` once at the root, `Progress`, `Empty`, `Badge` |
+| A conversation with an agent | `Thread` inside the app's `AssistantRuntimeProvider`; history: `ThreadList`; floating: `AssistantModal`; beside a page: `AssistantSidebar` |
+| What the agent is doing | `Reasoning`, `ToolGroup`, `ToolFallback`, `ThinkingIndicator`, `AgentStatus`, `AgentPlan`, `TodoList` |
+| The agent needs a decision | `ApprovalCard`, `OptionList` |
+| Model and context | `ModelSelector`, `ContextDisplay` |
 
-The registry lists every item with its description: `public/r/registry.json` in ohm-ui.
+The full list, with descriptions, is `public/r/registry.json` in ohm-ui.
 
 ## Setting up an app
 
-The app needs React 19, Tailwind 4 (`@tailwindcss/vite`), `tw-animate-css`, and an `@/` alias to its `src/`.
+The app needs React 19, Tailwind 4 (`@tailwindcss/vite`), `tw-animate-css`, `tw-shimmer`, and an `@/` alias to its `src/`. A new app can start from shadcn's TanStack Start template: `npx shadcn@latest init --preset b1ZOMFeKW --template start`, then replace its CSS with ohm's foundations (step 1).
 
 1. **Foundations** (tokens, font, brand assets). From an ohm-ui checkout:
 
@@ -47,24 +52,26 @@ The app needs React 19, Tailwind 4 (`@tailwindcss/vite`), `tw-animate-css`, and 
    npm run foundations -- ../my-app          # copies into my-app/src/ohm
    ```
 
-   Then make the app's Tailwind entry CSS:
+   The app's Tailwind entry CSS is then only:
 
    ```css
    @import "./ohm/ohm.css";
    @source "./";
    ```
 
-2. **`components.json`** in the app, with the ohm registry:
+2. **`components.json`** with the Maia style and the ohm registry:
 
    ```json
    {
      "$schema": "https://ui.shadcn.com/schema.json",
-     "style": "base-nova",
+     "style": "base-maia",
      "rsc": false,
      "tsx": true,
-     "tailwind": {"config": "", "css": "src/index.css", "baseColor": "neutral", "cssVariables": true, "prefix": ""},
+     "tailwind": {"config": "", "css": "src/styles.css", "baseColor": "neutral", "cssVariables": true, "prefix": ""},
      "iconLibrary": "lucide",
      "aliases": {"components": "@/components", "ui": "@/components/ui", "utils": "@/lib/cn", "lib": "@/lib", "hooks": "@/hooks"},
+     "menuColor": "default",
+     "menuAccent": "subtle",
      "registries": {
        "@ohm": {
          "url": "https://raw.githubusercontent.com/haeinej/ohm-ui/main/public/r/{name}.json",
@@ -74,15 +81,15 @@ The app needs React 19, Tailwind 4 (`@tailwindcss/vite`), `tw-animate-css`, and 
    }
    ```
 
-   The repository is private, so the CLI needs `GITHUB_TOKEN` set (for example `GITHUB_TOKEN=$(gh auth token)`). Never write the token into a file. While working on ohm-ui itself, point `@ohm` at `http://localhost:5180/r/{name}.json` with ohm-ui's `npm run dev` running instead.
+   The repository is private: run the CLI with `GITHUB_TOKEN=$(gh auth token)`. Never write the token into a file. While working on ohm-ui itself, point `@ohm` at `http://localhost:5180/r/{name}.json` with its `npm run dev` running.
 
 3. **Components:**
 
    ```sh
-   npx shadcn add @ohm/button @ohm/field @ohm/thread
+   npx shadcn add @ohm/button @ohm/panel @ohm/thread
    ```
 
-   Dependencies, both npm packages and other ohm items, come with them.
+   Install ohm's copies, not `@assistant-ui/...` or plain `button`: they are the same components, already pointed at each other and at ohm's foundations.
 
 ## Updating an app after ohm-ui changes
 
@@ -91,10 +98,10 @@ npm run foundations -- ../my-app                    # in ohm-ui, if foundations 
 npx shadcn add @ohm/<name> --overwrite              # in the app, for each changed item
 ```
 
-Then run the app's typecheck and look at the screens that use it.
+Then typecheck the app and look at the screens that use it, in light and dark.
 
-## Changing something ohm-ui does not do
+## When ohm-ui does not have it
 
-1. Check whether a variant, size or prop already covers it.
-2. If not, make the change in ohm-ui (its `AGENTS.md` says how), and ask the person before changing the shared design system for one app.
-3. Update the app from the registry.
+1. Check variants, props and composition of what exists.
+2. Look in [shadcn's directory](https://ui.shadcn.com/docs/directory): a registry may have it (assistant-ui for agent interface).
+3. Ask the person before adding to the shared design system for one app. Then add it in ohm-ui (its `AGENTS.md` says how, usually by vendoring) and install it from `@ohm`.

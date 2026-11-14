@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "base-nova",
+  "style": "base-maia",
   "rsc": false,
   "tsx": true,
   "tailwind": {
@@ -17,5 +17,10 @@
     "utils": "@/registry/ohm/lib/cn",
     "lib": "@/registry/ohm/lib",
     "hooks": "@/registry/ohm/lib"
+  },
+  "menuColor": "default",
+  "menuAccent": "subtle",
+  "registries": {
+    "@assistant-ui": "https://r.assistant-ui.com/{name}.json"
   }
 }

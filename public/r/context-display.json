@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-display",
+  "title": "Context Display",
+  "description": "Token usage against a model's context window as a ring, bar, or text, with a hover popover.",
+  "dependencies": [
+    "@assistant-ui/ai-sdk",
+    "@assistant-ui/react"
+  ],
+  "registryDependencies": [
+    "@ohm/elements-context-display"
+  ],
+  "files": [
+    {
+      "path": "registry/ohm/assistant/context-display.tsx",
+      "content": "\"use client\";\n\nimport { useAuiState } from \"@assistant-ui/react\";\nimport { useThreadTokenUsage } from \"@assistant-ui/ai-sdk\";\nimport { type FC, type ReactNode } from \"react\";\nimport {\n  ContextDisplayBar as ContextDisplayBarBase,\n  ContextDisplayContent,\n  ContextDisplayRing as ContextDisplayRingBase,\n  ContextDisplayRoot as ContextDisplayRootBase,\n  ContextDisplayText as ContextDisplayTextBase,\n  ContextDisplayTrigger,\n  type PresetProps,\n  type TokenUsage,\n} from \"@/registry/ohm/assistant/elements-context-display\";\n\nimport type { TokenUsage as __reexport_TokenUsage } from \"@/registry/ohm/assistant/elements-context-display\";\nexport type { __reexport_TokenUsage as TokenUsage };\n\ntype ContextDisplayRootProps = {\n  modelContextWindow: number;\n  children: ReactNode;\n  usage?: TokenUsage | undefined;\n};\n\ntype WiredPresetProps = Omit<PresetProps, \"resetKey\">;\n\nfunction ContextDisplayRootInternal({\n  modelContextWindow,\n  children,\n}: {\n  modelContextWindow: number;\n  children: ReactNode;\n}) {\n  const usage = useThreadTokenUsage();\n  const threadId = useAuiState((s) => s.threadListItem.id);\n  return (\n    <ContextDisplayRootBase\n      modelContextWindow={modelContextWindow}\n      usage={usage}\n      resetKey={threadId}\n    >\n      {children}\n    </ContextDisplayRootBase>\n  );\n}\n\nfunction ContextDisplayRoot(props: ContextDisplayRootProps) {\n  if (props.usage !== undefined) {\n    return (\n      <ContextDisplayRootBase\n        modelContextWindow={props.modelContextWindow}\n        usage={props.usage}\n      >\n        {props.children}\n      </ContextDisplayRootBase>\n    );\n  }\n  return (\n    <ContextDisplayRootInternal modelContextWindow={props.modelContextWindow}>\n      {props.children}\n    </ContextDisplayRootInternal>\n  );\n}\n\nfunction createWiredPreset(Preset: FC<PresetProps>): FC<WiredPresetProps> {\n  const WiredPreset: FC<WiredPresetProps> = (props) => {\n    const usage = useThreadTokenUsage();\n    const threadId = useAuiState((s) => s.threadListItem.id);\n    return <Preset {...props} usage={usage} resetKey={threadId} />;\n  };\n  return WiredPreset;\n}\n\nconst WiredRing = createWiredPreset(ContextDisplayRingBase);\nconst WiredBar = createWiredPreset(ContextDisplayBarBase);\nconst WiredText = createWiredPreset(ContextDisplayTextBase);\n\nconst ContextDisplayRing: FC<WiredPresetProps> = ({ usage, ...rest }) =>\n  usage !== undefined ? (\n    <ContextDisplayRingBase usage={usage} {...rest} />\n  ) : (\n    <WiredRing {...rest} />\n  );\n\nconst ContextDisplayBar: FC<WiredPresetProps> = ({ usage, ...rest }) =>\n  usage !== undefined ? (\n    <ContextDisplayBarBase usage={usage} {...rest} />\n  ) : (\n    <WiredBar {...rest} />\n  );\n\nconst ContextDisplayText: FC<WiredPresetProps> = ({ usage, ...rest }) =>\n  usage !== undefined ? (\n    <ContextDisplayTextBase usage={usage} {...rest} />\n  ) : (\n    <WiredText {...rest} />\n  );\n\nconst ContextDisplay = {} as {\n  Root: typeof ContextDisplayRoot;\n  Trigger: typeof ContextDisplayTrigger;\n  Content: typeof ContextDisplayContent;\n  Ring: typeof ContextDisplayRing;\n  Bar: typeof ContextDisplayBar;\n  Text: typeof ContextDisplayText;\n};\n\nContextDisplay.Root = ContextDisplayRoot;\nContextDisplay.Trigger = ContextDisplayTrigger;\nContextDisplay.Content = ContextDisplayContent;\nContextDisplay.Ring = ContextDisplayRing;\nContextDisplay.Bar = ContextDisplayBar;\nContextDisplay.Text = ContextDisplayText;\n\nexport {\n  ContextDisplay,\n  ContextDisplayRoot,\n  ContextDisplayTrigger,\n  ContextDisplayContent,\n  ContextDisplayRing,\n  ContextDisplayBar,\n  ContextDisplayText,\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

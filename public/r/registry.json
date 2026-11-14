@@ -21,6 +21,141 @@
       ]
     },
     {
+      "name": "icons",
+      "type": "registry:lib",
+      "title": "Icons",
+      "description": "The ohm icon set: Lucide icons chosen once per meaning (icons.help, icons.delete), in groups.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/lib/icons.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "use-attachment-src",
+      "type": "registry:hook",
+      "title": "Use Attachment Src",
+      "description": "A preview address for an image attachment.",
+      "dependencies": [
+        "@assistant-ui/react",
+        "zustand"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/hooks/use-attachment-src.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-copy-to-clipboard",
+      "type": "registry:hook",
+      "title": "Use Copy To Clipboard",
+      "description": "Copy text and hold a short copied state.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/hooks/use-copy-to-clipboard.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-mobile",
+      "type": "registry:hook",
+      "title": "Use Mobile",
+      "description": "Whether the viewport is phone-sized.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/hooks/use-mobile.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Sections that open and close in place.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "A person or account as a picture or initials; groups with a count.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "A short status or category label.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "Button Group",
+      "description": "Buttons joined into one control: segments, or a button with its menu.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/separator"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -35,6 +170,21 @@
       "files": [
         {
           "path": "registry/ohm/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "shadcn's card: header, title, description, action, content, footer.",
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/card.tsx",
           "type": "registry:ui"
         }
       ]
@@ -59,6 +209,43 @@
       ]
     },
     {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "One region that opens and closes under a trigger.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "A searchable list of commands, in a popup or inline.",
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/dialog",
+        "@ohm/input-group"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
@@ -68,8 +255,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@ohm/cn",
-        "@ohm/button"
+        "@ohm/button",
+        "@ohm/cn"
       ],
       "files": [
         {
@@ -98,6 +285,24 @@
       ]
     },
     {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "What a place shows when it has nothing yet, and the action that fills it.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
@@ -113,6 +318,22 @@
       "files": [
         {
           "path": "registry/ohm/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "file-tree",
+      "type": "registry:ui",
+      "title": "File Tree",
+      "description": "A folder tree for finding and opening things, with the side panel, view tabs and action toolbar around it. Keyboard: arrows, Home, End, Enter.",
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/file-tree.tsx",
           "type": "registry:ui"
         }
       ]
@@ -136,6 +357,45 @@
       ]
     },
     {
+      "name": "icon",
+      "type": "registry:ui",
+      "title": "Icon",
+      "description": "One Lucide icon at an ohm size (xs, sm, md, lg, xl) and stroke; decorative unless given a label.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/icon.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "An input with icons, text, buttons or keys inside its edge.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@ohm/button",
+        "@ohm/cn",
+        "@ohm/input",
+        "@ohm/textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
@@ -149,6 +409,41 @@
       "files": [
         {
           "path": "registry/ohm/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "item",
+      "type": "registry:ui",
+      "title": "Item",
+      "description": "A row of media, title, description and actions, for lists of things.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/separator"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/item.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "A key or key combination.",
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/kbd.tsx",
           "type": "registry:ui"
         }
       ]
@@ -192,12 +487,49 @@
       "title": "Notice",
       "description": "Transient notices at the top of the screen: notify(), Notices, and busy and error helpers.",
       "registryDependencies": [
-        "@ohm/cn",
-        "@ohm/button"
+        "@ohm/button",
+        "@ohm/cn"
       ],
       "files": [
         {
           "path": "registry/ohm/ui/notice.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "panel",
+      "type": "registry:ui",
+      "title": "Panel",
+      "description": "A surface for a group of things, by material (solid, raised, muted, frost-thin, frost, frost-thick, tint), elevation (0–5) and size; with header, title, description, action, content, footer, group, label, item rows and separator.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/panel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "A frosted surface anchored to a trigger, for small tasks.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/popover.tsx",
           "type": "registry:ui"
         }
       ]
@@ -221,6 +553,24 @@
       ]
     },
     {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Panels the person can resize by dragging the handle between them.",
+      "dependencies": [
+        "react-resizable-panels"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/resizable.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "screen",
       "type": "registry:ui",
       "title": "Screen",
@@ -232,6 +582,43 @@
       "files": [
         {
           "path": "registry/ohm/ui/screen.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "A scrolling region with quiet scrollbars.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "A choice from a list, in a frosted popup.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/select.tsx",
           "type": "registry:ui"
         }
       ]
@@ -255,6 +642,68 @@
       ]
     },
     {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "A frosted panel that slides in from an edge.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/button",
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "An app's side navigation: collapsible, with groups, menus, badges and a mobile sheet.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/button",
+        "@ohm/cn",
+        "@ohm/input",
+        "@ohm/separator",
+        "@ohm/sheet",
+        "@ohm/skeleton",
+        "@ohm/tooltip",
+        "@ohm/use-mobile"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "The shape of content that is on its way. Inside lists and sidebars only; a page's loading state stays blank.",
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
@@ -268,6 +717,25 @@
       "files": [
         {
           "path": "registry/ohm/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Views of one place, one at a time.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/tabs.tsx",
           "type": "registry:ui"
         }
       ]
@@ -288,16 +756,455 @@
       ]
     },
     {
-      "name": "markdown-text",
-      "type": "registry:component",
-      "title": "Markdown Text",
-      "description": "An assistant message as safe Markdown: GitHub tables and lists, images become links.",
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "A set of toggles where one or several are on.",
       "dependencies": [
-        "@assistant-ui/react-markdown",
-        "remark-gfm"
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/toggle"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "A button that stays on or off.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A short label on hover or focus. Needs TooltipProvider once at the root.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "elements-agent-plan",
+      "type": "registry:component",
+      "title": "Agent Plan",
+      "description": "A checklist the agent works through, with progress you can glance.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-range",
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/agent-plan.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-agent-status",
+      "type": "registry:component",
+      "title": "Agent Status",
+      "description": "One pill that always answers: what is it doing, and for how long.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/agent-status.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-approval-card",
+      "type": "registry:component",
+      "title": "Approval Card",
+      "description": "Human in the loop: the agent asks before it runs anything with side effects.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-receipt-focus",
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/approval-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "assistant-modal",
+      "type": "registry:component",
+      "title": "Assistant Modal",
+      "description": "Floating chat bubble for support widgets and help desks, with a thread list and a resizable window.",
+      "dependencies": [
+        "@assistant-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/elements-modal-size",
+        "@ohm/thread",
+        "@ohm/thread-list",
+        "@ohm/tooltip-icon-button"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/assistant-modal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "assistant-sidebar",
+      "type": "registry:component",
+      "title": "Assistant Sidebar",
+      "description": "Side panel chat for copilot experiences and inline assistance.",
+      "registryDependencies": [
+        "@ohm/resizable",
+        "@ohm/thread"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/assistant-sidebar.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-attachment-state",
+      "type": "registry:component",
+      "title": "Attachment State",
+      "description": "Shared attachment status and preview state.",
+      "dependencies": [
+        "@assistant-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/use-attachment-src"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/attachment-state.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "attachment",
+      "type": "registry:component",
+      "title": "Attachment",
+      "description": "Attach files from the composer and view them inside messages.",
+      "dependencies": [
+        "@assistant-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/avatar",
+        "@ohm/cn",
+        "@ohm/dialog",
+        "@ohm/elements-attachment-state",
+        "@ohm/tooltip",
+        "@ohm/tooltip-icon-button"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/attachment.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-collapsible-root",
+      "type": "registry:component",
+      "title": "Collapsible Root",
+      "description": "Ref-bearing disclosure root for assistant-ui components.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/collapsible-root.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-context-display-state",
+      "type": "registry:component",
+      "title": "Context Display State",
+      "description": "Shared context display state and reset behavior.",
+      "registryDependencies": [
+        "@ohm/elements-context-usage"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/context-display-state.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "context-display",
+      "type": "registry:component",
+      "title": "Context Display",
+      "description": "Token usage against a model's context window as a ring, bar, or text, with a hover popover.",
+      "dependencies": [
+        "@assistant-ui/ai-sdk",
+        "@assistant-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/elements-context-display"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/context-display.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-context-usage",
+      "type": "registry:component",
+      "title": "Context Usage",
+      "description": "Shared usage colors and segment labels for context displays.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/context-usage.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-context-display",
+      "type": "registry:component",
+      "title": "Context Display",
+      "description": "The props-driven context usage display: ring, bar, and text presets with the usage popover, no runtime required.",
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-context-display-state",
+        "@ohm/elements-context-usage",
+        "@ohm/elements-tokens",
+        "@ohm/tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/elements-context-display.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-model-selector",
+      "type": "registry:component",
+      "title": "Model Selector",
+      "description": "The props-driven model picker: search, groups, and reasoning effort levels, no runtime required.",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/command",
+        "@ohm/elements-model-selection",
+        "@ohm/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/elements-model-selector.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-reasoning",
+      "type": "registry:component",
+      "title": "Reasoning",
+      "description": "The props-driven reasoning disclosure: streaming preview, fades, and variants, no runtime required.",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-collapsible-root",
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/elements-reasoning.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-error-state",
+      "type": "registry:component",
+      "title": "Error State",
+      "description": "A quiet failure banner with a retry path, not a modal in your face.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/error-state.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "file",
+      "type": "registry:component",
+      "title": "File",
+      "description": "Display file parts with icon, name, size, and a download button, playing audio and video inline.",
+      "dependencies": [
+        "@assistant-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-media-player"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/file.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "follow-up-suggestions",
+      "type": "registry:component",
+      "title": "Follow Up Suggestions",
+      "description": "Prompt chips rendered from runtime generated follow up suggestions.",
+      "dependencies": [
+        "@assistant-ui/react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/follow-up-suggestions.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "threadlist-sidebar",
+      "type": "registry:component",
+      "title": "Threadlist Sidebar",
+      "description": "Sidebar shell that hosts the thread list beside a thread.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/sidebar",
+        "@ohm/thread-list"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/github.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/ohm/assistant/threadlist-sidebar.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-href",
+      "type": "registry:component",
+      "title": "Href",
+      "description": "Link safety for the elements family: reducing a model's or a tool's URL to a target a browser can follow without running script.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/href.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "image",
+      "type": "registry:component",
+      "title": "Image",
+      "description": "Display image parts with preview, loading states, and a fullscreen dialog.",
+      "dependencies": [
+        "@assistant-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-href"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/image.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "markdown-text",
+      "type": "registry:component",
+      "title": "Markdown Text",
+      "description": "Render assistant markdown with headings, lists, links, and code blocks.",
+      "dependencies": [
+        "@assistant-ui/react",
+        "@assistant-ui/react-markdown",
+        "lucide-react",
+        "remark-gfm"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/tooltip-icon-button",
+        "@ohm/use-copy-to-clipboard"
       ],
       "files": [
         {
@@ -307,19 +1214,272 @@
       ]
     },
     {
-      "name": "thread",
+      "name": "elements-media-player",
       "type": "registry:component",
-      "title": "Thread",
-      "description": "A whole conversation: messages, tool activity, composer with send and stop. Bring your own assistant-ui runtime.",
+      "title": "Media Player",
+      "description": "Audio and video a tool returned, played inline without leaving the thread.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/media-player.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-message-actions",
+      "type": "registry:component",
+      "title": "Message Actions",
+      "description": "Copy, rate, and regenerate. Each action confirms itself with a small state change.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/message-actions.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-modal-size",
+      "type": "registry:component",
+      "title": "Modal Size",
+      "description": "Shared resizing and stored size for the assistant modal.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/modal-size.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-model-selection",
+      "type": "registry:component",
+      "title": "Model Selection",
+      "description": "Shared model selection state and effort resolution for model selectors.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/model-selection.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "model-selector",
+      "type": "registry:component",
+      "title": "Model Selector",
+      "description": "Model picker with reasoning effort levels, search, and runtime integration.",
+      "dependencies": [
+        "@assistant-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/elements-model-selector"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/model-selector.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-option-list",
+      "type": "registry:component",
+      "title": "Option List",
+      "description": "The agent asks a question with a few answers; the pick returns to it and stays as a receipt.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-range",
+        "@ohm/elements-receipt-focus",
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/option-list.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-range",
+      "type": "registry:component",
+      "title": "Range",
+      "description": "Range normalization for the elements family: clamping a caller's counts, indexes, and shares to what the element can render.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/range.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "reasoning",
+      "type": "registry:component",
+      "title": "Reasoning",
+      "description": "Collapsible panel for assistant reasoning and thinking content.",
+      "dependencies": [
+        "@assistant-ui/react"
+      ],
+      "registryDependencies": [
+        "@ohm/elements-reasoning",
+        "@ohm/markdown-text"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/reasoning.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-receipt-focus",
+      "type": "registry:component",
+      "title": "Receipt Focus",
+      "description": "Keeps focus on a receipt when the focused answer is replaced.",
+      "registryDependencies": [
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/receipt-focus.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "sources",
+      "type": "registry:component",
+      "title": "Sources",
+      "description": "Display URL sources with favicon, title, and an external link.",
+      "dependencies": [
+        "@assistant-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/badge",
+        "@ohm/cn",
+        "@ohm/elements-href"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/sources.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-suggestions",
+      "type": "registry:component",
+      "title": "Suggestions",
+      "description": "Prompt pills that stagger in after a reply and invite the next turn.",
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/suggestions.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-surfaces",
+      "type": "registry:component",
+      "title": "Surfaces",
+      "description": "Shared design language for the elements family: surface, ink, and motion class recipes plus the shimmer utility.",
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/surfaces.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/ohm/assistant/useIsomorphicLayoutEffect.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-thinking-indicator",
+      "type": "registry:component",
+      "title": "Thinking Indicator",
+      "description": "A live status line that names what the agent is doing right now, with elapsed time.",
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/thinking-indicator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "thread-list",
+      "type": "registry:component",
+      "title": "Thread List",
+      "description": "Sidebar or dropdown for switching conversations, with search and active selection.",
       "dependencies": [
         "@assistant-ui/react",
         "lucide-react"
       ],
       "registryDependencies": [
-        "@ohm/cn",
         "@ohm/button",
+        "@ohm/cn",
+        "@ohm/input",
+        "@ohm/skeleton"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/thread-list.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "thread",
+      "type": "registry:component",
+      "title": "Thread",
+      "description": "Chat container with message list, composer, auto scroll, and accessibility built in.",
+      "dependencies": [
+        "@assistant-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/attachment",
+        "@ohm/button",
+        "@ohm/cn",
+        "@ohm/file",
+        "@ohm/follow-up-suggestions",
+        "@ohm/image",
         "@ohm/markdown-text",
-        "@ohm/tool-activity"
+        "@ohm/reasoning",
+        "@ohm/skeleton",
+        "@ohm/tool-fallback",
+        "@ohm/tool-group",
+        "@ohm/tooltip-icon-button"
       ],
       "files": [
         {
@@ -329,21 +1489,117 @@
       ]
     },
     {
-      "name": "tool-activity",
+      "name": "elements-todo-list",
       "type": "registry:component",
-      "title": "Tool Activity",
-      "description": "An agent's tool calls folded into one line that opens to each step. Wording comes from ToolDescriptions.",
+      "title": "Todo List",
+      "description": "The agent's own working list, rewritten mid-run as it discovers what else is needed.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-range",
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/todo-list.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-tokens",
+      "type": "registry:component",
+      "title": "Tokens",
+      "description": "Token count formatting for the elements family: a count in the unit that keeps it short, such as 48.2k or 912.5M.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/tokens.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elements-tool-call",
+      "type": "registry:component",
+      "title": "Tool Call",
+      "description": "One tool invocation with its request and result tucked behind a disclosure.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-collapsible-root",
+        "@ohm/elements-surfaces"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/tool-call.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tool-fallback",
+      "type": "registry:component",
+      "title": "Tool Fallback",
+      "description": "Default renderer for tool calls that have no dedicated UI.",
       "dependencies": [
         "@assistant-ui/react",
         "lucide-react"
       ],
       "registryDependencies": [
+        "@ohm/button",
         "@ohm/cn",
-        "@ohm/button"
+        "@ohm/elements-collapsible-root",
+        "@ohm/textarea"
       ],
       "files": [
         {
-          "path": "registry/ohm/assistant/tool-activity.tsx",
+          "path": "registry/ohm/assistant/tool-fallback.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tool-group",
+      "type": "registry:component",
+      "title": "Tool Group",
+      "description": "Collapsible wrapper around consecutive tool calls.",
+      "dependencies": [
+        "@assistant-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/cn",
+        "@ohm/elements-collapsible-root"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/tool-group.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tooltip-icon-button",
+      "type": "registry:component",
+      "title": "Tooltip Icon Button",
+      "description": "Icon button with an accessible tooltip label, shared across the assistant UI components.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@ohm/button",
+        "@ohm/cn",
+        "@ohm/tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/assistant/tooltip-icon-button.tsx",
           "type": "registry:component"
         }
       ]

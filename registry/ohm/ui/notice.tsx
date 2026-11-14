@@ -90,7 +90,7 @@ export function NoticePill({children, action, role = 'alert', className}: {child
   return <div role={role} className={cn(
     'pointer-events-auto flex max-w-[calc(100vw-24px)] items-center gap-3 rounded-full bg-(--ohm-float) py-2 pr-2 pl-4 has-[>span:only-child]:pr-4 text-body text-foreground shadow-(--ohm-float-shadow) backdrop-blur-xl',
     // Urgent ones (alerts: errors and broken access) read light red.
-    role === 'alert' && 'bg-(--ohm-danger-wash) text-destructive',
+    role === 'alert' && 'bg-destructive/10 text-destructive',
     'ohm-step-enter', className)}>
     <span className="min-w-0 py-1.5">{children}</span>
     {action}

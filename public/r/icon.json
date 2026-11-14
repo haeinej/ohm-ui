@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon",
+  "title": "Icon",
+  "description": "One Lucide icon at an ohm size (xs, sm, md, lg, xl) and stroke; decorative unless given a label.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ohm/cn"
+  ],
+  "files": [
+    {
+      "path": "registry/ohm/ui/icon.tsx",
+      "content": "import type {LucideIcon, LucideProps} from \"lucide-react\"\nimport { cn } from \"@/registry/ohm/lib/cn\"\n\nconst SIZES = {\n  xs: \"size-icon-xs\",\n  sm: \"size-icon-sm\",\n  md: \"size-icon\",\n  lg: \"size-icon-lg\",\n  xl: \"size-icon-xl\",\n} as const\n\nexport type IconSize = keyof typeof SIZES\n\n/**\n * One icon at an ohm size and stroke. Icons are Lucide, shadcn's icon set.\n * Decorative by default; pass `label` when the icon is the only thing that says what a control does.\n *   <Icon icon={SearchIcon} />   <Icon icon={icons.help} size=\"lg\" label=\"Help\" />\n */\nfunction Icon({\n  icon: Glyph,\n  size = \"md\",\n  label,\n  className,\n  ...props\n}: Omit<LucideProps, \"size\"> & { icon: LucideIcon; size?: IconSize; label?: string }) {\n  return (\n    <Glyph\n      data-slot=\"icon\"\n      aria-hidden={label ? undefined : true}\n      aria-label={label}\n      role={label ? \"img\" : undefined}\n      className={cn(SIZES[size], \"shrink-0\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Icon }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

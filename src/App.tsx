@@ -1,161 +1,89 @@
-// The gallery: every registry item, rendered from source. Add a section when you add an item.
-import {AssistantRuntimeProvider} from '@assistant-ui/react';
-import {useState, type ReactNode} from 'react';
-import {MoonIcon, PlusIcon, SunIcon} from 'lucide-react';
+// The gallery, laid out like a component library's docs: the library's own Sidebar on the left,
+// one page per registry item on the right. Every page renders the item from source.
+import {useEffect, useState} from 'react';
+import {Link} from '@tanstack/react-router';
 import {Button} from '@/registry/ohm/ui/button';
-import {Checkbox} from '@/registry/ohm/ui/checkbox';
-import {Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger} from '@/registry/ohm/ui/dialog';
-import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger} from '@/registry/ohm/ui/dropdown-menu';
-import {Field, FieldDescription, FieldLabel} from '@/registry/ohm/ui/field';
-import {HoverCard, HoverCardContent, HoverCardTrigger} from '@/registry/ohm/ui/hover-card';
-import {Input} from '@/registry/ohm/ui/input';
-import {Label} from '@/registry/ohm/ui/label';
-import {NativeSelect, NativeSelectOption} from '@/registry/ohm/ui/native-select';
-import {Notices, notify} from '@/registry/ohm/ui/notice';
-import {Progress} from '@/registry/ohm/ui/progress';
-import {LoadingBar} from '@/registry/ohm/ui/screen';
-import {Separator} from '@/registry/ohm/ui/separator';
-import {Switch} from '@/registry/ohm/ui/switch';
-import {Textarea} from '@/registry/ohm/ui/textarea';
-import {Thread} from '@/registry/ohm/assistant/thread';
-import {useDemoRuntime} from './demo-runtime';
+import {Icon} from '@/registry/ohm/ui/icon';
+import {icons} from '@/registry/ohm/lib/icons';
+import {Kbd} from '@/registry/ohm/ui/kbd';
+import {
+  Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarInset,
+  SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger,
+} from '@/registry/ohm/ui/sidebar';
+import {ToggleGroup, ToggleGroupItem} from '@/registry/ohm/ui/toggle-group';
+import {TooltipProvider} from '@/registry/ohm/ui/tooltip';
+import {Notices} from '@/registry/ohm/ui/notice';
+import {PAGES, SECTIONS, type PageId} from './pages';
 
-const SWATCHES = ['paper', 'ink', 'muted', 'wash', 'line', 'accent', 'accent-fill', 'forest', 'leaf', 'signal', 'agent', 'danger', 'ebony'];
+type Theme = 'light' | 'dark' | 'system';
 
-function Section({id, title, children}: {id: string; title: string; children: ReactNode}) {
-  return <section id={id} className="flex flex-col gap-4 py-8">
-    <h3 className="text-h3">{title}</h3>
-    {children}
-  </section>;
+export function Gallery({page}: {page: PageId}) {
+  const [theme, setTheme] = useState<Theme>('light');
+  useEffect(() => { setTheme((document.documentElement.dataset.theme as Theme) || 'light'); }, []);
+  const choose = (next: Theme) => {
+    setTheme(next);
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('ohm-ui-theme', next);
+  };
+  const current = PAGES[page];
+
+  return <TooltipProvider>
+    <SidebarProvider>
+      <Sidebar variant="inset">
+        <SidebarHeader>
+          <Link to="/" className="flex items-center gap-2 px-2 py-1.5">
+            <span className="size-3 rounded-full bg-(--ohm-forest)"/>
+            <span className="font-serif text-h2 leading-none">ohm ui</span>
+          </Link>
+        </SidebarHeader>
+        <SidebarContent>
+          {SECTIONS.map(section => <SidebarGroup key={section.title}>
+            <SidebarGroupLabel>{section.title}</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {section.pages.map(id => <SidebarMenuItem key={id}>
+                  <SidebarMenuButton isActive={id === page} render={<Link to="/$page" params={{page: id}}/>}>{PAGES[id].title}</SidebarMenuButton>
+                </SidebarMenuItem>)}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>)}
+        </SidebarContent>
+      </Sidebar>
+      <SidebarInset className="max-h-svh overflow-y-auto">
+        <header className="sticky top-0 z-20 flex h-14 items-center gap-2 frost px-4">
+          <SidebarTrigger/>
+          <span className="text-body text-muted-foreground">{current.section}</span>
+          <span className="text-body text-muted-foreground">/</span>
+          <span className="text-body font-medium">{current.title}</span>
+          <div className="ml-auto flex items-center gap-2">
+            <span className="hidden items-center gap-1 text-small text-muted-foreground sm:flex">Sidebar <Kbd>⌘</Kbd><Kbd>B</Kbd></span>
+            <ToggleGroup value={[theme]} onValueChange={value => value[0] && choose(value[0] as Theme)} aria-label="Appearance">
+              <ToggleGroupItem value="light" aria-label="Light"><Icon icon={icons.light}/></ToggleGroupItem>
+              <ToggleGroupItem value="dark" aria-label="Dark"><Icon icon={icons.dark}/></ToggleGroupItem>
+              <ToggleGroupItem value="system" aria-label="Follow the device"><Icon icon={icons.theme}/></ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+        </header>
+        <main className="mx-auto flex w-full max-w-[920px] flex-col gap-8 px-6 pt-10 pb-24">
+          <div className="flex flex-col gap-2">
+            <h1>{current.title}</h1>
+            {current.description && <p className="max-w-[60ch] text-body text-muted-foreground">{current.description}</p>}
+            {current.install && <InstallLine name={current.install}/>}
+          </div>
+          <current.Page/>
+        </main>
+      </SidebarInset>
+    </SidebarProvider>
+    <Notices/>
+  </TooltipProvider>;
 }
 
-export function App() {
-  const [theme, setTheme] = useState<'light' | 'dark' | null>(null);
-  const runtime = useDemoRuntime();
-  return <div data-theme={theme ?? undefined} className="min-h-dvh bg-background text-foreground">
-    <Notices/>
-    <main className="mx-auto flex max-w-[880px] flex-col px-6 py-12">
-      <header className="flex items-end justify-between gap-4 pb-8">
-        <div>
-          <h1>ohm ui</h1>
-          <p className="text-muted-foreground">Foundations, components and assistant parts. Every item here is in the registry.</p>
-        </div>
-        <Button variant="ghost" size="icon" aria-label="Switch light and dark"
-          onClick={() => setTheme(t => (t ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark' ? 'light' : 'dark')}>
-          {theme === 'dark' ? <SunIcon/> : <MoonIcon/>}
-        </Button>
-      </header>
-
-      <Section id="type" title="Type">
-        <h1>Display, Coconat</h1>
-        <h2>Title, Coconat</h2>
-        <h3>Section, Helvetica Neue 600</h3>
-        <p className="text-body">Body. Text and controls, Helvetica Neue 400.</p>
-        <p className="text-small text-muted-foreground">Small. Metadata, timestamps, hints.</p>
-        <code className="font-mono text-small">ui-monospace for code</code>
-      </Section>
-
-      <Section id="color" title="Color">
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-3">
-          {SWATCHES.map(name => <div key={name} className="flex flex-col gap-1.5">
-            <div className="h-12 rounded-field shadow-(--ohm-float-shadow)" style={{background: `var(--ohm-${name})`}}/>
-            <code className="text-small text-muted-foreground">--ohm-{name}</code>
-          </div>)}
-        </div>
-      </Section>
-
-      <Section id="button" title="Button">
-        <div className="flex flex-wrap items-center gap-2">
-          <Button>Default</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="destructive">Destructive</Button>
-          <Button variant="link">Link</Button>
-          <Button size="icon" aria-label="Add"><PlusIcon/></Button>
-          <Button size="sm">Small</Button>
-          <Button size="lg">Large</Button>
-          <Button disabled>Disabled</Button>
-        </div>
-      </Section>
-
-      <Section id="field" title="Field, input, textarea, select">
-        <div className="grid max-w-[420px] gap-4">
-          <Field>
-            <FieldLabel htmlFor="g-name">Name</FieldLabel>
-            <Input id="g-name" placeholder="Your name"/>
-            <FieldDescription>Shown on your profile.</FieldDescription>
-          </Field>
-          <Field>
-            <FieldLabel htmlFor="g-note">Note</FieldLabel>
-            <Textarea id="g-note" placeholder="Write something"/>
-          </Field>
-          <Field>
-            <FieldLabel htmlFor="g-vis">Visibility</FieldLabel>
-            <NativeSelect id="g-vis" defaultValue="private">
-              <NativeSelectOption value="public">Public</NativeSelectOption>
-              <NativeSelectOption value="friends">Friends</NativeSelectOption>
-              <NativeSelectOption value="private">Private</NativeSelectOption>
-            </NativeSelect>
-          </Field>
-        </div>
-      </Section>
-
-      <Section id="toggles" title="Checkbox, switch, label">
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-2"><Checkbox id="g-check" defaultChecked/><Label htmlFor="g-check">Keep a copy</Label></div>
-          <div className="flex items-center gap-2"><Switch id="g-switch"/><Label htmlFor="g-switch">Notify me</Label></div>
-        </div>
-      </Section>
-
-      <Section id="overlays" title="Dialog, dropdown menu, hover card">
-        <div className="flex flex-wrap gap-2">
-          <Dialog>
-            <DialogTrigger render={<Button variant="outline">Open dialog</Button>}/>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Make this public?</DialogTitle>
-                <DialogDescription>Everyone will be able to read it once it is published.</DialogDescription>
-              </DialogHeader>
-              <DialogFooter>
-                <DialogClose render={<Button variant="outline">Cancel</Button>}/>
-                <DialogClose render={<Button>Make public</Button>}/>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-          <DropdownMenu>
-            <DropdownMenuTrigger render={<Button variant="outline">Menu</Button>}/>
-            <DropdownMenuContent>
-              <DropdownMenuItem>Rename</DropdownMenuItem>
-              <DropdownMenuItem>Move</DropdownMenuItem>
-              <DropdownMenuSeparator/>
-              <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <HoverCard>
-            <HoverCardTrigger render={<Button variant="link">Hover me</Button>}/>
-            <HoverCardContent>A preview card, opened on hover or focus.</HoverCardContent>
-          </HoverCard>
-        </div>
-      </Section>
-
-      <Section id="feedback" title="Notice, progress, loading, separator">
-        <div className="flex flex-col gap-4">
-          <div><Button variant="outline" onClick={() => notify({tone: 'info', message: 'Saved. It is private.'})}>Show a notice</Button></div>
-          <Progress value={64}/>
-          <Progress value={null}/>
-          <LoadingBar/>
-          <Separator/>
-        </div>
-      </Section>
-
-      <Section id="thread" title="Assistant thread">
-        <div className="h-[520px] overflow-hidden rounded-panel shadow-(--ohm-panel-shadow)">
-          <AssistantRuntimeProvider runtime={runtime}>
-            <Thread/>
-          </AssistantRuntimeProvider>
-        </div>
-      </Section>
-    </main>
+function InstallLine({name}: {name: string}) {
+  const command = `npx shadcn add @ohm/${name}`;
+  return <div className="flex w-fit items-center gap-1 rounded-xl bg-muted py-1 pr-1 pl-3 font-mono text-small">
+    <span>{command}</span>
+    <Button variant="ghost" size="icon-sm" aria-label="Copy install command" onClick={() => navigator.clipboard.writeText(command)}>
+      <Icon icon={icons.copy} size="sm"/>
+    </Button>
   </div>;
 }
