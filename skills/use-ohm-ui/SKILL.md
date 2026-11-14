@@ -73,7 +73,7 @@ The app needs React 19, Tailwind 4 (`@tailwindcss/vite`), `tw-animate-css`, `tw-
      "menuColor": "default",
      "menuAccent": "subtle",
      "registries": {
-       "@ohm": "https://raw.githubusercontent.com/haeinej/ohm-ui/main/public/r/{name}.json"
+       "@ohm": "https://design.ohmmmm.com/r/{name}.json"
      }
    }
    ```
