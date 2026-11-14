@@ -1,6 +1,6 @@
 // The gallery, laid out like a component library's docs: the library's own Sidebar on the left,
 // one page per registry item on the right. Every page renders the item from source.
-import {useEffect, useState} from 'react';
+import {useEffect, useState, type CSSProperties} from 'react';
 import {Link} from '@tanstack/react-router';
 import {Button} from '@/registry/ohm/ui/button';
 import {Icon} from '@/registry/ohm/ui/icon';
@@ -28,21 +28,23 @@ export function Gallery({page}: {page: PageId}) {
   const current = PAGES[page];
 
   return <TooltipProvider>
-    <SidebarProvider>
+    {/* The sidebar is set as docs.ohmmmm.com's: 248px on its own tone, the name in Coconat with the
+        forest dot, quiet 12px group labels, muted 14px rows, the current one in ink on a tone. */}
+    <SidebarProvider style={{'--sidebar-width': '15.5rem'} as CSSProperties}>
       <Sidebar>
-        <SidebarHeader>
-          <Link to="/" className="flex items-center gap-2 px-2 py-1.5">
-            <span className="size-3 rounded-full bg-(--ohm-forest)"/>
-            <span className="font-serif text-h2 leading-none">design</span>
+        <SidebarHeader className="px-3 pt-10 pb-0">
+          <Link to="/" className="flex items-center gap-2 px-3 pt-1 pb-3 font-serif text-[24px] leading-none tracking-[-0.02em] text-foreground">
+            <span className="size-2.5 rounded-full bg-(--ohm-forest)"/>
+            design
           </Link>
         </SidebarHeader>
-        <SidebarContent>
-          {SECTIONS.map(section => <SidebarGroup key={section.title}>
-            <SidebarGroupLabel>{section.title}</SidebarGroupLabel>
+        <SidebarContent className="gap-6 px-3 pt-2 pb-10">
+          {SECTIONS.map(section => <SidebarGroup key={section.title} className="p-0">
+            <SidebarGroupLabel className="h-4 px-3 text-[12px] leading-4 font-normal tracking-normal text-muted-foreground">{section.title}</SidebarGroupLabel>
             <SidebarGroupContent>
-              <SidebarMenu>
+              <SidebarMenu className="mt-1.5 gap-px">
                 {section.pages.map(id => <SidebarMenuItem key={id}>
-                  <SidebarMenuButton isActive={id === page} render={<Link to="/$page" params={{page: id}}/>}>{PAGES[id].title}</SidebarMenuButton>
+                  <SidebarMenuButton isActive={id === page} render={<Link to="/$page" params={{page: id}}/>} className="h-auto rounded-xl px-3 py-1.5 text-[14px] leading-5 tracking-[-0.01em] text-muted-foreground transition-colors duration-180 hover:bg-muted hover:text-foreground data-active:bg-foreground/8 data-active:font-medium data-active:text-foreground">{PAGES[id].title}</SidebarMenuButton>
                 </SidebarMenuItem>)}
               </SidebarMenu>
             </SidebarGroupContent>
