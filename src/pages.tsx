@@ -50,6 +50,7 @@ import {ToggleGroup, ToggleGroupItem} from '@/registry/ohm/ui/toggle-group';
 import {Tooltip, TooltipContent, TooltipTrigger} from '@/registry/ohm/ui/tooltip';
 import {Thread} from '@/registry/ohm/assistant/thread';
 import {Wave} from '@/registry/ohm/ui/wave';
+import {Cover} from '@/registry/ohm/ui/cover';
 import {useDemoRuntime} from './demo-runtime';
 
 const described = Object.fromEntries(registry.items.map(item => [item.name, item.description]));
@@ -174,6 +175,105 @@ function IconsPage() {
   </div>;
 }
 
+
+// ---- brand ----
+
+const POST = {
+  title: 'Where is your home address on the internet?',
+  subtitle: 'Why we need personal data servers more than ever, to survive in the agentic era.',
+  date: '20 · 11 · 26',
+  number: '001',
+};
+
+const PHOTOS = [
+  ['volume', 'A lit glass volume, someone beside it.'],
+  ['hall', 'A hall of lit glass, someone walking away.'],
+  ['racks', 'Racks of light behind glass, someone looking.'],
+  ['profile', 'A face lit by a screen, behind the glass.'],
+  ['wall', 'A hand resting on lit glass from the other side.'],
+  ['gallery', 'Glass columns, someone passing between them.'],
+] as const;
+const photo = (id: string) => `/covers/images/${id}.jpg`;
+const caption = 'text-small text-muted-foreground';
+
+function CoverPage() {
+  return <div className="flex flex-col gap-12">
+    <Cover {...POST} layout="poster" image={photo('volume')} seed={1} className="rounded-3xl"/>
+    <section className="flex flex-col gap-4">
+      <h3>Five things</h3>
+      <p className="max-w-[60ch] text-body text-muted-foreground">A cover says five things and no more: <code className="font-mono">ohm</code> and the number in the top corners, then the title in Coconat, the subtitle and the date in small Helvetica Neue. No authors, tags, links or logos.</p>
+    </section>
+    <section className="flex flex-col gap-4">
+      <h3>Layouts</h3>
+      <div className="grid gap-4 sm:grid-cols-3">
+        {([['poster', 'volume', 'Everything on one line at the foot, as on a printed poster. The default.'], ['title', 'hall', 'One large title, for a single loud statement.'], ['split', 'profile', 'The picture above, paper below, the subtitle crossing the seam.']] as const).map(([layout, id, text]) =>
+          <figure key={layout} className="flex flex-col gap-2">
+            <Cover {...POST} layout={layout} image={photo(id)} className="rounded-2xl"/>
+            <figcaption className={caption}><code className="font-mono">layout="{layout}"</code> · {text}</figcaption>
+          </figure>)}
+      </div>
+    </section>
+    <section className="flex flex-col gap-4">
+      <h3>Photographs</h3>
+      <p className="max-w-[60ch] text-body text-muted-foreground">Made with an image model from <code className="font-mono">brand/prompts.json</code>: architecture, technology and people through frosted glass, present but soft: the room and the person read, softened by diffusion and shimmering light. Cover washes each toward the drawn light with <code className="font-mono">fade</code> (0–1) and lets the seed's soft light drift over it, so photograph and drawing meet in between. The image never carries text.</p>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {PHOTOS.map(([id, text], i) =>
+          <figure key={id} className="flex flex-col gap-2">
+            <Cover image={photo(id)} seed={i + 2} layout="poster" number={'00' + (i + 1)} title="Home address" date="20 · 11 · 26" className="rounded-2xl"/>
+            <figcaption className={caption}><code className="font-mono">{id}</code> · {text}</figcaption>
+          </figure>)}
+      </div>
+    </section>
+    <section className="flex flex-col gap-4">
+      <h3>Fade</h3>
+      <div className="grid gap-4 sm:grid-cols-3">
+        {[0, .4, .7].map(fade =>
+          <figure key={fade} className="flex flex-col gap-2">
+            <Cover {...POST} layout="poster" image={photo('hall')} fade={fade} className="rounded-2xl"/>
+            <figcaption className={caption}><code className="font-mono">fade={'{'}{fade}{'}'}</code></figcaption>
+          </figure>)}
+      </div>
+    </section>
+    <section className="flex flex-col gap-4">
+      <h3>Ratios</h3>
+      <div className="flex flex-wrap items-start gap-4">
+        <figure className="flex w-72 flex-col gap-2"><Cover {...POST} layout="split" image={photo('racks')} ratio="square" className="rounded-2xl"/><figcaption className={caption}><code className="font-mono">square</code> · 1080 × 1080, feeds</figcaption></figure>
+        <figure className="flex w-60 flex-col gap-2"><Cover {...POST} layout="poster" image={photo('aisle')} ratio="portrait" className="rounded-2xl"/><figcaption className={caption}><code className="font-mono">portrait</code> · 1080 × 1350, posts</figcaption></figure>
+        <figure className="flex w-48 flex-col gap-2"><Cover {...POST} layout="poster" image={photo('aisle')} ratio="story" className="rounded-2xl"/><figcaption className={caption}><code className="font-mono">story</code> · 1080 × 1920, stories</figcaption></figure>
+      </div>
+    </section>
+    <section className="flex flex-col gap-4">
+      <h3>Drawn light</h3>
+      <p className="max-w-[60ch] text-body text-muted-foreground">Without a photograph, Cover draws the light itself from the seed: soft forms of light and green shade, and about one seed in three a person behind the glass.</p>
+      <div className="grid gap-4 sm:grid-cols-3">
+        {[3, 6, 7].map(seed =>
+          <figure key={seed} className="flex flex-col gap-2">
+            <Cover seed={seed} layout="poster" number={'00' + seed} title="Home address" date="20 · 11 · 26" className="rounded-2xl"/>
+            <figcaption className={caption}><code className="font-mono">seed={seed}</code></figcaption>
+          </figure>)}
+      </div>
+    </section>
+    <section className="flex flex-col gap-3">
+      <h3>Downloads</h3>
+      <p className="max-w-[60ch] text-body text-muted-foreground">No. 001, <i>Where is your home address on the internet?</i>, exported from this page.</p>
+      <ul className="flex flex-wrap gap-2">
+        {([['wide', '1200 × 630'], ['square', '1080 × 1080'], ['portrait', '1080 × 1350'], ['story', '1080 × 1920']] as const).map(([ratio, size]) =>
+          <li key={ratio}><Button variant="secondary" render={<a href={`/covers/001/where-is-your-home-address-${ratio}.png`} download/>}>
+            <Icon icon={icons.download}/>{ratio} · {size}
+          </Button></li>)}
+      </ul>
+    </section>
+    <section className="flex flex-col gap-3">
+      <h3>Rules</h3>
+      <ul className="flex max-w-[64ch] list-disc flex-col gap-1.5 pl-5 text-body text-muted-foreground">
+        <li>Five things: ohm, the number, the title, the subtitle, the date. Titles in Coconat, the rest in small Helvetica Neue 500.</li>
+        <li>In between: the architecture and the person are there but soft, about a third of the picture holding form, the rest open light. Mostly near-white; the shade carries the green. Never nature.</li>
+        <li>Never type in the image, never logos, icons or other hues. Keep the foot of the picture pale for the type.</li>
+        <li>Wide is the share card (<code className="font-mono">og:image</code>, 1200 × 630). Export it from the page at full size, never by scaling a smaller one.</li>
+      </ul>
+    </section>
+  </div>;
+}
 
 // ---- files ----
 
@@ -533,6 +633,7 @@ export const PAGES = {
   depth: page('Shade', 'Foundations', DepthPage, undefined, 'Five steps of elevation from one light source.'),
   frost: page('Frost glass', 'Foundations', FrostPage, undefined, 'Translucent materials over a blurred, saturated backdrop, each with its own edge and catch-light.'),
   icons: page('Icons', 'Foundations', IconsPage, 'icons'),
+  cover: page('Cover', 'Brand', CoverPage, 'cover'),
   panel: page('Panel', 'Components', PanelPage, 'panel'),
   files: page('File tree', 'Components', FilesPage, 'file-tree'),
   menu: page('Dropdown menu', 'Components', MenuPage, 'dropdown-menu'),
@@ -549,6 +650,7 @@ export type PageId = keyof typeof PAGES;
 export const SECTIONS: {title: string; pages: PageId[]}[] = [
   {title: 'Start', pages: ['overview']},
   {title: 'Foundations', pages: ['color', 'type', 'depth', 'frost', 'icons']},
+  {title: 'Brand', pages: ['cover']},
   {title: 'Components', pages: ['panel', 'files', 'menu', 'button-group', 'button', 'overlays', 'forms', 'display', 'feedback']},
   {title: 'Assistant', pages: ['thread']},
 ];

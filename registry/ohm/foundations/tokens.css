@@ -176,6 +176,20 @@
   --ohm-press-scale: .97;
   --ohm-atmosphere-drift: 18s;
   --ohm-atmosphere-grain-opacity: .08;
+
+  /* ---- light: a photograph through frosted glass, for covers and share cards only (light.css,
+     DESIGN.md "Light"). Near-white, overexposed; the shade carries the green. ---- */
+  --ohm-light-milk: #f5f7f4;
+  --ohm-light-mist: #dbe5de;
+  --ohm-light-glow: #fbfcfa;
+  --ohm-light-shade: #5f8a6c;
+  --ohm-light-ink: #013220;
+  --ohm-light-dusk-milk: #43544d;
+  --ohm-light-dusk-mist: #1f2c27;
+  --ohm-light-dusk-glow: #eef4f0;
+  --ohm-light-dusk-shade: #121c18;
+  --ohm-light-dusk-ink: #f4f7f4;
+  --ohm-light-grain: .22;
 }
 
 /* Appearance: light by default. Set data-theme on <html> or on any element to scope it. */

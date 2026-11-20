@@ -98,6 +98,26 @@ A press eases into a slight scale; nothing jumps. Reduced motion shortens every 
 
 Lucide, shadcn's set, at one stroke (2) with round caps and joins. Five sizes: `size-icon-xs` 14, `size-icon-sm` 16, `size-icon` 18, `size-icon-lg` 20, `size-icon-xl` 24. Each meaning has one picture, in `registry/ohm/lib/icons.ts`: reach for `icons.help`, `icons.delete`, `icons.community` before importing from Lucide.
 
+## Light
+
+The signature look for everything ohm puts out into the world rather than into the app: post thumbnails, share cards, posters. It is an overexposed photograph taken through frosted glass: a near-white field, soft forms of light and green shade far out of focus, now and then a person standing behind the glass, all under film grain. Quiet and a little uncanny, like an empty corridor lit from behind. `light.css` draws it; `Cover` (`npx shadcn add @ohm/cover`) composes it from a seed. Never use it for interface.
+
+| Token | Day | Dusk | Job |
+| --- | --- | --- | --- |
+| `--ohm-light-glow` | #fbfcfa | #eef4f0 | Light, where it falls in |
+| `--ohm-light-milk` | #f5f7f4 | #43544d | The field |
+| `--ohm-light-mist` | #dbe5de | #1f2c27 | Where the light falls off |
+| `--ohm-light-shade` | #5f8a6c | #121c18 | Shade and the person: the green |
+| `--ohm-light-ink` | #013220 | #f4f7f4 | Type |
+| `--ohm-light-grain` | .22 | | Film grain |
+
+- **Photographs first.** A cover is usually a photograph made from `brand/prompts.json`: architecture, technology and people through frosted glass, present but soft (a lit glass volume, a hall, racks of light, a face lit by a screen), shimmering and mostly near-white, never nature. About a third of the picture holds form; the rest is open light. It goes to `Cover` as `image`, never contains text, and `fade` washes it toward the drawn light.
+- **Type is a layout.** `title`: one large Coconat title. `poster`: an editorial grid at the foot (mark, a compact title, the date column, a row of spaced Coconat capitals in `labels`). `split`: the picture above, paper below, small type crossing the seam, with a `byline`.
+- **Drawn light when there is no photograph.** Soft and random. No lines, bands, frames or hard edges. Each post gets its own `seed`; the same seed always draws the same light. About one seed in three brings a person; `figure` asks for one or keeps it out.
+- **Tones:** `day` by default, `dusk` for a second series; never mixed in one set. **Ratios:** wide 1200 × 630 (share card), square, portrait 4:5, story 9:16.
+- **Type:** titles in Coconat; mark, number, dek and byline in small Helvetica Neue 500; labels in spaced Coconat capitals. No logos, icons or other hues.
+- Everything scales with the cover's width, so export from the page at full size, never by scaling a smaller one.
+
 ## Rules
 
 1. **One source.** Colour, size, radius, shadow, duration and font live in `tokens.css`. Components use tokens or the Tailwind keys mapped onto them.

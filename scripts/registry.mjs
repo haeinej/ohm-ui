@@ -6,9 +6,10 @@
 // One item per file, except vendored assistant-ui items that upstream ships as several files,
 // which stay one item under upstream's name.
 import {existsSync, readFileSync, readdirSync, writeFileSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
 import {basename, join} from 'node:path';
 
-const ROOT = new URL('..', import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const VENDOR = JSON.parse(readFileSync(join(ROOT, 'registry/ohm/vendor.json'), 'utf8'));
 
 // ohm's own words for an item. Vendored assistant-ui items fall back to upstream's description
@@ -32,6 +33,7 @@ const DESCRIPTIONS = {
   textarea: 'A multi-line text input.',
   icon: 'One Lucide icon at an ohm size (xs, sm, md, lg, xl) and stroke; decorative unless given a label.',
   icons: 'The ohm icon set: Lucide icons chosen once per meaning (icons.help, icons.delete), in groups.',
+  cover: 'The ohm cover: a photograph through frosted glass fading toward soft drawn light, with five things on it (ohm, number, title, subtitle, date) in title, poster or split layouts. For post thumbnails, share cards and posters.',
   wave: 'The ohm wave: the flowing field of greens from ohmmmm.com, in WebGL, filling its box. Pauses off screen, still with reduced motion, a still field without WebGL.',
   'file-tree': 'A folder tree for finding and opening things, with the side panel, view tabs and action toolbar around it. Keyboard: arrows, Home, End, Enter.',
   panel: 'A surface for a group of things, by material (solid, raised, muted, frost-thin, frost, frost-thick, tint), elevation (0–5) and size; with header, title, description, action, content, footer, group, label, item rows and separator.',

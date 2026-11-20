@@ -12,6 +12,7 @@
     "registry:build": "node scripts/registry.mjs && shadcn build",
     "check": "node scripts/check.mjs",
     "foundations": "node scripts/foundations.mjs",
+    "covers": "node scripts/covers.mjs",
     "vendor": "node scripts/vendor.mjs",
     "deploy": "npm run build && wrangler deploy",
     "deploy:check": "npm run build && wrangler deploy --dry-run"
