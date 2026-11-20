@@ -18,7 +18,7 @@ ohm-ui is the ohm design system (github.com/haeinej/ohm-ui). Components are copi
 7. **States:** a page's loading state is blank or a `LoadingDot`; errors and confirmations are `notify()`; empty places use `Empty`.
 8. **Don't edit installed ohm files** (`components/ui`, the assistant parts, `lib/cn.ts`, `lib/icons.ts`, `src/ohm/`). They are copies. Change ohm-ui and update the app, or the change is lost and the system splits.
 9. **Data stays outside components.** Components take props; fetching, TanStack DB collections and stores belong to the app's own components. Agent parts read from the app's assistant-ui runtime.
-10. **Buttons hug their label; they are never bars.** Put a view's actions in one row at the content's start edge, primary first: `<div className="flex flex-wrap items-center gap-3">`. A flex column stretches its children, so a `Button` placed straight in one becomes a full-width bar: wrap it in the row, or give it `self-start`.
+10. **Buttons hug their label; they are never bars.** Put a view's actions in one row at the content's start edge, primary first: `<div className="flex flex-wrap items-center gap-3">`. A flex column stretches its children, so a `Button` placed straight in one becomes a full-width bar: wrap it in the row, or give it `self-start`. On a muted surface use `variant="outline"`, not `secondary`, which is the same tone as the surface.
 11. **Fields fit what they hold.** Size an `Input` to its content with `className`: email or handle `max-w-sm`, web address `max-w-md`, a short code `w-40`. Only free text (`Textarea`) takes the column's width.
 
 ## What to reach for
