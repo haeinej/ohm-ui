@@ -236,6 +236,7 @@ function CoverPage() {
     </section>
     <section className="flex flex-col gap-4">
       <h3>Ratios</h3>
+      <figure className="flex flex-col gap-2"><Cover {...POST} image={photo('volume')} ratio="banner" className="rounded-2xl"/><figcaption className={caption}><code className="font-mono">banner</code> · 2000 × 800, article headers (X Articles crop and zoom: the type stays well inside the edges)</figcaption></figure>
       <div className="flex flex-wrap items-start gap-4">
         <figure className="flex w-72 flex-col gap-2"><Cover {...POST} layout="split" image={photo('racks')} ratio="square" className="rounded-2xl"/><figcaption className={caption}><code className="font-mono">square</code> · 1080 × 1080, feeds</figcaption></figure>
         <figure className="flex w-60 flex-col gap-2"><Cover {...POST} layout="poster" image={photo('aisle')} ratio="portrait" className="rounded-2xl"/><figcaption className={caption}><code className="font-mono">portrait</code> · 1080 × 1350, posts</figcaption></figure>
@@ -257,7 +258,7 @@ function CoverPage() {
       <h3>Downloads</h3>
       <p className="max-w-[60ch] text-body text-muted-foreground">No. 001, <i>Where is your home address on the internet?</i>, exported from this page.</p>
       <ul className="flex flex-wrap gap-2">
-        {([['wide', '1200 × 630'], ['square', '1080 × 1080'], ['portrait', '1080 × 1350'], ['story', '1080 × 1920']] as const).map(([ratio, size]) =>
+        {([['wide', '1200 × 630'], ['banner', '2000 × 800'], ['square', '1080 × 1080'], ['portrait', '1080 × 1350'], ['story', '1080 × 1920']] as const).map(([ratio, size]) =>
           <li key={ratio}><Button variant="secondary" render={<a href={`/covers/001/where-is-your-home-address-${ratio}.png`} download/>}>
             <Icon icon={icons.download}/>{ratio} · {size}
           </Button></li>)}

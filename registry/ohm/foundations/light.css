@@ -186,3 +186,9 @@
 .ohm-cover:not([data-ratio="wide"])[data-layout="split"] .ohm-cover-title { grid-column: 2 / -1; font-size: 7cqw !important; }
 .ohm-cover:not([data-ratio="wide"])[data-layout="split"] .ohm-cover-subtitle { grid-column: 2 / -1; grid-row: 2; align-self: end; margin-bottom: 4cqw !important; }
 .ohm-cover:not([data-ratio="wide"])[data-layout="split"] .ohm-cover-date { grid-column: 2; grid-row: 4; }
+
+/* banner (5:2): article headers, such as X Articles, which crop and zoom the picture. The type keeps
+   to a safe zone well inside the edges, so a crop never cuts it. */
+.ohm-cover[data-ratio="banner"] { aspect-ratio: 5 / 2; }
+.ohm-cover[data-ratio="banner"] .ohm-cover-text { padding: 6cqw 11cqw; font-size: 1.15cqw; }
+.ohm-cover[data-ratio="banner"] .ohm-cover-title { font-size: 4.4cqw !important; }

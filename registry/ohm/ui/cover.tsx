@@ -17,7 +17,8 @@ import { cn } from "@/registry/ohm/lib/cn"
  * seed: places the soft light (over a photograph, or alone without one); the same seed always draws
  *   the same light. figure: without a photograph, show a person (true), never (false), or leave it to
  *   the seed (about one in three).
- * tone: day (near-white, forest type) or dusk. ratio: wide (1200 × 630), square, portrait (4:5), story (9:16).
+ * tone: day (near-white, forest type) or dusk. ratio: wide (1200 × 630), banner (5:2, article headers that crop; type kept to a safe zone), square,
+ *   portrait (4:5), story (9:16).
  */
 type CoverProps = Omit<React.ComponentProps<"div">, "title"> & {
   title?: React.ReactNode
@@ -28,7 +29,7 @@ type CoverProps = Omit<React.ComponentProps<"div">, "title"> & {
   seed?: number
   figure?: boolean
   tone?: "day" | "dusk"
-  ratio?: "wide" | "square" | "portrait" | "story"
+  ratio?: "wide" | "banner" | "square" | "portrait" | "story"
   image?: string
   focus?: string
   fade?: number
