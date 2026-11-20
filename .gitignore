@@ -7,3 +7,8 @@ dist/
 .claude/settings.local.json
 .wrangler/
 .output/
+
+# brand: third-party reference images stay local; raw generations are large (picked ones are in public/covers/images)
+brand/references/*
+!brand/references/.gitkeep
+brand/generated/

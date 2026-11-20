@@ -11,11 +11,12 @@
 // transforms apply, then copies the files in and records where each came from in
 // registry/ohm/vendor.json, which scripts/registry.mjs reads.
 import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 import {cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {basename, join, relative} from 'node:path';
 
-const ROOT = new URL('..', import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const SHADCN_CLI = 'shadcn@4.23.0';
 
 // Stock shadcn items. Pinned by name; their source is the base-maia style at the CLI version above.

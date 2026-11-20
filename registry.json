@@ -246,6 +246,21 @@
       ]
     },
     {
+      "name": "cover",
+      "type": "registry:ui",
+      "title": "Cover",
+      "description": "The ohm cover: a photograph through frosted glass fading toward soft drawn light, with five things on it (ohm, number, title, subtitle, date) in title, poster or split layouts. For post thumbnails, share cards and posters.",
+      "registryDependencies": [
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/cover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",

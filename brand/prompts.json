@@ -1,0 +1,159 @@
+{
+  "_about": "Prompts for the ohm cover images (DESIGN.md, 'Light'). The image carries no text: type is laid over it by Cover. `style` is appended to every prompt. Run: npm run covers -- <id> [<id>…] (needs OPENAI_API_KEY in .env.local). `style` is the current look (in between: present but soft); `style_rich` (fuller) and `style_minimal` (almost blank) are earlier looks, kept for reference.",
+  "model": "gpt-image-2",
+  "style": "Fine-art architectural photograph through frosted glass, liminal and quiet, between architecture, technology and the human body. Soft and luminous rather than blank: the architecture is clearly there (glass walls, a corridor, a lit volume, racks of light) but softened by diffusion, about a third of the frame holding form and the rest open light. Near-white (#f5f7f4) and pale celadon mist (#dbe5de), mid-tones in muted sage (#5f8a6c), a few small accents of deep forest green (#013220), never hard black. The light shimmers: gentle halation, faint iridescent fringes, a few vertical streaks of light, fine analog grain. A person, when present, reads clearly as a person but blurred and partly dissolved, never sharp. The lower-left third stays calm and pale for type. No plants, nature, water or landscapes. Absolutely no text, letters, numbers, signage, logos, watermarks or frames.",
+  "prompts": [
+    {
+      "id": "corridor",
+      "size": "1536x1024",
+      "prompt": "A long, empty corridor lined with backlit frosted glass walls glowing from within, the vanishing point slightly right of centre. Far down the corridor a single person stands, only a soft blurred silhouette dissolving into the light. Low carpet, pale ceiling, the walls' light bleeding into the air."
+    },
+    {
+      "id": "atrium",
+      "size": "1536x1024",
+      "prompt": "A tall atrium enclosed by a curving wall of translucent milky glass panels lit from behind, the wall undulating like a wave under a smooth pale ceiling. The glass is so bright it almost burns out. A low dark planter edge at the very bottom, the floor fading into mist. Seen slightly from below, monumental and silent."
+    },
+    {
+      "id": "figure",
+      "size": "1536x1024",
+      "prompt": "A person standing directly behind a sheet of frosted acrylic, pressed close enough that their head and shoulders appear as a soft green-grey shadow, the rest dissolving into overexposed white. One hand faintly touches the glass. Intimate, ghostly, still."
+    },
+    {
+      "id": "fragment",
+      "size": "1536x1024",
+      "prompt": "An overexposed, bleached close-up portrait fragment: only a closed eye and the curve of lips emerge from a field of white, tinted pale green like a faded inverted film negative, the rest of the face lost to light. Placed toward the right half of the frame."
+    },
+    {
+      "id": "threshold",
+      "size": "1536x1024",
+      "prompt": "A doorway in a wall of glowing frosted glass, the door slightly open onto pure white light. Long soft reflections on a polished pale floor. A threshold between rooms, nobody there."
+    },
+    {
+      "id": "bloom",
+      "size": "1536x1024",
+      "prompt": "Abstract long-exposure photograph of light moving behind ribbed frosted glass: soft vertical pillars and liquid blooms of white light separated by sage-green shadow, like light seen through a shower screen. Experimental, painterly, no recognisable objects."
+    },
+    {
+      "id": "stair",
+      "size": "1024x1536",
+      "prompt": "A narrow stair rising into a void of white light between two walls of backlit frosted glass. A blurred figure halfway up, turned away, almost transparent. Vertical, quiet, architectural."
+    },
+    {
+      "id": "window",
+      "size": "1024x1536",
+      "prompt": "A tall window of frosted glass in a dim pale room, the light behind it so strong the frame softens away; the silhouette of a person outside the glass is a faint green shadow in the upper half. Vertical composition."
+    },
+    {
+      "id": "cube",
+      "size": "1536x1024",
+      "prompt": "A large frosted glass cube standing in an empty white room, glowing evenly from within like a lightbox, its light shimmering across the polished pale floor. A dark doorway at the far right edge. Silent, monumental, a sculpture of light."
+    },
+    {
+      "id": "trail",
+      "size": "1536x1024",
+      "prompt": "The motion trace of a single dark green dot moving across pale paper-white space: a sequence of soft out-of-focus round dots arcing upward from lower left to upper right, growing smaller and fainter, photographed in a long exposure through frosted glass. One faint thin curve of pale light crossing behind them."
+    },
+    {
+      "id": "servers",
+      "size": "1536x1024",
+      "prompt": "Rows of server racks seen through a wall of frosted glass: their tiny lights smear into tall shimmering vertical streaks of pale green-white light. A person walks past between the rows, only a translucent ghost in long exposure."
+    },
+    {
+      "id": "spectrum",
+      "size": "1536x1024",
+      "prompt": "Abstract: a few thin vertical lines of dark light, each with a soft starburst where it crosses one faint horizontal band, like a spectrograph or interference pattern photographed through frosted glass, on a vast pale shimmering field."
+    },
+    {
+      "id": "glow",
+      "size": "1536x1024",
+      "prompt": "Behind frosted glass, the profile of a person's face lit only by the cool glow of a screen they are looking at; the face is a soft green-grey shadow, the glow blooms and shimmers across the glass. Right half of the frame."
+    },
+    {
+      "id": "scan",
+      "size": "1536x1024",
+      "prompt": "A long frosted glass wall in an empty building with a bright band of light sweeping along it like a scanner, leaving shimmering horizontal afterimages. A single hand pressed flat against the glass, blurred."
+    },
+    {
+      "id": "lightbox",
+      "size": "1024x1536",
+      "prompt": "A tall narrow frosted glass column glowing from within in an empty pale gallery, a person standing beside it reduced to a translucent silhouette by long exposure. Vertical, quiet."
+    },
+    {
+      "id": "passage",
+      "size": "1024x1536",
+      "prompt": "A narrow passage between two walls of backlit frosted glass with thin vertical lines of brighter light inside the glass like fibre optics; far away, a person walks toward the light. Vertical composition."
+    },
+    {
+      "id": "veil",
+      "size": "1536x1024",
+      "prompt": "An almost empty wall of frosted glass lit evenly from behind. Toward the right, one thin vertical seam where the light is a little brighter, and beside it the faintest shadow of a person standing on the other side, barely distinguishable from the glass."
+    },
+    {
+      "id": "seam",
+      "size": "1536x1024",
+      "prompt": "A vast pale wall with a single thin vertical line of shimmering light running floor to ceiling, slightly right of centre. Far away at its foot, a very small figure, almost dissolved."
+    },
+    {
+      "id": "presence",
+      "size": "1536x1024",
+      "prompt": "Behind a sheet of frosted glass, the faintest trace of a person: only the soft line of a head and one shoulder in very pale sage, the rest of the body lost to white. Right third of the frame."
+    },
+    {
+      "id": "band",
+      "size": "1536x1024",
+      "prompt": "A soft horizontal band of brighter light crossing an empty white room at eye level, shimmering slightly at its edges. A single silhouette crosses the band far away, so faint it might be a reflection."
+    },
+    {
+      "id": "point",
+      "size": "1536x1024",
+      "prompt": "A single small soft dot of pale green light behind frosted glass, far out of focus, upper right, trailing the faintest smear of light toward the left. Everything else is white."
+    },
+    {
+      "id": "room",
+      "size": "1536x1024",
+      "prompt": "The corner of an empty white room where two walls of backlit frosted glass meet; the corner line almost disappears in the glow. A doorway in deep pale shadow at the far right."
+    },
+    {
+      "id": "vertical",
+      "size": "1024x1536",
+      "prompt": "A tall field of frosted glass lit from behind with two faint vertical seams of brighter light; near the bottom of one seam, the barest silhouette of a person."
+    },
+    {
+      "id": "hall",
+      "size": "1536x1024",
+      "prompt": "A long hall lined on the right with walls of backlit frosted glass, their light falling across a pale floor. Midway down, a person walks away, blurred by long exposure but clearly a figure. The left side is open soft light."
+    },
+    {
+      "id": "racks",
+      "size": "1536x1024",
+      "prompt": "Behind a wall of frosted glass, rows of server racks on the right half, their small lights softened into gentle vertical streaks of pale green-white. A person stands between the rows, blurred, looking at them."
+    },
+    {
+      "id": "volume",
+      "size": "1536x1024",
+      "prompt": "A frosted glass cube lit from within stands right of centre in an empty white room, its edges soft, its light shimmering on the floor. A person stands near it, a soft silhouette at the edge of its glow."
+    },
+    {
+      "id": "profile",
+      "size": "1536x1024",
+      "prompt": "Behind frosted glass on the right, the soft profile of a person lit by the cool light of a screen in front of them; the face and shoulder read clearly but blurred, the glow shimmering across the glass."
+    },
+    {
+      "id": "wall",
+      "size": "1536x1024",
+      "prompt": "A tall wall of frosted glass panels lit from behind, their seams faint. On the other side, right of centre, a person stands with one hand resting on the glass; the hand is a little sharper, the body dissolves upward into light."
+    },
+    {
+      "id": "gallery",
+      "size": "1536x1024",
+      "prompt": "An empty pale gallery with two glowing frosted glass columns on the right, light pooling on the polished floor. A blurred person passes between them."
+    },
+    {
+      "id": "aisle",
+      "size": "1024x1536",
+      "prompt": "A narrow aisle between two walls of backlit frosted glass with faint vertical lines of light inside; halfway down, a blurred person walks toward the light. Vertical composition."
+    }
+  ],
+  "style_rich": "Fine-art architectural photograph, liminal and quiet, between architecture, technology and the human body, as if shot on medium-format film through frosted glass. Overexposed and luminous: mostly near-white (#f5f7f4) and pale celadon mist (#dbe5de), with shadows in muted sage green (#5f8a6c) and only the smallest accents of deep forest green (#013220). The light shimmers: soft halation, faint iridescent and chromatic fringes, vertical light streaks and long-exposure smears, as if light were data passing through glass. Heavy diffusion and fine analog grain, no hard black. Minimal and experimental, with lots of calm empty space; the lower-left third kept quiet and pale so type can sit there. Built, made and human only: no plants, trees, leaves, flowers, water or landscapes. Absolutely no text, letters, numbers, signage, screens with writing, logos, watermarks or frames.",
+  "style_minimal": "Minimal fine-art photograph, almost blank: a vast field of soft white light seen through frosted glass, so overexposed it is fading away. Near-white (#f5f7f4) and the palest celadon mist (#dbe5de); the only shadows are faint muted sage (#5f8a6c), never dark. The light shimmers very gently: delicate halation, the faintest iridescent fringe, a slight vertical smear, fine analog grain. Architectural and quiet, one element at most, everything else empty light; a figure, if any, is tiny or barely there, a trace rather than a person. No plants, nature, water or landscapes. Absolutely no text, letters, numbers, signage, logos, watermarks or frames."
+}

@@ -3,10 +3,11 @@
 //   2. Components import each other only through @/registry/ohm/..., the paths shadcn rewrites.
 //   3. registry.json matches the files.
 import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 import {readFileSync, readdirSync} from 'node:fs';
 import {join} from 'node:path';
 
-const ROOT = new URL('..', import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const problems = [];
 // Vendored files are upstream's; their palette names are folded onto ohm in shadcn.css.
 const vendored = new Set(Object.keys(JSON.parse(readFileSync(join(ROOT, 'registry/ohm/vendor.json'), 'utf8')).files));
