@@ -107,6 +107,31 @@
   --ohm-space-12: 48px;
   --ohm-space-16: 64px;
 
+  /* ---- identity object: fixed footprint and approved forest glass ---- */
+  --ohm-identity-width: 23.5rem;
+  --ohm-identity-ratio: 4 / 3;
+  --ohm-identity-perspective: 1100px;
+  --ohm-identity-base: color-mix(in oklab, var(--ohm-forest) 45%, black);
+  --ohm-identity-deep: color-mix(in oklab, var(--ohm-forest) 70%, black);
+  --ohm-identity-glow: color-mix(in oklab, var(--ohm-forest) 70%, var(--ohm-green-light));
+  --ohm-identity-glow-soft: color-mix(in oklab, var(--ohm-forest) 84%, var(--ohm-green-light));
+  --ohm-identity-muted: color-mix(in oklab, var(--ohm-paper-light) 60%, transparent);
+  --ohm-identity-glass: color-mix(in oklab, var(--ohm-paper-light) 4%, transparent);
+  --ohm-identity-pill: color-mix(in oklab, var(--ohm-paper-light) 12%, transparent);
+  --ohm-identity-pill-hover: color-mix(in oklab, var(--ohm-paper-light) 20%, transparent);
+  --ohm-identity-initial: color-mix(in oklab, var(--ohm-paper-light) 92%, transparent);
+  --ohm-identity-initial-fill: color-mix(in oklab, var(--ohm-paper-light) 14%, transparent);
+  --ohm-identity-blur: 64px;
+  --ohm-identity-tilt-x: -7deg;
+  --ohm-identity-tilt-y: 9deg;
+  --ohm-identity-shadow-x: -16px;
+  --ohm-identity-shadow-y: 22px;
+  --ohm-identity-shadow-drift: -10px;
+  --ohm-identity-shadow-blur: 48px;
+  --ohm-identity-shadow-spread: -14px;
+  --ohm-identity-shadow-color: color-mix(in oklab, black 55%, transparent);
+  --ohm-identity-shadow-contact: 0 2px 8px color-mix(in oklab, black 25%, transparent);
+
   /* ---- size ---- */
   --ohm-height-xs: 24px;
   --ohm-height-sm: 32px;

@@ -38,6 +38,7 @@ const DESCRIPTIONS = {
   'file-tree': 'A folder tree for finding and opening things, with the side panel, view tabs and action toolbar around it. Keyboard: arrows, Home, End, Enter.',
   panel: 'A surface for a group of things, by material (solid, raised, muted, frost-thin, frost, frost-thick, tint), elevation (0–5) and size; with header, title, description, action, content, footer, group, label, item rows and separator.',
   accordion: 'Sections that open and close in place.',
+  'identity-card': 'A fixed 376 by 282 identity object: cloudy forest glass, avatar, section-size name, home address, DID and bounded pointer tilt. Data and actions supplied by the app.',
   avatar: 'A person or account as a picture or initials; groups with a count.',
   badge: 'A short status or category label.',
   'button-group': 'Buttons joined into one control: segments, or a button with its menu.',

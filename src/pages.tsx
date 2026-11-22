@@ -50,6 +50,7 @@ import {ToggleGroup, ToggleGroupItem} from '@/registry/ohm/ui/toggle-group';
 import {Tooltip, TooltipContent, TooltipTrigger} from '@/registry/ohm/ui/tooltip';
 import {Thread} from '@/registry/ohm/assistant/thread';
 import {Wave} from '@/registry/ohm/ui/wave';
+import {IdentityCard} from '@/registry/ohm/ui/identity-card';
 import {Cover} from '@/registry/ohm/ui/cover';
 import {useDemoRuntime} from './demo-runtime';
 
@@ -195,6 +196,16 @@ const PHOTOS = [
 ] as const;
 const photo = (id: string) => `/covers/images/${id}.jpg`;
 const caption = 'text-small text-muted-foreground';
+
+function IdentityCardPage() {
+  return <div className="flex flex-col gap-6">
+    <Example title="Fixed identity object">
+      <IdentityCard name="haeinej" address="haeinej.example.com" did="did:example:0123456789abcdefghijklmn"
+        onOpenWorkspace={() => notify({message: 'The app handles opening this home.'})}/>
+    </Example>
+    <p className="text-small text-muted-foreground">376 × 282, 4:3. Fits narrower containers without growing. The name uses the same h2 role as a section heading. Pointer tilt respects reduced motion and touch input.</p>
+  </div>;
+}
 
 function CoverPage() {
   return <div className="flex flex-col gap-12">
@@ -635,6 +646,7 @@ export const PAGES = {
   frost: page('Frost glass', 'Foundations', FrostPage, undefined, 'Translucent materials over a blurred, saturated backdrop, each with its own edge and catch-light.'),
   icons: page('Icons', 'Foundations', IconsPage, 'icons'),
   cover: page('Cover', 'Brand', CoverPage, 'cover'),
+  'identity-card': page('Identity card', 'Components', IdentityCardPage, 'identity-card'),
   panel: page('Panel', 'Components', PanelPage, 'panel'),
   files: page('File tree', 'Components', FilesPage, 'file-tree'),
   menu: page('Dropdown menu', 'Components', MenuPage, 'dropdown-menu'),
@@ -652,6 +664,6 @@ export const SECTIONS: {title: string; pages: PageId[]}[] = [
   {title: 'Start', pages: ['overview']},
   {title: 'Foundations', pages: ['color', 'type', 'depth', 'frost', 'icons']},
   {title: 'Brand', pages: ['cover']},
-  {title: 'Components', pages: ['panel', 'files', 'menu', 'button-group', 'button', 'overlays', 'forms', 'display', 'feedback']},
+  {title: 'Components', pages: ['identity-card', 'panel', 'files', 'menu', 'button-group', 'button', 'overlays', 'forms', 'display', 'feedback']},
   {title: 'Assistant', pages: ['thread']},
 ];
