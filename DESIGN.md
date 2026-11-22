@@ -118,6 +118,15 @@ The signature look for everything ohm puts out into the world rather than into t
 - **Type:** titles in Coconat; mark, number, dek and byline in small Helvetica Neue 500; labels in spaced Coconat capitals. No logos, icons or other hues.
 - Everything scales with the cover's width, so export from the page at full size, never by scaling a smaller one.
 
+## Identity card
+
+A reusable identity object, independent of onboarding state. Its fixed default footprint is
+376 × 282 (4:3); it never grows to fill a parent. Below that width it fits the available space
+and keeps the ratio. The approved cloudy forest glass, large avatar and bounded pointer tilt
+stay the same in both themes. The name uses `text-h2`, matching a section heading (24/32),
+and the name, address text and DID share a leading edge. The app supplies identity and profile
+props and handles the workspace action; this component never fetches account data.
+
 ## Rules
 
 1. **One source.** Colour, size, radius, shadow, duration and font live in `tokens.css`. Components use tokens or the Tailwind keys mapped onto them.

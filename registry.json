@@ -390,6 +390,25 @@
       ]
     },
     {
+      "name": "identity-card",
+      "type": "registry:ui",
+      "title": "Identity Card",
+      "description": "A fixed 376 by 282 identity object: cloudy forest glass, avatar, section-size name, home address, DID and bounded pointer tilt. Data and actions supplied by the app.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@ohm/avatar",
+        "@ohm/cn"
+      ],
+      "files": [
+        {
+          "path": "registry/ohm/ui/identity-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "input-group",
       "type": "registry:ui",
       "title": "Input Group",
